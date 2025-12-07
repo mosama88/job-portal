@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -10,12 +10,12 @@ Route::get('/', function () {
 // Candidate
 Route::get('/dashboard', function () {
     return view('frontend.candidate-dashboard.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified', 'user.role:candidate'])->name('dashboard');
 
 // Company
 Route::get('/company/dashboard', function () {
     return view('frontend.company-dashboard.dashboard');
-})->middleware(['auth', 'verified'])->name('company.dashboard');
+})->middleware(['auth', 'verified', 'user.role:company'])->name('company.dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
