@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Enums\RoleUserType;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -28,7 +29,12 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        if (Auth::user()->role == RoleUserType::Company) {
+            return redirect()->intended(route('company.dashboard', absolute: false));
+        } elseif (Auth::user()->role == RoleUserType::Candidate) {
+            return redirect()->intended(route('dashboard', absolute: false));
+        }
+        return redirect()->intended(route('index', absolute: false)); // Replace 'home' with your default route
     }
 
     /**
