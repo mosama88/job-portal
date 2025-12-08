@@ -7,15 +7,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('index');
 
-// Candidate
-Route::get('/dashboard', function () {
-    return view('frontend.candidate-dashboard.dashboard');
-})->middleware(['auth', 'verified', 'user.role:candidate'])->name('dashboard');
-
-// Company
-Route::get('/company/dashboard', function () {
-    return view('frontend.company-dashboard.dashboard');
-})->middleware(['auth', 'verified', 'user.role:company'])->name('company.dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -24,3 +15,19 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+
+// Candidate
+Route::middleware(['auth', 'verified', 'user.role:candidate'])->prefix('candidate')->as('candidate.')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('frontend.candidate-dashboard.dashboard');
+    })->name('dashboard');
+});
+
+
+// Company
+Route::middleware(['auth', 'verified', 'user.role:company'])->prefix('company')->as('company.')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('frontend.company-dashboard.dashboard');
+    })->name('dashboard');
+});

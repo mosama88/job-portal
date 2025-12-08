@@ -20,7 +20,7 @@ class UserRoleMiddleware
             if ($request->user()->role === 'company') {
                 return redirect()->route('company.dashboard');
             } elseif ($request->user()->role === 'candidate') {
-                return redirect()->route('dashboard');
+                return redirect()->route('candidate.dashboard');
             }
         }
 
