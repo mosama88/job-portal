@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
@@ -24,16 +24,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        $request->authenticate('admin');
 
         $request->session()->regenerate();
 
-        if (Auth::user()->role === 'company') {
-            return redirect()->intended(route('company.dashboard', absolute: false));
-        } elseif (Auth::user()->role === 'candidate') {
-            return redirect()->intended(route('dashboard', absolute: false));
-        }
-        return redirect()->intended(route('index', absolute: false)); // Replace 'home' with your default route
+        return redirect()->intended(route('dashboard.admin.index', absolute: false)); // Replace 'home' with your default route
     }
 
     /**
