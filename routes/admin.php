@@ -37,9 +37,9 @@ Route::middleware('guest:admin')->group(function () {
 
 Route::middleware('auth:admin')->group(function () {
 
-    Route::get('/', function () {
+    Route::get('/dashboard', function () {
         return view('dashboard.index');
-    })->name('admin.index');
+    })->name('index');
 
 
     Route::get('verify-email', EmailVerificationPromptController::class)

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use App\Providers\RouteServiceProvider;
+use App\Http\Requests\Auth\LoginRequest;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -29,9 +30,9 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         if (Auth::user()->role === 'company') {
-            return redirect()->intended(route('company.dashboard', absolute: false));
+            return redirect()->intended(RouteServiceProvider::COMPANY_DASHBOARD);
         } elseif (Auth::user()->role === 'candidate') {
-            return redirect()->intended(route('dashboard', absolute: false));
+            return redirect()->intended(RouteServiceProvider::CANDIDATE_DASHBOARD);
         }
         return redirect()->intended(route('index', absolute: false)); // Replace 'home' with your default route
     }
@@ -43,9 +44,9 @@ class AuthenticatedSessionController extends Controller
     {
         Auth::guard('web')->logout();
 
-        $request->session()->invalidate();
+        // $request->session()->invalidate();
 
-        $request->session()->regenerateToken();
+        // $request->session()->regenerateToken();
 
         return redirect('/');
     }

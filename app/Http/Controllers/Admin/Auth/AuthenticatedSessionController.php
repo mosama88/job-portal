@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\AdminLoginRequest;
+use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,13 +22,12 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(AdminLoginRequest $request): RedirectResponse
+    public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        $request->authenticate('admin');
 
         $request->session()->regenerate();
-
-        return redirect()->intended(route('dashboard.admin.index', absolute: false)); // Replace 'home' with your default route
+        return redirect()->intended(route('admin.index', absolute: false)); // Replace 'home' with your default route
     }
 
     /**
@@ -38,10 +37,10 @@ class AuthenticatedSessionController extends Controller
     {
         Auth::guard('admin')->logout();
 
-        $request->session()->invalidate();
+        // $request->session()->invalidate();
 
-        $request->session()->regenerateToken();
+        // $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/admin/login');
     }
 }
