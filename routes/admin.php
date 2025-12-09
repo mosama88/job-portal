@@ -14,6 +14,10 @@ use App\Http\Controllers\Admin\ImportExcelController;
 use App\Http\Controllers\Admin\ExportExcelController;
 use Illuminate\Support\Facades\Route;
 
+
+Route::permanentRedirect('/', '/admin/dashboard');
+
+
 Route::middleware('guest:admin')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');

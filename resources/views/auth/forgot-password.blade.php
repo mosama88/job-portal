@@ -1,25 +1,38 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-    </div>
-
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('password.email') }}">
+@extends('admins.auth.layouts.master')
+@section('title', 'User Forgot-Password')
+@section('content')
+    <p class="login-box-msg">User Forgot-Password</p>
+    <p>Forgot your password? No problem. Just let us know your email address and we will email you a password reset link
+        that will allow you to choose a new one.
+    </p>
+    <form action="{{ route('password.email') }}" method="POST">
         @csrf
+        <x-auth-session-status class="mb-4 text-success" :status="session('status')" />
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <label for="username">Email</label>
+        <div class="input-group mb-3">
+            <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror"
+                placeholder="email" required>
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-envelope"></span>
+                </div>
+            </div>
+            @error('email')
+                <span class="invalid-feedback d-block text-danger">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Email Password Reset Link') }}
-            </x-primary-button>
+        <div class="row">
+            <!-- /.col -->
+            <div class="col-6 mx-auto">
+                <button type="submit" wire:click="submit" wire:loading.attr="disabled"
+                    class="btn btn-primary btn-block d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-window-restore mx-1"></i> Email Password Reset Link
+                </button>
+            </div>
+            <!-- /.col -->
         </div>
     </form>
-</x-guest-layout>
+@endsection

@@ -1,39 +1,69 @@
-<x-guest-layout>
+@extends('admins.auth.layouts.master')
+@section('title', 'User Reset-Password')
+@section('content')
+    <p class="login-box-msg">Admin Reset-Password</p>
     <form method="POST" action="{{ route('admin.password.store') }}">
         @csrf
-
-        <!-- Password Reset Token -->
+        <x-auth-session-status class="mb-4 text-success" :status="session('status')" />
         <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <label for="username">Email</label>
+        <div class="input-group mb-3">
+            <input type="email" id="email" name="email" value="{{ old('email', $request->email) }}"
+                class="form-control @error('email') is-invalid @enderror" placeholder="email@domain.com" required>
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-envelope"></span>
+                </div>
+            </div>
+            @error('email')
+                <span class="invalid-feedback d-block text-danger">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <label for="password">Password</label>
+        <div class="input-group mb-3">
+            <input type="password" id="password" name="password"
+                class="form-control @error('password') is-invalid @enderror" placeholder="Password">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                </div>
+            </div>
+            @error('password')
+                <span class="invalid-feedback d-block text-danger">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        <label for="password">Confirm Password</label>
+        <div class="input-group mb-3">
+            <input type="password" id="password_confirmation" name="password_confirmation"
+                class="form-control @error('password_confirmation') is-invalid @enderror"
+                placeholder="password_confirmation">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                </div>
+            </div>
+            @error('password_confirmation')
+                <span class="invalid-feedback d-block text-danger">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Reset Password') }}
-            </x-primary-button>
+        <div class="row">
+            <!-- /.col -->
+            <div class="col-6 mx-auto">
+                <button type="submit" wire:click="submit" wire:loading.attr="disabled"
+                    class="btn btn-primary btn-block d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-window-restore mx-1"></i> Reset Password
+                </button>
+            </div>
+            <!-- /.col -->
         </div>
     </form>
-</x-guest-layout>
+@endsection

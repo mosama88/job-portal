@@ -8,7 +8,7 @@
             <label for="username">Email</label>
             <div class="input-group mb-3">
                 <input type="text" id="email" name="email" class="form-control @error('email') is-invalid @enderror"
-                    placeholder="email">
+                    placeholder="email@domain.com">
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span class="fas fa-envelope"></span>
