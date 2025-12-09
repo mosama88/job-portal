@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ImportExcelController;
+use App\Http\Controllers\Admin\ExportExcelController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:admin')->group(function () {
@@ -38,7 +40,23 @@ Route::middleware('guest:admin')->group(function () {
 
 Route::middleware('auth:admin')->group(function () {
 
+    //--------------------------------------------- Index
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('index');
+
+    //--------------------------------------------- Excel
+    Route::post('/import/excel', ImportExcelController::class)->name('import.excel');
+    Route::get('/export/excel', ExportExcelController::class)->name('export.excel');
+
+
+
+
+
+
+
+
+
+
+
 
 
     Route::get('verify-email', EmailVerificationPromptController::class)
