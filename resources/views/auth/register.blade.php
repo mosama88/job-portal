@@ -1,4 +1,4 @@
-<x-guest-layout>
+{{-- <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
@@ -49,4 +49,106 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+</x-guest-layout> --}}
+
+
+@extends('frontend.layouts.master')
+@section('content')
+    <section class="pt-120 login-register mb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 mx-auto">
+                    <div class="login-register-cover">
+                        <div class="text-center">
+                            <h2 class="mb-5 text-brand-1">Register</h2>
+                            <p class="font-sm text-muted mb-30">Lorem ipsum dolor sit amet consectetur.</p>
+                        </div>
+                        <form class="login-register text-start mt-20" method="POST" action="{{ route('register') }}">
+                            @csrf
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="form-group">
+                                        <label class="form-label" for="input-1">Full Name *</label>
+                                        <input class="form-control @error('name') is-invalid @enderror" id="input-1"
+                                            name="name" placeholder="Steven Job">
+                                        @error('name')
+                                            <span class="invalid-feedback d-block text-danger">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="form-group">
+                                        <label class="form-label" for="input-2">Email *</label>
+                                        <input class="form-control @error('email') is-invalid @enderror" id="input-2"
+                                            name="email" placeholder="stevenjob@gmail.com">
+                                        @error('email')
+                                            <span class="invalid-feedback d-block text-danger">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="input-4">Password *</label>
+                                        <input class="form-control @error('password') is-invalid @enderror" id="input-4"
+                                            type="password" name="password" placeholder="************">
+                                        @error('password')
+                                            <span class="invalid-feedback d-block text-danger">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="input-5">Re-Password *</label>
+                                        <input class="form-control @error('password_confirmation') is-invalid @enderror"
+                                            id="input-5" type="password" name="password_confirmation"
+                                            placeholder="************">
+                                        @error('password_confirmation')
+                                            <span class="invalid-feedback d-block text-danger">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mb-3">
+                                    <hr>
+                                    <h6 for="" class="mb-2">Create Account For</h6>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="role" id="typeCandidate"
+                                            value="candidate" checked>
+                                        <label class="form-check-label" for="typeCandidate">Candidate</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="role" id="typeCompany"
+                                            value="company">
+                                        <label class="form-check-label" for="typeCompany">Company</label>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-default hover-up w-100" type="submit" name="login">Submit
+                                        &amp;
+                                        Register</button>
+                                </div>
+                                <div class="text-muted text-center">Already have an account?
+                                    <a href="{{ route('login') }}">Sign in</a>
+                                </div>
+                        </form>
+                        <div class="text-center mt-20">
+                            <div class="divider-text-center"><span>Or continue with</span></div>
+                            <button class="btn social-login hover-up mt-20"><img
+                                    src="assets/imgs/template/icons/icon-google.svg" alt="joblist"><strong>Sign up with
+                                    Google</strong></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+@endsection

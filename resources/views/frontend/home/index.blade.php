@@ -46,4 +46,6 @@
 
 
     @include('frontend.sections.news_blogs')
+
+    @include('frontend.sections.subscription_box')
 @endsection
