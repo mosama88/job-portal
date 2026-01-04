@@ -13,5 +13,6 @@
     <script src="{{ asset('frontend') }}/assets/js/plugins/Font-Awesome.js"></script>
     <script src="{{ asset('frontend') }}/assets/js/plugins/counterup.js"></script>
     <script src="{{ asset('frontend') }}/assets/js/main.js?v=4.1"></script>
+    <script src="{{ asset('frontend') }}/assets/js/plugins/counterup.js"></script>
 
     @stack('js')
