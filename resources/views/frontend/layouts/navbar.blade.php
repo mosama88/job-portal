@@ -31,8 +31,93 @@
             </div>
             <div class="header-right">
                 <div class="block-signin">
-                    <!-- <a class="text-link-bd-btom hover-up" href="page-register.html">Register</a> -->
-                    <a class="btn btn-default btn-shadow ml-40 hover-up" href="{{ route('login') }}">Sign in</a>
+
+
+
+
+
+                    @guest
+                        <a class="btn btn-default btn-shadow ml-40 hover-up" href="{{ route('login') }}">Sign in</a>
+                    @endguest
+                    @auth
+                        <div class="nav-item dropdown">
+
+                            {{-- زر فتح القائمة --}}
+                            <button
+                                class="nav-link dropdown-toggle d-flex align-items-center btn btn-link text-decoration-none"
+                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+                                <div class="user-info me-2 text-end">
+                                    <span class="user-name d-block fw-semibold">
+                                        {{ auth()->user()->name }}
+                                    </span>
+                                    <small class="text-muted">
+                                        {{ auth()->user()->role }}
+                                    </small>
+                                </div>
+
+                                <div class="user-avatar">
+                                    @if (auth()->user()->avatar)
+                                        <img src="{{ asset('storage/' . auth()->user()->avatar) }}" class="rounded-circle"
+                                            width="32" height="32" alt="Avatar">
+                                    @else
+                                        <div class="avatar-placeholder rounded-circle bg-primary text-white d-flex align-items-center justify-content-center"
+                                            style="width: 32px; height: 32px;">
+                                            {{ mb_substr(auth()->user()->name, 0, 1) }}
+                                        </div>
+                                    @endif
+                                </div>
+                            </button>
+
+                            {{-- القائمة --}}
+                            <ul class="dropdown-menu dropdown-menu-end shadow" data-bs-auto-close="true">
+
+                                <li class="px-3 py-2">
+                                    <div class="fw-semibold">
+                                        {{ auth()->user()->name }}
+                                    </div>
+                                    <small class="text-muted">
+                                        {{ auth()->user()->email }}
+                                    </small>
+                                </li>
+
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center"
+                                        href="{{ route('candidate.dashboard') }}">
+                                        <i class="bi bi-person me-2"></i>
+                                        Profile
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)">
+                                        <i class="bi bi-gear me-2"></i>
+                                        Settings
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+
+                                <li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item d-flex align-items-center text-danger">
+                                            <i class="bi bi-box-arrow-right me-2"></i>
+                                            Logout
+                                        </button>
+                                    </form>
+                                </li>
+
+                            </ul>
+                        </div>
+                    @endauth
+
                 </div>
             </div>
         </div>

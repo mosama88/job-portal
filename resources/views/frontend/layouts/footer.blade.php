@@ -1,4 +1,4 @@
-    <footer class="footer pt-165">
+    <footer class="footer pt-50">
         <div class="container">
             <div class="row justify-content-between">
                 <div class="footer-col-1 col-md-3 col-sm-12">
@@ -11,8 +11,7 @@
                     <div class="footer-social">
                         <a class="icon-socials icon-facebook" href="#"><i class="fab fa-facebook-f"></i></a>
                         <a class="icon-socials icon-twitter" href="#"><i class="fab fa-twitter"></i></a>
-                        <a class="icon-socials icon-linkedin" href="#"><i
-                                class="fab fa-linkedin-in"></i></a>
+                        <a class="icon-socials icon-linkedin" href="#"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 <div class="footer-col-2 col-md-2 col-xs-6">
@@ -60,8 +59,8 @@
                     <div class="col-md-6 text-md-end text-start">
                         <div class="footer-social"><a class="font-xs color-text-paragraph" href="#">Privacy
                                 Policy</a><a class="font-xs color-text-paragraph mr-30 ml-30" href="#">Terms
-                                &amp; Conditions</a><a class="font-xs color-text-paragraph"
-                                href="#">Security</a></div>
+                                &amp; Conditions</a><a class="font-xs color-text-paragraph" href="#">Security</a>
+                        </div>
                     </div>
                 </div>
             </div>
