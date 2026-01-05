@@ -41,62 +41,55 @@
                     @endguest
                     @auth
                         <div class="nav-item dropdown">
-
-                            {{-- زر فتح القائمة --}}
                             <button
                                 class="nav-link dropdown-toggle d-flex align-items-center btn btn-link text-decoration-none"
-                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                type="button" data-bs-toggle="dropdown">
 
-                                <div class="user-info me-2 text-end">
-                                    <span class="user-name d-block fw-semibold">
-                                        {{ auth()->user()->name }}
-                                    </span>
-                                    <small class="text-muted">
-                                        {{ auth()->user()->role }}
-                                    </small>
+                                <div class="user-info me-2">
+                                    <span class="user-name d-block fw-semibold">{{ auth()->user()->name }}</span>
+                                    <small class="text-muted">{{ ucfirst(auth()->user()->role) }}</small>
                                 </div>
 
                                 <div class="user-avatar">
                                     @if (auth()->user()->avatar)
                                         <img src="{{ asset('storage/' . auth()->user()->avatar) }}" class="rounded-circle"
-                                            width="32" height="32" alt="Avatar">
+                                            width="40" height="40" alt="Avatar">
                                     @else
-                                        <div class="avatar-placeholder rounded-circle bg-primary text-white d-flex align-items-center justify-content-center"
-                                            style="width: 32px; height: 32px;">
+                                        <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center"
+                                            style="width: 40px; height: 40px;">
                                             {{ mb_substr(auth()->user()->name, 0, 1) }}
                                         </div>
                                     @endif
                                 </div>
                             </button>
 
-                            {{-- القائمة --}}
-                            <ul class="dropdown-menu dropdown-menu-end shadow" data-bs-auto-close="true">
-
+                            <ul class="dropdown-menu dropdown-menu-end shadow">
                                 <li class="px-3 py-2">
-                                    <div class="fw-semibold">
-                                        {{ auth()->user()->name }}
-                                    </div>
-                                    <small class="text-muted">
-                                        {{ auth()->user()->email }}
-                                    </small>
+                                    <div class="fw-semibold">{{ auth()->user()->name }}</div>
+                                    <small class="text-muted">{{ auth()->user()->email }}</small>
                                 </li>
-
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
 
-                                <li>
-                                    <a class="dropdown-item d-flex align-items-center"
-                                        href="{{ route('candidate.dashboard') }}">
-                                        <i class="bi bi-person me-2"></i>
-                                        Profile
-                                    </a>
-                                </li>
+                                {{-- روابط مختلفة حسب الـ role --}}
+                                @if (auth()->user()->role === 'candidate')
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('candidate.dashboard') }}">
+                                            <i class="bi bi-speedometer2 me-2"></i> Dashboard
+                                        </a>
+                                    </li>
+                                @else
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('company.dashboard') }}">
+                                            <i class="bi bi-building me-2"></i> Dashboard
+                                        </a>
+                                    </li>
+                                @endif
 
                                 <li>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)">
-                                        <i class="bi bi-gear me-2"></i>
-                                        Settings
+                                    <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                        <i class="bi bi-pencil-square me-2"></i> Edit Account
                                     </a>
                                 </li>
 
@@ -107,13 +100,11 @@
                                 <li>
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
-                                        <button type="submit" class="dropdown-item d-flex align-items-center text-danger">
-                                            <i class="bi bi-box-arrow-right me-2"></i>
-                                            Logout
+                                        <button type="submit" class="dropdown-item text-danger w-100 text-start">
+                                            <i class="bi bi-box-arrow-right me-2"></i> Logout
                                         </button>
                                     </form>
                                 </li>
-
                             </ul>
                         </div>
                     @endauth
