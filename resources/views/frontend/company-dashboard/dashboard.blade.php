@@ -1,4 +1,5 @@
 @extends('frontend.layouts.master')
+@section('dashboard_active', 'active')
 @section('content')
     <section class="section-box mt-75">
         <div class="breacrumb-cover">
@@ -19,10 +20,8 @@
     <section class="section-box mt-120">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-12">
-                    @include('frontend.candidate-dashboard.sidebar')
-                
-                </div>
+                @include('frontend.candidate-dashboard.sidebar')
+
                 <div class="col-lg-9 col-md-8 col-sm-12 col-12 mb-50">
                     <div class="content-single">
                         <h3 class="mt-0 mb-0 color-brand-1">Dashboard</h3>
@@ -51,7 +50,7 @@
                                 <div class="col-12 mt-30">
                                     <div class="dash_alert_box p-30 bg-danger rounded-4 d-flex flex-wrap">
                                         <span class="img">
-                                            <img src="assets/imgs/avatar/ava_17.png" alt="alert">
+                                            <img src="{{ asset('frontend') }}/assets/imgs/avatar/ava_17.png" alt="alert">
                                         </span>
                                         <div class="text">
                                             <h4>This is demo heading</h4>

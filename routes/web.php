@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Frontend\HomeController;
-use App\Http\Controllers\Frontend\CandidateDashboardController;
+use App\Http\Controllers\Frontend\CompanyProfileController;
 use App\Http\Controllers\Frontend\CompanyDashboardController;
+use App\Http\Controllers\Frontend\CandidateDashboardController;
 
 Route::get('/', [HomeController::class, 'index']);
 
@@ -29,4 +30,5 @@ Route::middleware(['auth', 'verified', 'user.role:candidate'])->prefix('candidat
 // Company
 Route::middleware(['auth', 'verified', 'user.role:company'])->prefix('company')->as('company.')->group(function () {
     Route::get('/dashboard', [CompanyDashboardController::class, 'index'])->name('dashboard');
+    Route::resource('/profile', CompanyProfileController::class);
 });
