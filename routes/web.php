@@ -30,5 +30,6 @@ Route::middleware(['auth', 'verified', 'user.role:candidate'])->prefix('candidat
 // Company
 Route::middleware(['auth', 'verified', 'user.role:company'])->prefix('company')->as('company.')->group(function () {
     Route::get('/dashboard', [CompanyDashboardController::class, 'index'])->name('dashboard');
-    Route::resource('/profile', CompanyProfileController::class);
+    Route::get('/profile', [CompanyProfileController::class, 'index'])->name('profile.index');
+    Route::post('/profile/company-info', [CompanyProfileController::class, 'updateCompanyInfo'])->name('profile.company-info');
 });
