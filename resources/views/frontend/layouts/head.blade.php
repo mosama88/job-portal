@@ -11,6 +11,8 @@
   <link rel="shortcut icon" type="image/x-icon" href="">
   <link href="{{ asset('frontend') }}/assets/css/all.min.css" rel="stylesheet">
   <link href="{{ asset('frontend') }}/assets/css/style.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.1/dist/css/bootstrap-datepicker.min.css"
+      rel="stylesheet">
   <title>joblist - Job Portal HTML Template </title>
 
   @stack('css')
