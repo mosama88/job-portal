@@ -67,7 +67,7 @@
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Company Name *</label>
                                             <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
-                                                type="text" name="name">
+                                                type="text" name="name" value="{{ old('name', $companyInfo->name) }}">
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('name')" />
                                         </div>
                                     </div>
@@ -76,7 +76,7 @@
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Company Bio *</label>
                                             <textarea cols="30" rows="10" class="form-control {{ $errors->has('bio') ? 'is-invalid' : '' }}"
-                                                name="bio"></textarea>
+                                                name="bio">{{ old('bio', $companyInfo->bio) }}</textarea>
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('bio')" />
                                         </div>
                                     </div>
@@ -85,7 +85,7 @@
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Company Vision *</label>
                                             <textarea cols="30" rows="10" class="form-control {{ $errors->has('vision') ? 'is-invalid' : '' }}"
-                                                name="vision"></textarea>
+                                                name="vision">{{ old('vision', $companyInfo->vision) }}</textarea>
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('vision')" />
                                         </div>
                                     </div>

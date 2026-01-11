@@ -19,8 +19,6 @@ return new class extends Migration
             $table->foreignId('industry_type_id')->nullable();
             $table->foreignId('organization_type_id')->nullable();
             $table->foreignId('team_size_id')->nullable();
-            $table->string('logo')->nullable();
-            $table->string('banner')->nullable();
             $table->date('establishemnt_date')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
@@ -31,7 +29,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
-            $table->string('country');
+            $table->string('country')->nullable();
             $table->text('map_link')->nullable();
             $table->boolean('is_profile_verified')->default(0);
             $table->timestamp('document_verified_at')->nullable();
