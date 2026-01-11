@@ -42,7 +42,7 @@ class CompanyProfileController extends Controller
             }
         }
 
-
-        return redirect()->back()->with('success', 'Company Updated successfully');
+        notify()->success('⚡️ Updated Successfully', 'Success!');
+        return back();
     }
 }

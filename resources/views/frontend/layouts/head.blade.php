@@ -15,4 +15,7 @@
       rel="stylesheet">
   <title>joblist - Job Portal HTML Template </title>
 
+  <!-- Add Laravel Notify CSS -->
+  @notifyCss
+
   @stack('css')
