@@ -47,6 +47,20 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6">
+                                        @if ($companyInfo->getFirstMediaUrl('logo', 'preview'))
+                                            <img width="200px" height="200px"
+                                                src="{{ $companyInfo->getFirstMediaUrl('logo', 'preview') }}"
+                                                alt="{{ $companyInfo->name }}">
+                                        @endif
+                                    </div>
+                                    <div class="col-md-6">
+                                        @if ($companyInfo->getFirstMediaUrl('banner', 'preview'))
+                                            <img width="500px" height="200px"
+                                                src="{{ $companyInfo->getFirstMediaUrl('banner', 'preview') }}"
+                                                alt="{{ $companyInfo->name }}">
+                                        @endif
+                                    </div>
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Logo *</label>
                                             <input class="form-control {{ $errors->has('logo') ? 'is-invalid' : '' }}"
@@ -96,8 +110,8 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
-                            tabindex="0">
+                        <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                            aria-labelledby="pills-profile-tab" tabindex="0">
                             <form action="" method="POST">
                                 @csrf
                                 <div class="row">

@@ -33,8 +33,11 @@ class CompanyProfileController extends Controller
         $mediaFields = ['logo', 'banner'];
         foreach ($mediaFields as $field) {
             if ($request->hasFile($field)) {
-                $company
-                    ->addMediaFromRequest($field)
+                // Delete old photo
+                $company->clearMediaCollection($field);
+
+                // Upload new photo
+                $company->addMediaFromRequest($field)
                     ->toMediaCollection($field);
             }
         }
