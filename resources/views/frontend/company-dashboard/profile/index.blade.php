@@ -51,7 +51,7 @@
                                             <label class="font-sm color-text-mutted mb-10">Logo *</label>
                                             <input class="form-control {{ $errors->has('logo') ? 'is-invalid' : '' }}"
                                                 type="file" name="logo">
-                                            <x-input-error class="mt-2" :messages="$errors->get('logo')" />
+                                            <x-input-error class="mt-2 text-danger" :messages="$errors->get('logo')" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -59,7 +59,7 @@
                                             <label class="font-sm color-text-mutted mb-10">Banner *</label>
                                             <input class="form-control {{ $errors->has('banner') ? 'is-invalid' : '' }}"
                                                 type="file" name="banner">
-                                            <x-input-error class="mt-2" :messages="$errors->get('banner')" />
+                                            <x-input-error class="mt-2 text-danger" :messages="$errors->get('banner')" />
                                         </div>
                                     </div>
 
@@ -68,24 +68,25 @@
                                             <label class="font-sm color-text-mutted mb-10">Company Name *</label>
                                             <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
                                                 type="text" name="name">
-                                            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                                            <x-input-error class="mt-2 text-danger" :messages="$errors->get('name')" />
                                         </div>
                                     </div>
 
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Company Bio *</label>
-                                            <textarea name="bio" cols="30" rows="10" class="summernote {{ $errors->has('bio') ? 'is-invalid' : '' }}"></textarea>
-                                            <x-input-error class="mt-2" :messages="$errors->get('bio')" />
+                                            <textarea cols="30" rows="10" class="form-control {{ $errors->has('bio') ? 'is-invalid' : '' }}"
+                                                name="bio"></textarea>
+                                            <x-input-error class="mt-2 text-danger" :messages="$errors->get('bio')" />
                                         </div>
                                     </div>
 
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Company Vision *</label>
-                                            <textarea name="vision" cols="30" rows="10"
-                                                class="summernote {{ $errors->has('vision') ? 'is-invalid' : '' }}"></textarea>
-                                            <x-input-error class="mt-2" :messages="$errors->get('vision')" />
+                                            <textarea cols="30" rows="10" class="form-control {{ $errors->has('vision') ? 'is-invalid' : '' }}"
+                                                name="vision"></textarea>
+                                            <x-input-error class="mt-2 text-danger" :messages="$errors->get('vision')" />
                                         </div>
                                     </div>
                                 </div>
