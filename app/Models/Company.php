@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Company extends Model implements HasMedia
 
 {
-    use HasFactory, InteractsWithMedia;
+    use HasFactory, InteractsWithMedia, Sluggable;
 
     protected $table = 'companies';
     protected $fillable = [
@@ -39,6 +40,20 @@ class Company extends Model implements HasMedia
         'profile_completion',
         'visibility'
     ];
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
 
     //----------------------------------------------- Media
     public function registerMediaConversions(?Media $media = null): void

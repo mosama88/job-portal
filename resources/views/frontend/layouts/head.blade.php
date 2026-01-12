@@ -13,9 +13,7 @@
   <link href="{{ asset('frontend') }}/assets/css/style.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.1/dist/css/bootstrap-datepicker.min.css"
       rel="stylesheet">
-  <title>joblist - Job Portal HTML Template </title>
+  <title>joblist - Job Portal </title>
 
-  <!-- Add Laravel Notify CSS -->
-  @notifyCss
 
   @stack('css')

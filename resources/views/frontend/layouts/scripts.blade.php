@@ -18,10 +18,23 @@
 <script src="{{ asset('frontend') }}/assets/js/plugins/counterup.js"></script>
 
 <!-- Add Laravel Notify JavaScript -->
-@notifyJs
-<x-notify::notify />
 <script>
     $('.datepicker').datepicker();
 </script>
 
+<script>
+    // ننتظر الصفحة تحمل بالكامل
+    document.addEventListener('DOMContentLoaded', function() {
+        const alertBox = document.getElementById('success-alert');
+        if (alertBox) {
+            setTimeout(() => {
+                // اختفاء تدريجي (اختياري)
+                alertBox.style.transition = 'opacity 0.5s ease';
+                alertBox.style.opacity = '0';
+                // إزالة العنصر من DOM بعد اختفاءه
+                setTimeout(() => alertBox.remove(), 500);
+            }, 3000); // 3000 ملي ثانية = 3 ثواني
+        }
+    });
+</script>
 @stack('js')

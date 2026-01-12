@@ -20,7 +20,6 @@
         <div class="container">
             <div class="row">
                 @include('frontend.candidate-dashboard.sidebar')
-
                 <div class="col-lg-9 col-md-8 col-sm-12 col-12 mb-50">
                     <ul class="nav nav-pills my-3" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
@@ -40,6 +39,14 @@
                         </li>
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
+                        <div class="col-4 mx-auto mb-3">
+                            @if (session('success') != null)
+                                <div class="alert alert-success text-center" id="success-alert">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+                        </div>
+
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                             aria-labelledby="pills-home-tab" tabindex="0">
                             <form action="{{ route('company.profile.company-info') }}" method="POST"
@@ -47,18 +54,20 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6">
-                                        @if ($companyInfo->getFirstMediaUrl('logo', 'preview'))
-                                            <img width="200px" height="200px"
-                                                src="{{ $companyInfo->getFirstMediaUrl('logo', 'preview') }}"
-                                                alt="{{ $companyInfo->name }}">
+                                        @if (optional($companyInfo)->getFirstMediaUrl('logo', 'preview'))
+                                            <img width="200" height="200"
+                                                src="{{ $companyInfo?->getFirstMediaUrl('logo', 'preview') }}"
+                                                alt="{{ $companyInfo->name ?? '' }}">
                                         @endif
+
                                     </div>
                                     <div class="col-md-6">
-                                        @if ($companyInfo->getFirstMediaUrl('banner', 'preview'))
-                                            <img width="500px" height="200px"
-                                                src="{{ $companyInfo->getFirstMediaUrl('banner', 'preview') }}"
-                                                alt="{{ $companyInfo->name }}">
+                                        @if (optional($companyInfo)->getFirstMediaUrl('banner', 'preview'))
+                                            <img width="200" height="200"
+                                                src="{{ $companyInfo?->getFirstMediaUrl('banner', 'preview') }}"
+                                                alt="{{ $companyInfo->name ?? '' }}">
                                         @endif
+
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -81,7 +90,8 @@
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Company Name *</label>
                                             <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
-                                                type="text" name="name" value="{{ old('name', $companyInfo->name) }}">
+                                                type="text" name="name"
+                                                value="{{ old('name', $companyInfo->name) }}">
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('name')" />
                                         </div>
                                     </div>
@@ -112,127 +122,139 @@
                         </div>
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel"
                             aria-labelledby="pills-profile-tab" tabindex="0">
-                            <form action="" method="POST">
+                            <form action="{{ route('company.profile.company-founding') }}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">Industry Type *</label>
-                                            <select class="form-control form-icons select-active" name="industry_type_id"
-                                                aria-label="Default select example">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">Industry One</option>
-                                                <option value="2">Industry Two</option>
-                                                <option value="3">Industry Three</option>
+                                            <select
+                                                class="form-control {{ $errors->has('industry_type_id') ? 'is-invalid' : '' }} form-icons select-active"
+                                                name="industry_type_id" aria-label="Default select example">
+                                                <option value="" selected>Open this select menu</option>
+                                                <option value="0">Industry One</option>
                                             </select>
+                                            <x-input-error class="mt-2 text-danger" :messages="$errors->get('industry_type_id')" />
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">Organization Type *</label>
-                                            <select class="form-control form-icons select-active"
+                                            <select
+                                                class="form-control {{ $errors->has('organization_type_id') ? 'is-invalid' : '' }} form-icons select-active"
                                                 name="organization_type_id" aria-label="Default select example">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">Organization One</option>
-                                                <option value="2">Organization Two</option>
-                                                <option value="3">Organization Three</option>
+                                                <option value="" selected>Open this select menu</option>
+                                                <option value="0">Organization One</option>
                                             </select>
+                                            <x-input-error class="mt-2 text-danger" :messages="$errors->get('organization_type_id')" />
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">Team Size *</label>
-                                            <select class="form-control form-icons select-active" name="team_size_id"
-                                                aria-label="Default select example">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">Team Size One</option>
-                                                <option value="2">Team Size Two</option>
-                                                <option value="3">Team Size Three</option>
+                                            <select
+                                                class="form-control {{ $errors->has('team_size_id') ? 'is-invalid' : '' }} form-icons select-active"
+                                                name="team_size_id" aria-label="Default select example">
+                                                <option value="" selected>Open this select menu</option>
+                                                <option value="0">Team Size One</option>
                                             </select>
+                                            <x-input-error class="mt-2 text-danger" :messages="$errors->get('team_size_id')" />
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Establishemnt Date</label>
-                                            <input class="form-control datepicker" type="text"
-                                                name="establishemnt_date">
+                                            <input
+                                                class="form-control {{ $errors->has('establishemnt_date') ? 'is-invalid' : '' }} datepicker"
+                                                type="text" name="establishemnt_date">
+                                            <x-input-error class="mt-2 text-danger" :messages="$errors->get('establishemnt_date')" />
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Website</label>
-                                            <input class="form-control" type="text" name="website">
+                                            <input class="form-control {{ $errors->has('website') ? 'is-invalid' : '' }}"
+                                                type="text" name="website">
+                                            <x-input-error class="mt-2 text-danger" :messages="$errors->get('website')" />
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Email *</label>
-                                            <input class="form-control" type="email" name="email">
+                                            <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
+                                                type="email" name="email">
+                                            <x-input-error class="mt-2 text-danger" :messages="$errors->get('email')" />
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Phone *</label>
-                                            <input class="form-control" type="text" name="phone">
+                                            <input class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}"
+                                                type="text" name="phone">
+                                            <x-input-error class="mt-2 text-danger" :messages="$errors->get('phone')" />
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">Country *</label>
-                                            <select class="form-control form-icons select-active" name="industry_type_id"
-                                                aria-label="Default select example">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">Country One</option>
-                                                <option value="2">Country Two</option>
-                                                <option value="3">Country Three</option>
+                                            <select
+                                                class="form-control {{ $errors->has('country') ? 'is-invalid' : '' }} form-icons select-active"
+                                                name="country" aria-label="Default select example">
+                                                <option value="" selected>Open this select menu</option>
+                                                <option value="0">Country One</option>
                                             </select>
+                                            <x-input-error class="mt-2 text-danger" :messages="$errors->get('country')" />
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">State</label>
-                                            <select class="form-control form-icons select-active"
-                                                name="organization_type_id" aria-label="Default select example">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">State One</option>
-                                                <option value="2">State Two</option>
-                                                <option value="3">State Three</option>
+                                            <select
+                                                class="form-control {{ $errors->has('state') ? 'is-invalid' : '' }} form-icons select-active"
+                                                name="state" aria-label="Default select example">
+                                                <option value="" selected>Open this select menu</option>
+                                                <option value="0">State One</option>
                                             </select>
+                                            <x-input-error class="mt-2 text-danger" :messages="$errors->get('state')" />
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">City</label>
-                                            <select class="form-control form-icons select-active" name="city_id"
-                                                aria-label="Default select example">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">City One</option>
-                                                <option value="2">City Two</option>
-                                                <option value="3">City Three</option>
+                                            <select
+                                                class="form-control {{ $errors->has('city') ? 'is-invalid' : '' }} form-icons select-active"
+                                                name="city" aria-label="Default select example">
+                                                <option value="" selected>Open this select menu</option>
+                                                <option value="0">City One</option>
                                             </select>
+                                            <x-input-error class="mt-2 text-danger" :messages="$errors->get('city')" />
                                         </div>
                                     </div>
 
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Address</label>
-                                            <input class="form-control" type="text" name="phone">
+                                            <input class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}"
+                                                type="text" name="address">
+                                            <x-input-error class="mt-2 text-danger" :messages="$errors->get('address')" />
                                         </div>
                                     </div>
 
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Map Link</label>
-                                            <input class="form-control" type="text" name="phone">
+                                            <input class="form-control {{ $errors->has('map_link') ? 'is-invalid' : '' }}"
+                                                type="text" name="map_link">
+                                            <x-input-error class="mt-2 text-danger" :messages="$errors->get('map_link')" />
                                         </div>
                                     </div>
 

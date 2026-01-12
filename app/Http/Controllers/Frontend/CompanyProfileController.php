@@ -7,18 +7,48 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Frontend\CompanyInfoUpdateRequest;
+use App\Http\Requests\Frontend\CompanyFoundingUpdateRequest;
 
 class CompanyProfileController extends Controller
 {
     public function index()
     {
         $userId = Auth::user()->id;
-        $companyInfo  = Company::where('user_id', $userId)->first();
+        $companyInfo  = Company::where('user_id', $userId)->first() ?? new Company();
         return view('frontend.company-dashboard.profile.index', compact('companyInfo'));
     }
 
     public function updateCompanyInfo(CompanyInfoUpdateRequest $request)
     {
+        $userId = Auth::user()->id;
+        $data = $request->validated();
+        $company = Company::updateOrCreate(
+            [
+                'user_id' => $userId
+            ],
+            $data,
+        );
+
+        //Image Fields
+        $mediaFields = ['logo', 'banner'];
+        foreach ($mediaFields as $field) {
+            if ($request->hasFile($field)) {
+                // Delete old photo
+                $company->clearMediaCollection($field);
+
+                // Upload new photo
+                $company->addMediaFromRequest($field)
+                    ->toMediaCollection($field);
+            }
+        }
+
+        return redirect()->back()->with('success', '⚡️ Updated Successfully!');
+    }
+
+
+    public function updateCompanyFounding(CompanyFoundingUpdateRequest $request)
+    {
+
 
         $userId = Auth::user()->id;
         $data = $request->validated();
@@ -42,7 +72,6 @@ class CompanyProfileController extends Controller
             }
         }
 
-        notify()->success('⚡️ Updated Successfully', 'Success!');
-        return back();
+        return redirect()->back()->with('success', '⚡️ Updated Successfully!');
     }
 }
