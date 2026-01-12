@@ -22,16 +22,16 @@ class CompanyFoundingUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'industry_type_id' => ['required', 'integer'],
-            'organization_type_id' => ['required', 'integer'],
-            'team_size_id' => ['required', 'integer'],
+            'industry_type_id' => ['integer'],
+            'organization_type_id' => ['integer'],
+            'team_size_id' => ['integer'],
             'establishemnt_date' => ['required', 'date'],
             'website' => ['required', 'active_url'],
-            'email' => ['required', 'url'],
+            'email' => ['required', 'email'],
             'phone' => ['required'],
-            'country' => ['required', 'integer'],
-            'state' => ['required', 'integer'],
-            'city' => ['required', 'integer'],
+            'country' => ['integer'],
+            'state' => ['integer'],
+            'city' => ['integer'],
             'address' => ['required', 'string', 'max:500'],
             'map_link' => ['required'],
         ];

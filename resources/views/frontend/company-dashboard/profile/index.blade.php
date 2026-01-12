@@ -169,7 +169,7 @@
                                             <label class="font-sm color-text-mutted mb-10">Establishemnt Date</label>
                                             <input
                                                 class="form-control {{ $errors->has('establishemnt_date') ? 'is-invalid' : '' }} datepicker"
-                                                type="text" name="establishemnt_date">
+                                                type="text" name="establishemnt_date" value="{{ old('establishemnt_date', $companyInfo->establishemnt_date->format('Y-m-d')) }}">
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('establishemnt_date')" />
                                         </div>
                                     </div>
@@ -178,7 +178,7 @@
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Website</label>
                                             <input class="form-control {{ $errors->has('website') ? 'is-invalid' : '' }}"
-                                                type="text" name="website">
+                                                type="text" name="website" value="{{ old('website', $companyInfo->website) }}">
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('website')" />
                                         </div>
                                     </div>
@@ -187,7 +187,7 @@
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Email *</label>
                                             <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
-                                                type="email" name="email">
+                                                type="email" name="email" value="{{ old('email', $companyInfo->email) }}">
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('email')" />
                                         </div>
                                     </div>
@@ -196,7 +196,7 @@
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Phone *</label>
                                             <input class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}"
-                                                type="text" name="phone">
+                                                type="text" name="phone" value="{{ old('phone', $companyInfo->phone) }}">
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('phone')" />
                                         </div>
                                     </div>
@@ -244,7 +244,7 @@
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Address</label>
                                             <input class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}"
-                                                type="text" name="address">
+                                                type="text" name="address" value="{{ old('address', $companyInfo->address) }}">
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('address')" />
                                         </div>
                                     </div>
@@ -253,7 +253,7 @@
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Map Link</label>
                                             <input class="form-control {{ $errors->has('map_link') ? 'is-invalid' : '' }}"
-                                                type="text" name="map_link">
+                                                type="text" name="map_link" value="{{ old('map_link', $companyInfo->map_link) }}">
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('map_link')" />
                                         </div>
                                     </div>

@@ -19,7 +19,9 @@
 
 <!-- Add Laravel Notify JavaScript -->
 <script>
-    $('.datepicker').datepicker();
+    $('.datepicker').datepicker({
+        format: 'yyyy-m-d',
+    });
 </script>
 
 <script>

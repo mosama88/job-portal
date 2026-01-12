@@ -42,14 +42,12 @@ class CompanyProfileController extends Controller
             }
         }
 
-        return redirect()->back()->with('success', '⚡️ Updated Successfully!');
+        return redirect()->back()->with('success', '⚡️ Updated Info Successfully!');
     }
 
 
     public function updateCompanyFounding(CompanyFoundingUpdateRequest $request)
     {
-
-
         $userId = Auth::user()->id;
         $data = $request->validated();
         $company = Company::updateOrCreate(
@@ -59,19 +57,6 @@ class CompanyProfileController extends Controller
             $data,
         );
 
-        //Image Fields
-        $mediaFields = ['logo', 'banner'];
-        foreach ($mediaFields as $field) {
-            if ($request->hasFile($field)) {
-                // Delete old photo
-                $company->clearMediaCollection($field);
-
-                // Upload new photo
-                $company->addMediaFromRequest($field)
-                    ->toMediaCollection($field);
-            }
-        }
-
-        return redirect()->back()->with('success', '⚡️ Updated Successfully!');
+        return redirect()->back()->with('success', '⚡️ Updated Founding Successfully!');
     }
 }
