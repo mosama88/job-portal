@@ -56,8 +56,12 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- /.card-body -->
+                <div class=" mx-2 d-flex justify-content-end mt-3">
+                    {{ $data->links() }}
+                </div>
             </div>
+
+            <!-- /.card-body -->
             <!-- /.card -->
         </div>
     </div>

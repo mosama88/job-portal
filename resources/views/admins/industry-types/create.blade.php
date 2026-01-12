@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="exampleInputName">Name</label>
-                        <input type="text" name="name"
+                        <input type="text" name="name" value="{{ old('name') }}"
                             class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" id="exampleInputName"
                             placeholder="Enter Name">
                         <x-input-error class="mt-2 text-danger" :messages="$errors->get('name')" />
@@ -24,7 +24,7 @@
                 </div>
                 <!-- /.card-body -->
 
-                <div class="card-footer">
+                <div class="card-footer text-center">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>

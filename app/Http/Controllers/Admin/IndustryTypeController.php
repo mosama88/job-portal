@@ -13,7 +13,7 @@ class IndustryTypeController extends Controller
      */
     public function index()
     {
-        $data = IndustryType::paginate(20);
+        $data = IndustryType::paginate(30);
         return view('admins.industry-types.index', compact('data'));
     }
 
@@ -35,7 +35,7 @@ class IndustryTypeController extends Controller
         ]);
         IndustryType::create($data);
 
-        return redirect()->route('admin.industry-types.index')->with('success', '⚡️ Updated Industry Types Successfully!');
+        return redirect()->route('admin.industry-types.index')->with('success', '⚡️ Created Industry Types Successfully!');
     }
 
     /**
@@ -52,22 +52,36 @@ class IndustryTypeController extends Controller
     public function edit($id)
     {
         $industryType  = IndustryType::findOrFail($id);
-        return view('admins.industry-types.edit', compact($industryType));
+        return view('admins.industry-types.edit', compact('industryType'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+
+        $industryType  = IndustryType::findOrFail($id);
+
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:100'],
+        ]);
+        $industryType->update($data);
+
+        return redirect()->route('admin.industry-types.index')->with('success', '⚡️ Updated Industry Types Successfully!');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $industryType  = IndustryType::findOrFail($id);
+        $industryType->delete();
+        return response()->json([
+            'success' => true,
+            'message' => '⚡️ Deleted Industry Types Successfully!'
+        ]);
     }
 }
