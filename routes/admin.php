@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\IndustryTypeController;
 use App\Http\Controllers\Admin\Auth\PasswordController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
+use App\Http\Controllers\Admin\OrganizationTypeController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
@@ -54,6 +55,8 @@ Route::middleware('auth:admin')->group(function () {
 
     //---------------------------------------------  industry-types
     Route::resource('industry-types', IndustryTypeController::class);
+    //---------------------------------------------  organization-types
+    Route::resource('organization-types', OrganizationTypeController::class);
 
 
 

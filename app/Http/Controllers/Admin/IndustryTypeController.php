@@ -31,7 +31,7 @@ class IndustryTypeController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => ['required', 'string', 'max:100'],
+            'name' => ['required', 'string', 'max:100', 'unique:industry_types,name'],
         ]);
         IndustryType::create($data);
 
@@ -64,7 +64,7 @@ class IndustryTypeController extends Controller
         $industryType  = IndustryType::findOrFail($id);
 
         $data = $request->validate([
-            'name' => ['required', 'string', 'max:100'],
+            'name' => ['required', 'string', 'max:100', 'unique:industry_types,name,' . $id],
         ]);
         $industryType->update($data);
 

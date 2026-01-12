@@ -43,9 +43,10 @@
                           </a>
                       </li>
                       <li class="nav-header">Attributes</li>
-                      <li class="nav-item {{ request()->is('admin/industry-types*') ? 'menu-open' : '' }}">
+                      <li
+                          class="nav-item {{ request()->is('admin/industry-types*') || request()->is('admin/organization-types*') ? 'menu-open' : '' }}">
                           <a href="#"
-                              class="nav-link {{ request()->is('admin/industry-types*') ? 'active' : '' }}">
+                              class="nav-link {{ request()->is('admin/industry-types*') || request()->is('admin/organization-types*') ? 'active' : '' }}">
                               <i class="fa-solid fa-list"></i>
                               <p>
                                   Attributes
@@ -61,9 +62,10 @@
                                   </a>
                               </li>
                               <li class="nav-item">
-                                  <a href="pages/search/enhanced.html" class="nav-link">
+                                  <a href="{{ route('admin.organization-types.index') }}"
+                                      class="nav-link @yield('organization-types_active')">
                                       <i class="far fa-circle nav-icon"></i>
-                                      <p>Enhanced</p>
+                                      <p>Organization Types</p>
                                   </a>
                               </li>
                           </ul>
