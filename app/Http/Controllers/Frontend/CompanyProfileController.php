@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Frontend\CompanyInfoUpdateRequest;
 use App\Http\Requests\Frontend\CompanyFoundingUpdateRequest;
+use Illuminate\Validation\Rules;
 
 class CompanyProfileController extends Controller
 {
@@ -59,14 +60,37 @@ class CompanyProfileController extends Controller
 
         return redirect()->back()->with('success', '⚡️ Updated Founding Successfully!');
     }
+
+
     public function updateCompanyAccount(Request $request)
     {
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
         $validateData = $request->validate([
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'email'],
         ]);
-        Auth::user()->update($validateData);
 
-        return redirect()->back()->with('success', '⚡️ Updated Founding Successfully!');
+        /** @var \App\Models\User $user */
+
+        $user->update($validateData);
+
+        return redirect()->back()->with('success', '⚡️ Updated Acount Successfully!');
+    }
+
+
+
+    public function updateCompanyPassword(Request $request)
+    {
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+        $validateData = $request->validate([
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+
+        ]);
+
+        $user->update($validateData);
+
+        return redirect()->back()->with('success', '⚡️ Updated Password Successfully!');
     }
 }
