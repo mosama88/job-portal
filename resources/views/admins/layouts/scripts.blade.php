@@ -18,4 +18,12 @@
 
     <!-- sweetalert2@11.js -->
     <script src="{{ asset('admin') }}/assets/dist/js/sweetalert2@11.js"></script>
+
+    <script>
+        function resetFilters() {
+            window.location.href = window.location.pathname;
+        }
+    </script>
+
+
     @stack('js')

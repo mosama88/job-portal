@@ -13,15 +13,24 @@
                         Create</a>
 
                     <div class="card-tools">
-                        <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                        <form action="{{ route('admin.industry-types.index') }}" method="GET"
+                            class="d-flex align-items-center">
 
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-default">
-                                    <i class="fas fa-search"></i>
-                                </button>
+                            <div class="input-group" style="width: 600px;">
+                                <div class="input-group-prepend">
+                                    <a href="javascript:void(0)" onclick="resetFilters()" class="input-group-text">
+                                        <i class="fas fa-redo mx-1"></i> Reset
+                                    </a>
+                                </div>
+                                <input type="text" class="form-control" name="name_search"
+                                    placeholder="Search industry types..." value="{{ request('name_search') }}">
+                                <div class="input-group-append">
+                                    <button type="submit" class="input-group-text bg-primary"> <i
+                                            class="fas fa-search"></i></button>
+
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
                 <!-- /.card-header -->
@@ -57,7 +66,7 @@
                     </table>
                 </div>
                 <div class=" mx-2 d-flex justify-content-end mt-3">
-                    {{ $data->links() }}
+                    {{ $data->appends(request()->query())->links() }}
                 </div>
             </div>
 

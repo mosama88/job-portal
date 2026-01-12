@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Cviebrock\EloquentSluggable\Sluggable;
+use EloquentFilter\Filterable;
 
 class IndustryType extends Model
 
 {
-    use HasFactory, Sluggable;
+    use HasFactory, Sluggable,Filterable;
 
     protected $table = 'industry_types';
     protected $fillable = [
