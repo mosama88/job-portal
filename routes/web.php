@@ -33,4 +33,5 @@ Route::middleware(['auth', 'verified', 'user.role:company'])->prefix('company')-
     Route::get('/profile', [CompanyProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile/company-info', [CompanyProfileController::class, 'updateCompanyInfo'])->name('profile.company-info');
     Route::post('/profile/company-founding', [CompanyProfileController::class, 'updateCompanyFounding'])->name('profile.company-founding');
+    Route::post('/profile/company-account', [CompanyProfileController::class, 'updateCompanyAccount'])->name('profile.company-account');
 });

@@ -169,7 +169,8 @@
                                             <label class="font-sm color-text-mutted mb-10">Establishemnt Date</label>
                                             <input
                                                 class="form-control {{ $errors->has('establishemnt_date') ? 'is-invalid' : '' }} datepicker"
-                                                type="text" name="establishemnt_date" value="{{ old('establishemnt_date', $companyInfo->establishemnt_date->format('Y-m-d')) }}">
+                                                type="text" name="establishemnt_date"
+                                                value="{{ old('establishemnt_date', $companyInfo->establishemnt_date->format('Y-m-d')) }}">
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('establishemnt_date')" />
                                         </div>
                                     </div>
@@ -178,7 +179,8 @@
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Website</label>
                                             <input class="form-control {{ $errors->has('website') ? 'is-invalid' : '' }}"
-                                                type="text" name="website" value="{{ old('website', $companyInfo->website) }}">
+                                                type="text" name="website"
+                                                value="{{ old('website', $companyInfo->website) }}">
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('website')" />
                                         </div>
                                     </div>
@@ -187,7 +189,8 @@
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Email *</label>
                                             <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
-                                                type="email" name="email" value="{{ old('email', $companyInfo->email) }}">
+                                                type="email" name="email"
+                                                value="{{ old('email', $companyInfo->email) }}">
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('email')" />
                                         </div>
                                     </div>
@@ -196,7 +199,8 @@
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Phone *</label>
                                             <input class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}"
-                                                type="text" name="phone" value="{{ old('phone', $companyInfo->phone) }}">
+                                                type="text" name="phone"
+                                                value="{{ old('phone', $companyInfo->phone) }}">
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('phone')" />
                                         </div>
                                     </div>
@@ -244,7 +248,8 @@
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Address</label>
                                             <input class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}"
-                                                type="text" name="address" value="{{ old('address', $companyInfo->address) }}">
+                                                type="text" name="address"
+                                                value="{{ old('address', $companyInfo->address) }}">
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('address')" />
                                         </div>
                                     </div>
@@ -253,7 +258,8 @@
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Map Link</label>
                                             <input class="form-control {{ $errors->has('map_link') ? 'is-invalid' : '' }}"
-                                                type="text" name="map_link" value="{{ old('map_link', $companyInfo->map_link) }}">
+                                                type="text" name="map_link"
+                                                value="{{ old('map_link', $companyInfo->map_link) }}">
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('map_link')" />
                                         </div>
                                     </div>
@@ -267,19 +273,21 @@
                         </div>
                         <div class="tab-pane fade" id="pills-contact" role="tabpanel"
                             aria-labelledby="pills-contact-tab" tabindex="0">
-                            <form action="" method="POST">
+                            <form action="{{ route('company.profile.company-account') }}" method="POST">
                                 @csrf
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="font-sm color-text-mutted mb-10">Username *</label>
-                                            <input class="form-control" type="text" name="username">
+                                            <label class="font-sm color-text-mutted mb-10">Name *</label>
+                                            <input class="form-control" type="text" name="name"
+                                                value="{{ auth()->user()->name }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Email *</label>
-                                            <input class="form-control" type="email" name="email">
+                                            <input class="form-control" type="email" name="email"
+                                                value="{{ auth()->user()->email }}">
                                         </div>
                                     </div>
                                     <div class="col-lg-5 col-5">

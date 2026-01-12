@@ -59,4 +59,14 @@ class CompanyProfileController extends Controller
 
         return redirect()->back()->with('success', '⚡️ Updated Founding Successfully!');
     }
+    public function updateCompanyAccount(Request $request)
+    {
+        $validateData = $request->validate([
+            'name' => ['required', 'string', 'max:100'],
+            'email' => ['required', 'email'],
+        ]);
+        Auth::user()->update($validateData);
+
+        return redirect()->back()->with('success', '⚡️ Updated Founding Successfully!');
+    }
 }
