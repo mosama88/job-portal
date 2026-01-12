@@ -37,25 +37,27 @@
                   <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                       data-accordion="false">
                       <li class="nav-item">
-                          <a href="{{ route('admin.index') }}" class="nav-link">
+                          <a href="{{ route('admin.index') }}" class="nav-link @yield('dashboard_active')">
                               <i class="fa-solid fa-gauge"></i>
                               <p>Dashboard</p>
                           </a>
                       </li>
-                      <li class="nav-header">EXAMPLES</li>
-                      <li class="nav-item">
-                          <a href="#" class="nav-link">
-                              <i class="nav-icon fas fa-search"></i>
+                      <li class="nav-header">Attributes</li>
+                      <li class="nav-item {{ request()->is('admin/industry-types*') ? 'menu-open' : '' }}">
+                          <a href="#"
+                              class="nav-link {{ request()->is('admin/industry-types*') ? 'active' : '' }}">
+                              <i class="fa-solid fa-list"></i>
                               <p>
-                                  Search
+                                  Attributes
                                   <i class="fas fa-angle-left right"></i>
                               </p>
                           </a>
                           <ul class="nav nav-treeview">
                               <li class="nav-item">
-                                  <a href="pages/search/simple.html" class="nav-link">
+                                  <a href="{{ route('admin.industry-types.index') }}"
+                                      class="nav-link @yield('industry-types_active')">
                                       <i class="far fa-circle nav-icon"></i>
-                                      <p>Simple Search</p>
+                                      <p>Industry Types</p>
                                   </a>
                               </li>
                               <li class="nav-item">

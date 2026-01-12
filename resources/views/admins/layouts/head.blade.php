@@ -12,6 +12,8 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('admin') }}/assets/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="{{ asset('fontawesome') }}/all.min.css">
-
+    <!-- toastr -->
+    <link rel="stylesheet" href="{{ asset('admin') }}/assets/dist/css/toastr.css">
+    <link rel="stylesheet" href="{{ asset('admin') }}/assets/dist/css/sweetalert2.min.css">
 
     @stack('css')

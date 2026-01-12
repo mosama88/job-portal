@@ -1,18 +1,19 @@
 <?php
 
-use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
-use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
-use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
-use App\Http\Controllers\Admin\Auth\NewPasswordController;
-use App\Http\Controllers\Admin\Auth\PasswordController;
-use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
-use App\Http\Controllers\Admin\Auth\RegisteredUserController;
-use App\Http\Controllers\Admin\Auth\VerifyEmailController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\ImportExcelController;
-use App\Http\Controllers\Admin\ExportExcelController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ExportExcelController;
+use App\Http\Controllers\Admin\ImportExcelController;
+use App\Http\Controllers\Admin\IndustryTypeController;
+use App\Http\Controllers\Admin\Auth\PasswordController;
+use App\Http\Controllers\Admin\Auth\NewPasswordController;
+use App\Http\Controllers\Admin\Auth\VerifyEmailController;
+use App\Http\Controllers\Admin\Auth\RegisteredUserController;
+use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
+use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
 
 
 Route::permanentRedirect('/', '/admin/dashboard');
@@ -51,15 +52,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/import/excel', ImportExcelController::class)->name('import.excel');
     Route::get('/export/excel', ExportExcelController::class)->name('export.excel');
 
-
-
-
-
-
-
-
-
-
+    //---------------------------------------------  industry-types
+    Route::resource('industry-types', IndustryTypeController::class);
 
 
 

@@ -170,7 +170,7 @@
                                             <input
                                                 class="form-control {{ $errors->has('establishemnt_date') ? 'is-invalid' : '' }} datepicker"
                                                 type="text" name="establishemnt_date"
-                                                value="{{ old('establishemnt_date', $companyInfo->establishemnt_date->format('Y-m-d')) }}">
+                                                value="{{ old('establishemnt_date', optional($companyInfo->establishemnt_date)->format('Y-m-d')) }}">
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('establishemnt_date')" />
                                         </div>
                                     </div>

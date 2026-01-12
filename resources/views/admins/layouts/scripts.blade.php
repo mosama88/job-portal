@@ -12,5 +12,10 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('admin') }}/assets/dist/js/pages/dashboard3.js"></script>
 
+    <!-- toastr -->
+    <script src="{{ asset('admin') }}/assets/dist/js/toastr.min.js"></script>
 
+
+    <!-- sweetalert2@11.js -->
+    <script src="{{ asset('admin') }}/assets/dist/js/sweetalert2@11.js"></script>
     @stack('js')

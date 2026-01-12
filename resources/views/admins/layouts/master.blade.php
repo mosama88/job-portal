@@ -38,10 +38,14 @@ to get the desired effect
                 </div><!-- /.container-fluid -->
             </div>
             <!-- /.content-header -->
-
-            <!-- Main content -->
-            @yield('content')
-            <!-- /.content -->
+            <div class="content">
+                <div class="container-fluid">
+                    @include('admins.layouts.messages')
+                    <!-- Main content -->
+                    @yield('content')
+                    <!-- /.content -->
+                </div>
+            </div>
         </div>
         <!-- /.content-wrapper -->
 
