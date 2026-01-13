@@ -39,7 +39,6 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
-                                <th>Slug</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -48,7 +47,6 @@
                                 <tr>
                                     <td>{{ $info->id }}</td>
                                     <td>{{ $info->name }}</td>
-                                    <td>{{ $info->slug }}</td>
                                     <td>
                                         <li class="list-inline-item">
                                             @include('admins.partials.actions', [
