@@ -55,6 +55,15 @@ class CompanyProfileController extends Controller
             }
         }
 
+
+        if (isCompanyProfileComplete()) {
+            $companyProfile = Company::where('user_id', Auth::user()->id)->first();
+
+            $companyProfile->profile_completion = 1;
+            $companyProfile->visibility = 1;
+            $companyProfile->save();
+        }
+
         return redirect()->back()->with('success', '⚡️ Updated Info Successfully!');
     }
 
@@ -69,6 +78,15 @@ class CompanyProfileController extends Controller
             ],
             $data,
         );
+
+
+        if (isCompanyProfileComplete()) {
+            $companyProfile = Company::where('user_id', Auth::user()->id)->first();
+
+            $companyProfile->profile_completion = 1;
+            $companyProfile->visibility = 1;
+            $companyProfile->save();
+        }
 
         return redirect()->back()->with('success', '⚡️ Updated Founding Successfully!');
     }
