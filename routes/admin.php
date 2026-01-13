@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\StateController;
+use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ExportExcelController;
 use App\Http\Controllers\Admin\ImportExcelController;
@@ -15,7 +18,6 @@ use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
-
 
 Route::permanentRedirect('/', '/admin/dashboard');
 
@@ -57,6 +59,12 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('industry-types', IndustryTypeController::class);
     //---------------------------------------------  organization-types
     Route::resource('organization-types', OrganizationTypeController::class);
+    //---------------------------------------------  countries
+    Route::resource('countries', CountryController::class);
+    //---------------------------------------------  states
+    Route::resource('states', StateController::class);
+    //---------------------------------------------  cites
+    Route::resource('cities', CityController::class);
 
 
 

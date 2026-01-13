@@ -70,6 +70,42 @@
                               </li>
                           </ul>
                       </li>
+
+
+                      <li class="nav-header">Locations</li>
+                      <li
+                          class="nav-item {{ request()->is('admin/countries*') || request()->is('admin/states*') || request()->is('admin/cities*') ? 'menu-open' : '' }}">
+                          <a href="#"
+                              class="nav-link {{ request()->is('admin/countries*') || request()->is('admin/states*') || request()->is('admin/cities*') ? 'active' : '' }}">
+                              <i class="fa-solid fa-list"></i>
+                              <p>
+                                  Locations
+                                  <i class="fas fa-angle-left right"></i>
+                              </p>
+                          </a>
+                          <ul class="nav nav-treeview">
+                              <li class="nav-item">
+                                  <a href="{{ route('admin.countries.index') }}" class="nav-link @yield('countries_active')">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Country</p>
+                                  </a>
+                              </li>
+
+                              <li class="nav-item">
+                                  <a href="{{ route('admin.states.index') }}" class="nav-link @yield('states_active')">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>State</p>
+                                  </a>
+                              </li>
+
+                              <li class="nav-item">
+                                  <a href="{{ route('admin.cities.index') }}" class="nav-link @yield('cities_active')">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>City</p>
+                                  </a>
+                              </li>
+                          </ul>
+                      </li>
                   </ul>
               </nav>
               <!-- /.sidebar-menu -->
