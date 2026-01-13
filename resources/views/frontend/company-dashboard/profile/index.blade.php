@@ -133,7 +133,7 @@
                                                 name="industry_type_id" aria-label="Default select example">
                                                 <option value="" selected>Open this select menu</option>
                                                 @foreach ($other['industry_types'] as $industry)
-                                                    <option @if (old('industry_type_id') == $industry->id) selected @endif
+                                                    <option @if (old('industry_type_id', $companyInfo->industry_type_id) == $industry->id) selected @endif
                                                         value="{{ $industry->id }}">
                                                         {{ $industry->name }}</option>
                                                 @endforeach
@@ -150,7 +150,7 @@
                                                 name="organization_type_id" aria-label="Default select example">
                                                 <option value="" selected>Open this select menu</option>
                                                 @foreach ($other['organization_types'] as $organization)
-                                                    <option @if (old('organization_type_id') == $organization->id) selected @endif
+                                                    <option @if (old('organization_type_id', $companyInfo->organization_type_id) == $organization->id) selected @endif
                                                         value="{{ $organization->id }}">{{ $organization->name }}
                                                     </option>
                                                 @endforeach
@@ -167,7 +167,7 @@
                                                 name="team_size_id" aria-label="Default select example">
                                                 <option value="" selected>Open this select menu</option>
                                                 @foreach ($other['team_sizes'] as $team)
-                                                    <option @if (old('team_size_id') == $team->id) selected @endif
+                                                    <option @if (old('team_size_id', $companyInfo->team_size_id) == $team->id) selected @endif
                                                         value="{{ $team->id }}">{{ $team->name }}
                                                     </option>
                                                 @endforeach
@@ -225,7 +225,7 @@
                                                 name="country" aria-label="Default select example">
                                                 <option value="" selected>Open this select menu</option>
                                                 @foreach ($other['countries'] as $country)
-                                                    <option @if (old('country') == $country->id) selected @endif
+                                                    <option @if (old('country', $companyInfo->country) == $country->id) selected @endif
                                                         value="{{ $country->id }}">{{ $country->name }}
                                                     </option>
                                                 @endforeach
@@ -242,7 +242,7 @@
                                                 name="state" aria-label="Default select example">
                                                 <option value="" selected>Open this select menu</option>
                                                 @foreach ($other['states'] as $state)
-                                                    <option @if (old('state') == $state->id) selected @endif
+                                                    <option @if (old('state', $companyInfo->state) == $state->id) selected @endif
                                                         value="{{ $state->id }}">{{ $state->name }}
                                                     </option>
                                                 @endforeach
@@ -259,7 +259,7 @@
                                                 name="city" aria-label="Default select example">
                                                 <option value="" selected>Open this select menu</option>
                                                 @foreach ($other['cities'] as $city)
-                                                    <option @if (old('city') == $city->id) selected @endif
+                                                    <option @if (old('city', $companyInfo->city) == $city->id) selected @endif
                                                         value="{{ $city->id }}">{{ $city->name }}
                                                     </option>
                                                 @endforeach
