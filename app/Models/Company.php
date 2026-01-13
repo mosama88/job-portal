@@ -41,7 +41,7 @@ class Company extends Model implements HasMedia
         'visibility'
     ];
 
-    protected $casts = ['establishemnt_date'=>'date'];
+    protected $casts = ['establishemnt_date' => 'date'];
 
     /**
      * Return the sluggable configuration array for this model.

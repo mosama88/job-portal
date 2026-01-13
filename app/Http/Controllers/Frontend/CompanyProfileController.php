@@ -61,7 +61,7 @@ class CompanyProfileController extends Controller
 
             $companyProfile->profile_completion = 1;
             $companyProfile->visibility = 1;
-            $companyProfile->save();
+            Company::update($companyProfile);
         }
 
         return redirect()->back()->with('success', '⚡️ Updated Info Successfully!');
@@ -85,7 +85,7 @@ class CompanyProfileController extends Controller
 
             $companyProfile->profile_completion = 1;
             $companyProfile->visibility = 1;
-            $companyProfile->save();
+            Company::update($companyProfile);
         }
 
         return redirect()->back()->with('success', '⚡️ Updated Founding Successfully!');

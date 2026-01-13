@@ -17,6 +17,7 @@ if (!function_exists('getFirstLetter')) {
             $requiredFildes = [
                 'user_id',
                 'name',
+                'slug',
                 'industry_type_id',
                 'organization_type_id',
                 'team_size_id',

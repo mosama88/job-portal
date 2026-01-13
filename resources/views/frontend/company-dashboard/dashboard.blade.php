@@ -53,6 +53,14 @@
                                             <span class="img">
                                                 <img src="{{ asset('frontend') }}/assets/imgs/avatar/ava_17.png"
                                                     alt="alert">
+                                                @if (auth()->user()->avatar)
+                                                    <img src="{{ asset('storage/' . auth()->user()->avatar) }}"
+                                                        width="40" height="40" alt="Avatar">
+                                                @else
+                                                    <div>
+                                                        {{ mb_substr(auth()->user()->name, 0, 1) }}
+                                                    </div>
+                                                @endif
                                             </span>
                                             <div class="text">
                                                 <h4>Warning: You Have to Compelete Your Compnay Profile first!</h4>
