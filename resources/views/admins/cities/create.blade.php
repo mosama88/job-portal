@@ -33,7 +33,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputName">Country</label>
-                                <select name="country_id" class="form-control select2 select2-primary"
+                                <select name="country_id" id="country" class="form-control select2 select2-primary"
                                     data-dropdown-css-class="select2-primary" style="width: 100%;">
                                     <option>-- Select Country --</option>
                                     @forelse ($countries as $country)
@@ -48,21 +48,17 @@
                             </div>
                         </div>
 
+
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputName">State</label>
-                                <select name="state_id" class="form-control select2 select2-primary"
-                                    data-dropdown-css-class="select2-primary" style="width: 100%;">
-                                    <option>-- Select State --</option>
-                                    @forelse ($states as $state)
-                                        <option value="{{ $state->id }}"
-                                            @if (old('state_id') == $state->id) selected @endif>
-                                            {{ $state->name }}</option>
-                                    @empty
-                                        no data else
-                                    @endforelse
+                            <div class="form-group select-style">
+                                <label class="font-sm color-text-mutted mb-10">State</label>
+                                <select
+                                    class="form-control select2 select2-primary {{ $errors->has('state') ? 'is-invalid' : '' }}"
+                                    name="state_id" id="state" aria-label="Default select example">
+                                    <option value="">Select State</option>
+                                    <!-- سيتم ملؤها بالـ JavaScript -->
                                 </select>
-                                <x-input-error class="mt-2 text-danger" :messages="$errors->get('name')" />
+                                <x-input-error class="mt-2 text-danger" :messages="$errors->get('state')" />
                             </div>
                         </div>
                     </div>
@@ -80,4 +76,55 @@
 @push('js')
     <!-- Select2 -->
     <script src="{{ asset('admin') }}/assets/plugins/select2/js/select2.full.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // الحصول على القيم من data attributes
+            var currentCountry = $('#country').data('current');
+            var currentState = $('#state').data('current');
+            var stateCountry = $('#state').data('country');
+
+            // تحميل الولايات إذا كان هناك بلد محفوظ
+            if (currentCountry) {
+                loadStates(currentCountry, true);
+            }
+
+            // عند تغيير البلد
+            $('#country').change(function() {
+                var countryId = $(this).val();
+                loadStates(countryId, false);
+            });
+
+            // عند تغيير الولاية
+            $('#state').change(function() {
+                var stateId = $(this).val();
+                loadCities(stateId, false);
+            });
+
+            function loadStates(countryId, isInitialLoad = false) {
+                $('#state').html('<option value="">Select State</option>');
+
+                if (!countryId) return;
+
+                $.ajax({
+                    url: '/admin/get-states/' + countryId,
+                    type: 'GET',
+                    success: function(data) {
+                        var shouldSelectState = isInitialLoad && currentState;
+
+                        $.each(data, function(key, state) {
+                            var selected = (shouldSelectState && state.id == currentState) ?
+                                'selected' : '';
+                            $('#state').append('<option value="' + state.id + '" ' + selected +
+                                '>' +
+                                state.name + '</option>');
+                        });
+                    },
+                    error: function(xhr) {
+                        console.error('Error:', xhr.responseText);
+                    }
+                });
+            }
+        });
+    </script>
 @endpush

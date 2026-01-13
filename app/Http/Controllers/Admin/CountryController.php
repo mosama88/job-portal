@@ -90,21 +90,12 @@ class CountryController extends Controller
     public function getStates($country_id)
     {
         $states = State::where('country_id', $country_id)->get();
-        if ($states->isEmpty()) {
-            return response()->json(['message' => 'No states found'], 404);
-        }
-
         return response()->json($states);
     }
 
     public function getCities($state_id)
     {
         $cities = City::where('state_id', $state_id)->get();
-
-        if ($cities->isEmpty()) {
-            return response()->json(['message' => 'No cities found'], 404);
-        }
-
         return response()->json($cities);
     }
 }
