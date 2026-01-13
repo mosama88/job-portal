@@ -77,7 +77,7 @@
                           class="nav-item {{ request()->is('admin/countries*') || request()->is('admin/states*') || request()->is('admin/cities*') ? 'menu-open' : '' }}">
                           <a href="#"
                               class="nav-link {{ request()->is('admin/countries*') || request()->is('admin/states*') || request()->is('admin/cities*') ? 'active' : '' }}">
-                              <i class="fa-solid fa-list"></i>
+                              <i class="fa-solid fa-location-crosshairs"></i>
                               <p>
                                   Locations
                                   <i class="fas fa-angle-left right"></i>
