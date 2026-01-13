@@ -2,21 +2,33 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\State;
 use App\Models\Company;
+use App\Models\Country;
+use App\Models\OrganizationType;
+use App\Models\IndustryType;
+use App\Models\TeamSize;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Frontend\CompanyInfoUpdateRequest;
 use App\Http\Requests\Frontend\CompanyFoundingUpdateRequest;
-use Illuminate\Validation\Rules;
+use App\Models\City;
 
 class CompanyProfileController extends Controller
 {
     public function index()
     {
         $userId = Auth::user()->id;
+        $other['states']  = State::get();
+        $other['countries'] = Country::get();
+        $other['cities'] = City::get();
+        $other['organization_types'] = OrganizationType::get();
+        $other['industry_types'] = IndustryType::get();
+        $other['team_sizes'] = TeamSize::get();
         $companyInfo  = Company::where('user_id', $userId)->first() ?? new Company();
-        return view('frontend.company-dashboard.profile.index', compact('companyInfo'));
+        return view('frontend.company-dashboard.profile.index', compact('companyInfo', 'other'));
     }
 
     public function updateCompanyInfo(CompanyInfoUpdateRequest $request)

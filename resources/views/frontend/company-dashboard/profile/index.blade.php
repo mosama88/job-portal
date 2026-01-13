@@ -132,7 +132,11 @@
                                                 class="form-control {{ $errors->has('industry_type_id') ? 'is-invalid' : '' }} form-icons select-active"
                                                 name="industry_type_id" aria-label="Default select example">
                                                 <option value="" selected>Open this select menu</option>
-                                                <option value="0">Industry One</option>
+                                                @foreach ($other['industry_types'] as $industry)
+                                                    <option @if (old('industry_type_id') == $industry->id) selected @endif
+                                                        value="{{ $industry->id }}">
+                                                        {{ $industry->name }}</option>
+                                                @endforeach
                                             </select>
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('industry_type_id')" />
                                         </div>
@@ -145,7 +149,11 @@
                                                 class="form-control {{ $errors->has('organization_type_id') ? 'is-invalid' : '' }} form-icons select-active"
                                                 name="organization_type_id" aria-label="Default select example">
                                                 <option value="" selected>Open this select menu</option>
-                                                <option value="0">Organization One</option>
+                                                @foreach ($other['organization_types'] as $organization)
+                                                    <option @if (old('organization_type_id') == $organization->id) selected @endif
+                                                        value="{{ $organization->id }}">{{ $organization->name }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('organization_type_id')" />
                                         </div>
@@ -158,7 +166,11 @@
                                                 class="form-control {{ $errors->has('team_size_id') ? 'is-invalid' : '' }} form-icons select-active"
                                                 name="team_size_id" aria-label="Default select example">
                                                 <option value="" selected>Open this select menu</option>
-                                                <option value="0">Team Size One</option>
+                                                @foreach ($other['team_sizes'] as $team)
+                                                    <option @if (old('team_size_id') == $team->id) selected @endif
+                                                        value="{{ $team->id }}">{{ $team->name }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('team_size_id')" />
                                         </div>
@@ -212,7 +224,11 @@
                                                 class="form-control {{ $errors->has('country') ? 'is-invalid' : '' }} form-icons select-active"
                                                 name="country" aria-label="Default select example">
                                                 <option value="" selected>Open this select menu</option>
-                                                <option value="0">Country One</option>
+                                                @foreach ($other['countries'] as $country)
+                                                    <option @if (old('country') == $country->id) selected @endif
+                                                        value="{{ $country->id }}">{{ $country->name }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('country')" />
                                         </div>
@@ -225,7 +241,11 @@
                                                 class="form-control {{ $errors->has('state') ? 'is-invalid' : '' }} form-icons select-active"
                                                 name="state" aria-label="Default select example">
                                                 <option value="" selected>Open this select menu</option>
-                                                <option value="0">State One</option>
+                                                @foreach ($other['states'] as $state)
+                                                    <option @if (old('state') == $state->id) selected @endif
+                                                        value="{{ $state->id }}">{{ $state->name }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('state')" />
                                         </div>
@@ -238,7 +258,11 @@
                                                 class="form-control {{ $errors->has('city') ? 'is-invalid' : '' }} form-icons select-active"
                                                 name="city" aria-label="Default select example">
                                                 <option value="" selected>Open this select menu</option>
-                                                <option value="0">City One</option>
+                                                @foreach ($other['cities'] as $city)
+                                                    <option @if (old('city') == $city->id) selected @endif
+                                                        value="{{ $city->id }}">{{ $city->name }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('city')" />
                                         </div>

@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\IndustryType;
+use App\Models\OrganizationType;
+use App\Models\TeamSize;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,9 +19,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->nullable();
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
-            $table->foreignId('industry_type_id')->nullable();
-            $table->foreignId('organization_type_id')->nullable();
-            $table->foreignId('team_size_id')->nullable();
+            $table->foreignIdFor(IndustryType::class)->nullable()->constrained()->nullOnDelete();
+            $table->foreignIdFor(OrganizationType::class)->nullable()->constrained()->nullOnDelete();
+            $table->foreignIdFor(TeamSize::class)->nullable()->constrained()->nullOnDelete();
             $table->date('establishemnt_date')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
