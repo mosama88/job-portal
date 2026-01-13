@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\City;
+use App\Models\State;
 use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -83,5 +85,26 @@ class CountryController extends Controller
             'success' => true,
             'message' => '⚡️ Deleted Country Successfully!'
         ]);
+    }
+
+    public function getStates($country_id)
+    {
+        $states = State::where('country_id', $country_id)->get();
+        if ($states->isEmpty()) {
+            return response()->json(['message' => 'No states found'], 404);
+        }
+
+        return response()->json($states);
+    }
+
+    public function getCities($state_id)
+    {
+        $cities = City::where('state_id', $state_id)->get();
+
+        if ($cities->isEmpty()) {
+            return response()->json(['message' => 'No cities found'], 404);
+        }
+
+        return response()->json($cities);
     }
 }

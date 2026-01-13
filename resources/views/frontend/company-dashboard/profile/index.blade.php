@@ -222,11 +222,13 @@
                                             <label class="font-sm color-text-mutted mb-10">Country *</label>
                                             <select
                                                 class="form-control {{ $errors->has('country') ? 'is-invalid' : '' }} form-icons select-active"
-                                                name="country" aria-label="Default select example">
-                                                <option value="" selected>Open this select menu</option>
+                                                name="country" id="country" data-current="{{ $companyInfo->country }}"
+                                                aria-label="Default select example">
+                                                <option value="">Select Country</option>
                                                 @foreach ($other['countries'] as $country)
-                                                    <option @if (old('country', $companyInfo->country) == $country->id) selected @endif
-                                                        value="{{ $country->id }}">{{ $country->name }}
+                                                    <option value="{{ $country->id }}"
+                                                        {{ old('country', $companyInfo->country) == $country->id ? 'selected' : '' }}>
+                                                        {{ $country->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -239,13 +241,11 @@
                                             <label class="font-sm color-text-mutted mb-10">State</label>
                                             <select
                                                 class="form-control {{ $errors->has('state') ? 'is-invalid' : '' }} form-icons select-active"
-                                                name="state" aria-label="Default select example">
-                                                <option value="" selected>Open this select menu</option>
-                                                @foreach ($other['states'] as $state)
-                                                    <option @if (old('state', $companyInfo->state) == $state->id) selected @endif
-                                                        value="{{ $state->id }}">{{ $state->name }}
-                                                    </option>
-                                                @endforeach
+                                                name="state" id="state" data-current="{{ $companyInfo->state }}"
+                                                data-country="{{ $companyInfo->country }}"
+                                                aria-label="Default select example">
+                                                <option value="">Select State</option>
+                                                <!-- سيتم ملؤها بالـ JavaScript -->
                                             </select>
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('state')" />
                                         </div>
@@ -256,18 +256,15 @@
                                             <label class="font-sm color-text-mutted mb-10">City</label>
                                             <select
                                                 class="form-control {{ $errors->has('city') ? 'is-invalid' : '' }} form-icons select-active"
-                                                name="city" aria-label="Default select example">
-                                                <option value="" selected>Open this select menu</option>
-                                                @foreach ($other['cities'] as $city)
-                                                    <option @if (old('city', $companyInfo->city) == $city->id) selected @endif
-                                                        value="{{ $city->id }}">{{ $city->name }}
-                                                    </option>
-                                                @endforeach
+                                                name="city" id="city" data-current="{{ $companyInfo->city }}"
+                                                data-state="{{ $companyInfo->state }}"
+                                                aria-label="Default select example">
+                                                <option value="">Select City</option>
+                                                <!-- سيتم ملؤها بالـ JavaScript -->
                                             </select>
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('city')" />
                                         </div>
                                     </div>
-
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Address</label>
@@ -355,3 +352,88 @@
         </div>
     </section>
 @endsection
+@push('js')
+    <script>
+        $(document).ready(function() {
+            // الحصول على القيم من data attributes
+            var currentCountry = $('#country').data('current');
+            var currentState = $('#state').data('current');
+            var currentCity = $('#city').data('current');
+            var stateCountry = $('#state').data('country');
+            var cityState = $('#city').data('state');
+
+            // تحميل الولايات إذا كان هناك بلد محفوظ
+            if (currentCountry) {
+                loadStates(currentCountry, true);
+            }
+
+            // عند تغيير البلد
+            $('#country').change(function() {
+                var countryId = $(this).val();
+                loadStates(countryId, false);
+            });
+
+            // عند تغيير الولاية
+            $('#state').change(function() {
+                var stateId = $(this).val();
+                loadCities(stateId, false);
+            });
+
+            function loadStates(countryId, isInitialLoad = false) {
+                $('#state').html('<option value="">Select State</option>');
+                $('#city').html('<option value="">Select City</option>');
+
+                if (!countryId) return;
+
+                $.ajax({
+                    url: '/admin/get-states/' + countryId,
+                    type: 'GET',
+                    success: function(data) {
+                        var shouldSelectState = isInitialLoad && currentState;
+
+                        $.each(data, function(key, state) {
+                            var selected = (shouldSelectState && state.id == currentState) ?
+                                'selected' : '';
+                            $('#state').append('<option value="' + state.id + '" ' + selected +
+                                '>' +
+                                state.name + '</option>');
+                        });
+
+                        // إذا كان تحميل أولي وكان هناك state محفوظ، قم بتحميل المدن
+                        if (shouldSelectState) {
+                            loadCities(currentState, true);
+                        }
+                    },
+                    error: function(xhr) {
+                        console.error('Error:', xhr.responseText);
+                    }
+                });
+            }
+
+            function loadCities(stateId, isInitialLoad = false) {
+                $('#city').html('<option value="">Select City</option>');
+
+                if (!stateId) return;
+
+                $.ajax({
+                    url: '/admin/get-cities/' + stateId,
+                    type: 'GET',
+                    success: function(data) {
+                        var shouldSelectCity = isInitialLoad && currentCity;
+
+                        $.each(data, function(key, city) {
+                            var selected = (shouldSelectCity && city.id == currentCity) ?
+                                'selected' : '';
+                            $('#city').append('<option value="' + city.id + '" ' + selected +
+                                '>' +
+                                city.name + '</option>');
+                        });
+                    },
+                    error: function(xhr) {
+                        console.error('Error:', xhr.responseText);
+                    }
+                });
+            }
+        });
+    </script>
+@endpush

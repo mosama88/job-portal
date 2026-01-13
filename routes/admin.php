@@ -66,6 +66,9 @@ Route::middleware('auth:admin')->group(function () {
     //---------------------------------------------  cites
     Route::resource('cities', CityController::class);
 
+    Route::get('/get-states/{country_id}', [CountryController::class, 'getStates']);
+    Route::get('/get-cities/{state_id}', [CountryController::class, 'getCities']);
+
 
 
     Route::get('verify-email', EmailVerificationPromptController::class)
