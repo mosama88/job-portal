@@ -13,7 +13,7 @@ class CountryController extends Controller
      */
     public function index()
     {
-        $data = Country::filter(request()->all())->paginate(30);
+        $data = Country::filter(request()->all())->latest()->paginate(10);
         return view('admins.countries.index', compact('data'));
     }
 

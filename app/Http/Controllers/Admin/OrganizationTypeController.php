@@ -13,7 +13,7 @@ class OrganizationTypeController extends Controller
      */
     public function index()
     {
-        $data = OrganizationType::filter(request()->all())->paginate(30);
+        $data = OrganizationType::filter(request()->all())->latest()->paginate(10);
         return view('admins.organization-types.index', compact('data'));
     }
 

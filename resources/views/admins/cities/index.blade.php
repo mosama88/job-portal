@@ -22,7 +22,7 @@
                                     </a>
                                 </div>
                                 <input type="text" class="form-control" name="name_search"
-                                    placeholder="Search Country types..." value="{{ request('name_search') }}">
+                                    placeholder="Search City Or Country..." value="{{ request('name_search') }}">
                                 <div class="input-group-append">
                                     <button type="submit" class="input-group-text bg-primary"> <i
                                             class="fas fa-search"></i></button>
@@ -39,7 +39,8 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
-                                <th>Slug</th>
+                                <th>State</th>
+                                <th>Country</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -48,7 +49,8 @@
                                 <tr>
                                     <td>{{ $info->id }}</td>
                                     <td>{{ $info->name }}</td>
-                                    <td>{{ $info->slug }}</td>
+                                    <td>{{ $info->state->name }}</td>
+                                    <td>{{ $info->country->name }}</td>
                                     <td>
                                         <li class="list-inline-item">
                                             @include('admins.partials.actions', [

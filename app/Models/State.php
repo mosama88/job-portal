@@ -19,6 +19,6 @@ class State extends Model
 
     public function country()
     {
-        return $this->belongsTo(Country::class, 'country_id')->withDefault('Not Define');
+        return $this->belongsTo(Country::class, 'country_id')->withDefault(['name' => 'Not Define']);
     }
 }

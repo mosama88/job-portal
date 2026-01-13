@@ -16,6 +16,8 @@ class CityFilter extends ModelFilter
 
     public function nameSearch($value)
     {
-        return $this->whereLike('name', '%' . $value . '%');
+        return $this->whereLike('name', '%' . $value . '%')->orWhereHas('country', function ($query) use ($value) {
+            $query->where('name', 'Like', '%' . $value . '%');
+        });
     }
 }

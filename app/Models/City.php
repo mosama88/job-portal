@@ -21,11 +21,11 @@ class City extends Model
 
     public function state()
     {
-        return $this->belongsTo(State::class, 'state_id')->withDefault('Not Define');
+        return $this->belongsTo(State::class, 'state_id')->withDefault(['name' =>'Not Define']);
     }
 
     public function country()
     {
-        return $this->belongsTo(Country::class, 'country_id')->withDefault('Not Define');
+        return $this->belongsTo(Country::class, 'country_id')->withDefault(['name' =>'Not Define']);
     }
 }

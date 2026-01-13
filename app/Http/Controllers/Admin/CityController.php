@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\City;
+use App\Models\State;
+use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -13,7 +15,7 @@ class CityController extends Controller
      */
     public function index()
     {
-        $data = City::filter(request()->all())->paginate(30);
+        $data = City::filter(request()->all())->latest()->paginate(10);
         return view('admins.cities.index', compact('data'));
     }
 
@@ -22,7 +24,9 @@ class CityController extends Controller
      */
     public function create()
     {
-        return view('admins.cities.create');
+        $states  = State::get();
+        $countries = Country::get();
+        return view('admins.cities.create', compact('states', 'countries'));
     }
 
     /**
@@ -32,6 +36,8 @@ class CityController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:100', 'unique:cities,name'],
+            'country_id' => ['required', 'exists:countries,id'],
+            'state_id' => ['required', 'exists:states,id'],
         ]);
         City::create($data);
 
@@ -52,7 +58,9 @@ class CityController extends Controller
     public function edit($id)
     {
         $city  = City::findOrFail($id);
-        return view('admins.cities.edit', compact('city'));
+        $states  = State::get();
+        $countries = Country::get();
+        return view('admins.cities.edit', compact('city', 'states', 'countries'));
     }
 
     /**
@@ -65,6 +73,8 @@ class CityController extends Controller
 
         $data = $request->validate([
             'name' => ['required', 'string', 'max:100', 'unique:cities,name,' . $id],
+            'country_id' => ['required', 'exists:countries,id'],
+            'state_id' => ['required', 'exists:states,id'],
         ]);
         $city->update($data);
 

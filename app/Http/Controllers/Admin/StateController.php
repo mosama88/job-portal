@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\State;
+use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -13,7 +14,7 @@ class StateController extends Controller
      */
     public function index()
     {
-        $data = State::filter(request()->all())->paginate(30);
+        $data = State::filter(request()->all())->latest()->paginate(10);
         return view('admins.states.index', compact('data'));
     }
 
@@ -22,7 +23,8 @@ class StateController extends Controller
      */
     public function create()
     {
-        return view('admins.states.create');
+        $countries = Country::get();
+        return view('admins.states.create', compact('countries'));
     }
 
     /**
@@ -32,6 +34,7 @@ class StateController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:100', 'unique:states,name'],
+            'country_id' => ['required', 'exists:countries,id'],
         ]);
         State::create($data);
 
@@ -52,7 +55,8 @@ class StateController extends Controller
     public function edit($id)
     {
         $state  = State::findOrFail($id);
-        return view('admins.states.edit', compact('state'));
+        $countries = Country::get();
+        return view('admins.states.edit', compact('state', 'countries'));
     }
 
     /**
@@ -65,6 +69,7 @@ class StateController extends Controller
 
         $data = $request->validate([
             'name' => ['required', 'string', 'max:100', 'unique:states,name,' . $id],
+            'country_id' => ['required', 'exists:countries,id'],
         ]);
         $state->update($data);
 

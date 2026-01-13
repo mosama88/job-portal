@@ -13,7 +13,7 @@ class IndustryTypeController extends Controller
      */
     public function index()
     {
-        $data = IndustryType::filter(request()->all())->paginate(30);
+        $data = IndustryType::filter(request()->all())->latest()->paginate(10);
         return view('admins.industry-types.index', compact('data'));
     }
 
