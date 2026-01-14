@@ -44,9 +44,19 @@
                     </li>
                     <li class="nav-header">Attributes</li>
                     <li
-                        class="nav-item {{ request()->is('admin/industry-types*') || request()->is('admin/organization-types*') || request()->is('admin/languages*') ? 'menu-open' : '' }}">
+                        class="nav-item {{ request()->is('admin/industry-types*') ||
+                        request()->is('admin/organization-types*') ||
+                        request()->is('admin/languages*') ||
+                        request()->is('admin/professions*')
+                            ? 'menu-open'
+                            : '' }}">
                         <a href="#"
-                            class="nav-link {{ request()->is('admin/industry-types*') || request()->is('admin/organization-types*') || request()->is('admin/languages*') ? 'active' : '' }}">
+                            class="nav-link {{ request()->is('admin/industry-types*') ||
+                            request()->is('admin/organization-types*') ||
+                            request()->is('admin/languages*') ||
+                            request()->is('admin/professions*')
+                                ? 'active'
+                                : '' }}">
                             <i class="fa-solid fa-list"></i>
                             <p>
                                 Attributes
@@ -72,6 +82,12 @@
                                 <a href="{{ route('admin.languages.index') }}" class="nav-link @yield('languages_active')">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Languages</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.professions.index') }}" class="nav-link @yield('professions_active')">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>professions</p>
                                 </a>
                             </li>
                         </ul>

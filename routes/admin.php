@@ -4,11 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProfessionController;
 use App\Http\Controllers\Admin\ExportExcelController;
 use App\Http\Controllers\Admin\ImportExcelController;
 use App\Http\Controllers\Admin\IndustryTypeController;
-use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\Auth\PasswordController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
@@ -68,6 +69,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('cities', CityController::class);
     //---------------------------------------------  languages
     Route::resource('languages', LanguageController::class);
+    //---------------------------------------------  professions
+    Route::resource('professions', ProfessionController::class);
 
     Route::get('/get-states/{country_id}', [CountryController::class, 'getStates']);
     Route::get('/get-cities/{state_id}', [CountryController::class, 'getCities']);
