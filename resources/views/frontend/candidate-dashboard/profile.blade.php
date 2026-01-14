@@ -19,10 +19,9 @@
     <section class="section-box mt-120">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-12">
-                    @include('frontend.candidate-dashboard.sidebar')
+                @include('frontend.candidate-dashboard.sidebar')
 
-                </div>
+
 
                 <div class="col-lg-9 col-md-8 col-sm-12 col-12 mb-50">
                     <div class="content-single">
