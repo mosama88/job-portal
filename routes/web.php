@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\CompanyProfileController;
+use App\Http\Controllers\Frontend\CandidateProfileController;
 use App\Http\Controllers\Frontend\CompanyDashboardController;
 use App\Http\Controllers\Frontend\CandidateDashboardController;
 
@@ -24,6 +25,7 @@ require __DIR__ . '/auth.php';
 // Candidate
 Route::middleware(['auth', 'verified', 'user.role:candidate'])->prefix('candidate')->as('candidate.')->group(function () {
     Route::get('/dashboard', [CandidateDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/profile', [CandidateProfileController::class, 'index'])->name('profile.index');
 });
 
 
