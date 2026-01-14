@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\LanguageController;
@@ -71,6 +72,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('languages', LanguageController::class);
     //---------------------------------------------  professions
     Route::resource('professions', ProfessionController::class);
+    //---------------------------------------------  skills
+    Route::resource('skills', SkillController::class);
 
     Route::get('/get-states/{country_id}', [CountryController::class, 'getStates']);
     Route::get('/get-cities/{state_id}', [CountryController::class, 'getCities']);

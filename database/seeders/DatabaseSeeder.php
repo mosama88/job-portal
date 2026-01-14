@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             AdminSeeder::class,
             LanguageSeeder::class,
+            SkillSeeder::class,
+            ProfessionSeeder::class,
             IndustryTypeSeeder::class,
             OrganizationTypeSeeder::class,
             TeamSizeSeeder::class,
