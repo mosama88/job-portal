@@ -26,6 +26,7 @@ require __DIR__ . '/auth.php';
 Route::middleware(['auth', 'verified', 'user.role:candidate'])->prefix('candidate')->as('candidate.')->group(function () {
     Route::get('/dashboard', [CandidateDashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [CandidateProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/basic-info-update', [CandidateProfileController::class, 'basicInfoUpdate'])->name('basic.info.update');
 });
 
 

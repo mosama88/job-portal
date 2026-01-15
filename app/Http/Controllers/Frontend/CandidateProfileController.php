@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\State;
-use App\Models\Company;
+use App\Models\Candidate;
 use App\Models\Country;
 use App\Models\OrganizationType;
 use App\Models\IndustryType;
@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\Frontend\CompanyInfoUpdateRequest;
+use App\Http\Requests\Frontend\CandidateBasicInfoUpdateRequest;
 use App\Http\Requests\Frontend\CompanyFoundingUpdateRequest;
 use App\Models\City;
 
@@ -31,41 +31,33 @@ class CandidateProfileController extends Controller
         return view('frontend.candidate-dashboard.profile.index');
     }
 
-    // public function updateCompanyInfo(CompanyInfoUpdateRequest $request)
-    // {
-    //     $userId = Auth::user()->id;
-    //     $data = $request->validated();
-    //     $company = Company::updateOrCreate(
-    //         [
-    //             'user_id' => $userId
-    //         ],
-    //         $data,
-    //     );
+    public function basicInfoUpdate(CandidateBasicInfoUpdateRequest $request)
+    {
+        $userId = Auth::user()->id;
+        $data = $request->validated();
+        $candidate = Candidate::updateOrCreate(
+            [
+                'user_id' => $userId
+            ],
+            $data,
+        );
 
-    //     //Image Fields
-    //     $mediaFields = ['logo', 'banner'];
-    //     foreach ($mediaFields as $field) {
-    //         if ($request->hasFile($field)) {
-    //             // Delete old photo
-    //             $company->clearMediaCollection($field);
+        //Image Fields
+        $mediaFields = ['profile_picture', 'cv'];
+        foreach ($mediaFields as $field) {
+            if ($request->hasFile($field)) {
+                // Delete old photo
+                $candidate->clearMediaCollection($field);
 
-    //             // Upload new photo
-    //             $company->addMediaFromRequest($field)
-    //                 ->toMediaCollection($field);
-    //         }
-    //     }
+                // Upload new photo
+                $candidate->addMediaFromRequest($field)
+                    ->toMediaCollection($field);
+            }
+        }
 
 
-    //     if (isCompanyProfileComplete()) {
-    //         $companyProfile = Company::where('user_id', $userId)->first();
-
-    //         $companyProfile->profile_completion = 1;
-    //         $companyProfile->visibility = 1;
-    //         $companyProfile->save();
-    //     }
-
-    //     return redirect()->back()->with('success', '⚡️ Updated Info Successfully!');
-    // }
+        return redirect()->back()->with('success', '⚡️ Updated Info Successfully!');
+    }
 
 
     // public function updateCompanyFounding(CompanyFoundingUpdateRequest $request)

@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('candidates', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->nullable();
-            $table->foreignId('experience _id')->nullable();
+            $table->foreignId('experience_id')->nullable();
             $table->foreignIdFor(Profession::class)->nullable()->constrained()->nullOnDelete();
             $table->string('title')->nullable();
             $table->string('fill_name')->nullable();

@@ -17,7 +17,7 @@ class Candidate extends Model implements HasMedia
     protected $table = 'candidates';
     protected $fillable = [
         'user_id',
-        'experience _id',
+        'experience_id',
         'profession_id',
         'title',
         'fill_name',
@@ -83,5 +83,9 @@ class Candidate extends Model implements HasMedia
     public function city()
     {
         return $this->belongsTo(City::class, 'city')->withDefault(['name' => 'Not Define']);
+    }
+    public function profession()
+    {
+        return $this->belongsTo(Profession::class, 'profession_id')->withDefault(['name' => 'Not Define']);
     }
 }
