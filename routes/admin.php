@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
+use App\Http\Controllers\Admin\PlanController;
 
 Route::permanentRedirect('/', '/admin/dashboard');
 
@@ -74,6 +75,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('professions', ProfessionController::class);
     //---------------------------------------------  skills
     Route::resource('skills', SkillController::class);
+    //---------------------------------------------  plans
+    Route::resource('plans', PlanController::class);
 
     Route::get('/get-states/{country_id}', [CountryController::class, 'getStates']);
     Route::get('/get-cities/{state_id}', [CountryController::class, 'getCities']);

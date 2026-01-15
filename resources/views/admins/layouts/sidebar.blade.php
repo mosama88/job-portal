@@ -48,6 +48,7 @@
                         request()->is('admin/organization-types*') ||
                         request()->is('admin/languages*') ||
                         request()->is('admin/skills*') ||
+                        request()->is('admin/plans*') ||
                         request()->is('admin/professions*')
                             ? 'menu-open'
                             : '' }}">
@@ -56,6 +57,7 @@
                             request()->is('admin/organization-types*') ||
                             request()->is('admin/languages*') ||
                             request()->is('admin/skills*') ||
+                            request()->is('admin/plans*') ||
                             request()->is('admin/professions*')
                                 ? 'active'
                                 : '' }}">
@@ -96,6 +98,12 @@
                                 <a href="{{ route('admin.skills.index') }}" class="nav-link @yield('skills_active')">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Skills</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.plans.index') }}" class="nav-link @yield('plans_active')">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Plans</p>
                                 </a>
                             </li>
                         </ul>
