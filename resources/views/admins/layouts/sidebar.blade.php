@@ -48,7 +48,6 @@
                         request()->is('admin/organization-types*') ||
                         request()->is('admin/languages*') ||
                         request()->is('admin/skills*') ||
-                        request()->is('admin/plans*') ||
                         request()->is('admin/professions*')
                             ? 'menu-open'
                             : '' }}">
@@ -57,7 +56,6 @@
                             request()->is('admin/organization-types*') ||
                             request()->is('admin/languages*') ||
                             request()->is('admin/skills*') ||
-                            request()->is('admin/plans*') ||
                             request()->is('admin/professions*')
                                 ? 'active'
                                 : '' }}">
@@ -100,12 +98,6 @@
                                     <p>Skills</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{ route('admin.plans.index') }}" class="nav-link @yield('plans_active')">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Plans</p>
-                                </a>
-                            </li>
                         </ul>
                     </li>
 
@@ -143,6 +135,14 @@
                                 </a>
                             </li>
                         </ul>
+                    </li>
+
+                    <li class="nav-header">Price Plans</li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.plans.index') }}" class="nav-link @yield('plans_active')">
+                            <i class="fa-solid fa-gauge"></i>
+                            <p>Price Plans</p>
+                        </a>
                     </li>
                 </ul>
             </nav>
