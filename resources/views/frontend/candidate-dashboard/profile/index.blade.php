@@ -1,6 +1,11 @@
 @extends('frontend.layouts.master')
 @section('profile_active', 'active')
 @push('css')
+    <style>
+        .ck-editor__editable {
+            min-height: 350px
+        }
+    </style>
 @endpush
 @section('content')
     <section class="section-box mt-75">
