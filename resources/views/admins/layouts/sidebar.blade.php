@@ -140,7 +140,7 @@
                     <li class="nav-header">Price Plans</li>
                     <li class="nav-item">
                         <a href="{{ route('admin.plans.index') }}" class="nav-link @yield('plans_active')">
-                            <i class="fa-solid fa-gauge"></i>
+                            <i class="fa-solid fa-comments-dollar"></i>
                             <p>Price Plans</p>
                         </a>
                     </li>
