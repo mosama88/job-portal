@@ -2,15 +2,33 @@
     <form action="{{ route('candidate.basic.info.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
-            {{--
+
             <div class="col-md-6">
-                 @if (optional($companyInfo)->getFirstMediaUrl('profile_picture', 'preview'))
+                @if (optional($candidate)->getFirstMediaUrl('profile_picture', 'preview'))
                     <img width="200" height="200"
-                        src="{{ $companyInfo?->getFirstMediaUrl('profile_picture', 'preview') }}"
-                        alt="{{ $companyInfo->name ?? '' }}">
+                        src="{{ $candidate?->getFirstMediaUrl('profile_picture', 'preview') }}"
+                        alt="{{ $candidate->full_name ?? '' }}">
                 @endif
             </div>
-            --}}
+
+            <div class="col-md-6 m-auto">
+                @php
+                    $cvUrl = optional($candidate)->getFirstMediaUrl('cv'); // رابط الملف الأصلي
+                @endphp
+
+                @if ($cvUrl)
+                    <!-- لو الملف PDF أو Word، اعرض أيقونة تحميل -->
+                    <a href="{{ $cvUrl }}" class="btn btn-primary" download>
+                        تحميل السيرة الذاتية
+                    </a>
+
+                    <!-- لو حابب تعرض صورة preview لو موجودة -->
+                @else
+                    <p>لا يوجد سيرة ذاتية.</p>
+                @endif
+            </div>
+
+
 
             <div class="col-md-4">
                 <div class="form-group">
