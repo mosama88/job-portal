@@ -33,13 +33,14 @@
               <div class="col-md-4">
                   <div class="form-group select-style">
                       <label class="font-sm color-text-mutted mb-10">Your Availability *</label>
-                      <select class="form-select {{ $errors->has('establishemnt_date') ? 'is-invalid' : '' }}"
+                      <select name="availability"
+                          class="form-select {{ $errors->has('availability') ? 'is-invalid' : '' }}"
                           aria-label="Default select example">
                           <option selected>Open this select menu</option>
                           <option value="1">Available</option>
                           <option value="2">Not Available</option>
                       </select>
-                      <x-input-error class="mt-2 text-danger" :messages="$errors->get('organization_type_id')" />
+                      <x-input-error class="mt-2 text-danger" :messages="$errors->get('availability')" />
                   </div>
               </div>
 
@@ -82,15 +83,15 @@
                   <div class="form-group select-style">
                       <label class="font-sm color-text-mutted mb-10">Skills You Have *</label>
                       <select
-                          class="form-control {{ $errors->has('experience_id') ? 'is-invalid' : '' }} form-icons select-active"
-                          name="experience_id" aria-label="Default select example" multiple="multiple">
-                          @foreach ($other['languages'] as $language)
-                              <option @if (old('experience_id', $candidate->experience_id) == $language->id) selected @endif value="{{ $experience->id }}">
-                                  {{ $language->name }}
+                          class="form-control {{ $errors->has('skill_you_have') ? 'is-invalid' : '' }} form-icons select-active"
+                          name="skill_you_have" aria-label="Default select example" multiple="multiple">
+                          @foreach ($other['skills'] as $skill)
+                              <option @if (old('skill_you_have', $candidate->skill_you_have) == $skill->id) selected @endif value="{{ $experience->id }}">
+                                  {{ $skill->name }}
                               </option>
                           @endforeach
                       </select>
-                      <x-input-error class="mt-2 text-danger" :messages="$errors->get('experience_id')" />
+                      <x-input-error class="mt-2 text-danger" :messages="$errors->get('skill_you_have')" />
                   </div>
               </div>
 
@@ -99,15 +100,15 @@
                   <div class="form-group select-style">
                       <label class="font-sm color-text-mutted mb-10">Languages You Know *</label>
                       <select
-                          class="form-control {{ $errors->has('experience_id') ? 'is-invalid' : '' }} form-icons select-active"
-                          name="experience_id" aria-label="Default select example" multiple="multiple">
+                          class="form-control {{ $errors->has('language_you_know') ? 'is-invalid' : '' }} form-icons select-active"
+                          name="language_you_know" aria-label="Default select example" multiple="multiple">
                           @foreach ($other['languages'] as $language)
-                              <option @if (old('experience_id', $candidate->experience_id) == $language->id) selected @endif value="{{ $experience->id }}">
+                              <option @if (old('language_you_know', $candidate->language_you_know) == $language->id) selected @endif value="{{ $experience->id }}">
                                   {{ $language->name }}
                               </option>
                           @endforeach
                       </select>
-                      <x-input-error class="mt-2 text-danger" :messages="$errors->get('experience_id')" />
+                      <x-input-error class="mt-2 text-danger" :messages="$errors->get('language_you_know')" />
                   </div>
               </div>
 
@@ -116,8 +117,8 @@
                   <div class="form-group">
                       <label class="font-sm color-text-mutted mb-10">Biography </label>
                       <input id="editor" class="form-control {{ $errors->has('website') ? 'is-invalid' : '' }}"
-                          type="text" name="website" value="{{ old('website', $candidate->website) }}">
-                      <x-input-error class="mt-2 text-danger" :messages="$errors->get('website')" />
+                          type="text" name="biography" value="{{ old('biography', $candidate->biography) }}">
+                      <x-input-error class="mt-2 text-danger" :messages="$errors->get('biography')" />
                   </div>
               </div>
           </div>

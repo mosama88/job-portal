@@ -6,7 +6,7 @@ use App\Models\State;
 use App\Models\Candidate;
 use App\Models\Language;
 use App\Models\OrganizationType;
-use App\Models\IndustryType;
+use App\Models\Skill;
 use App\Models\Profession;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
@@ -24,6 +24,7 @@ class CandidateProfileController extends Controller
         $other['experiences']  = Experience::get();
         $other['professions'] = Profession::get();
         $other['languages'] = Language::get();
+        $other['skills'] = Skill::get();
         // $other['organization_types'] = OrganizationType::get();
         // $other['industry_types'] = IndustryType::get();
         // $other['team_sizes'] = TeamSize::get();
