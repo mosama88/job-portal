@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\State;
 use App\Models\Candidate;
-use App\Models\Country;
+use App\Models\Language;
 use App\Models\OrganizationType;
 use App\Models\IndustryType;
-use App\Models\TeamSize;
+use App\Models\Profession;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller;
@@ -22,8 +22,8 @@ class CandidateProfileController extends Controller
     {
         $userId = Auth::user()->id;
         $other['experiences']  = Experience::get();
-        // $other['countries'] = Country::get();
-        // $other['cities'] = City::get();
+        $other['professions'] = Profession::get();
+        $other['languages'] = Language::get();
         // $other['organization_types'] = OrganizationType::get();
         // $other['industry_types'] = IndustryType::get();
         // $other['team_sizes'] = TeamSize::get();

@@ -19,12 +19,12 @@
                 @if ($cvUrl)
                     <!-- لو الملف PDF أو Word، اعرض أيقونة تحميل -->
                     <a href="{{ $cvUrl }}" class="btn btn-primary" download>
-                        تحميل السيرة الذاتية
+                        Download CV
                     </a>
 
                     <!-- لو حابب تعرض صورة preview لو موجودة -->
                 @else
-                    <p>لا يوجد سيرة ذاتية.</p>
+                    <p>There is no CV.</p>
                 @endif
             </div>
 
