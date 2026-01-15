@@ -1,5 +1,7 @@
 @extends('frontend.layouts.master')
 @section('profile_active', 'active')
+@push('css')
+@endpush
 @section('content')
     <section class="section-box mt-75">
         <div class="breacrumb-cover">
@@ -61,8 +63,8 @@
                             aria-labelledby="pills-experience-tab" tabindex="0">
                             Experience & Education Content
                         </div>
-                        <div class="tab-pane fade" id="pills-contact" role="tabpanel"
-                            aria-labelledby="pills-contact-tab" tabindex="0">
+                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
+                            tabindex="0">
                             {{-- <form action="{{ route('company.profile.company-account') }}" method="POST">
                                 @csrf
                                 <div class="row mb-3">
@@ -122,6 +124,18 @@
     </section>
 @endsection
 @push('js')
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
+
+
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+
+            .catch(error => {
+                console.error('Error initializing CKEditor 5:', error);
+            });
+    </script>
+
     <script>
         $(document).ready(function() {
             // الحصول على القيم من data attributes

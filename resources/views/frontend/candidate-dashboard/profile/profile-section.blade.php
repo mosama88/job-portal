@@ -59,7 +59,7 @@
                       <x-input-error class="mt-2 text-danger" :messages="$errors->get('profession_id')" />
                   </div>
               </div>
-              
+
               <div class="col-md-6">
                   <div class="form-group select-style">
                       <label class="font-sm color-text-mutted mb-10">Experience Level *</label>
@@ -115,8 +115,8 @@
               <div class="col-md-12">
                   <div class="form-group">
                       <label class="font-sm color-text-mutted mb-10">Biography </label>
-                      <textarea cols="30" rows="10" class="form-control {{ $errors->has('bio') ? 'is-invalid' : '' }}"
-                          name="bio">{{ old('bio', $candidate->bio) }}</textarea>
+                      <input id="editor" class="form-control {{ $errors->has('website') ? 'is-invalid' : '' }}"
+                          type="text" name="website" value="{{ old('website', $candidate->website) }}">
                       <x-input-error class="mt-2 text-danger" :messages="$errors->get('website')" />
                   </div>
               </div>
