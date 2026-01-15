@@ -14,21 +14,21 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Frontend\CandidateBasicInfoUpdateRequest;
 use App\Http\Requests\Frontend\CompanyFoundingUpdateRequest;
-use App\Models\City;
+use App\Models\Experience;
 
 class CandidateProfileController extends Controller
 {
     public function index()
     {
         $userId = Auth::user()->id;
-        // $other['states']  = State::get();
+        $other['experiences']  = Experience::get();
         // $other['countries'] = Country::get();
         // $other['cities'] = City::get();
         // $other['organization_types'] = OrganizationType::get();
         // $other['industry_types'] = IndustryType::get();
         // $other['team_sizes'] = TeamSize::get();
         $candidate  = Candidate::where('user_id', $userId)->first() ?? new Candidate();
-        return view('frontend.candidate-dashboard.profile.index', compact('candidate'));
+        return view('frontend.candidate-dashboard.profile.index', compact('candidate','other'));
     }
 
     public function basicInfoUpdate(CandidateBasicInfoUpdateRequest $request)

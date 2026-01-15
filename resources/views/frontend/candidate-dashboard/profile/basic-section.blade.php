@@ -66,11 +66,19 @@
                 </div>
             </div>
 
-            <div class="col-md-6">
-                <div class="form-group">
+            <div class="col-md-4">
+                <div class="form-group select-style">
                     <label class="font-sm color-text-mutted mb-10">Experience Level *</label>
-                    <input class="form-control {{ $errors->has('experience_id') ? 'is-invalid' : '' }}" type="text"
-                        name="experience_id" value="{{ old('experience_id', $candidate->experience_id) }}">
+                    <select
+                        class="form-control {{ $errors->has('experience_id') ? 'is-invalid' : '' }} form-icons select-active"
+                        name="experience_id" aria-label="Default select example">
+                        <option value="" selected>Open this select menu</option>
+                        @foreach ($other['experiences'] as $experience)
+                            <option @if (old('experience_id', $candidate->experience_id) == $experience->id) selected @endif value="{{ $experience->id }}">
+                                {{ $experience->name }}
+                            </option>
+                        @endforeach
+                    </select>
                     <x-input-error class="mt-2 text-danger" :messages="$errors->get('experience_id')" />
                 </div>
             </div>

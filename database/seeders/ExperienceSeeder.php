@@ -9,18 +9,23 @@ class ExperienceSeeder extends Seeder
 {
     public function run(): void
     {
-        $languages = [
-            'name' => 'Fresher',
-            'name' => '1 Year',
-            'name' => '2 Year',
-            'name' => '3+ Year',
-            'name' => '5+ Year',
-            'name' => '8+ Year',
-            'name' => '10+ Year',
-            'name' => '15+ Year',
-            'name' => '20+ Year',
+        $experiences = [
+            'Fresher',
+            '1 Year',
+            '2 Year',
+            '3+ Year',
+            '5+ Year',
+            '8+ Year',
+            '10+ Year',
+            '15+ Year',
+            '20+ Year',
         ];
 
-        Experience::insert($languages);
+
+        foreach ($experiences as $experience) {
+            Experience::firstOrCreate([
+                'name' => $experience,
+            ]);
+        }
     }
 }
