@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('experience_id')->nullable();
             $table->foreignIdFor(Profession::class)->nullable()->constrained()->nullOnDelete();
             $table->string('title')->nullable();
-            $table->string('fill_name')->nullable();
+            $table->string('full_name')->nullable();
             $table->string('slug')->nullable();
             $table->enum('gender', ['male', 'female'])->nullable();
             $table->string('website')->nullable();

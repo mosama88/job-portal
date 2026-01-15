@@ -24,7 +24,7 @@ class CandidateBasicInfoUpdateRequest extends FormRequest
         return [
             'logo' => ['image', 'max:1500'],
             'cv' => ['max:2048', 'mimes:pdf,docx'],
-            'name' => ['required', 'string', 'max:100'],
+            'full_name' => ['required', 'string', 'max:100'],
             'title' => ['required', 'string', 'max:100'],
             'experience_id' => ['required', 'string', 'max:2000'],
             'website' => ['required', 'active_url'],

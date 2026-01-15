@@ -20,7 +20,7 @@ class Candidate extends Model implements HasMedia
         'experience_id',
         'profession_id',
         'title',
-        'fill_name',
+        'full_name',
         'slug',
         'gender',
         'website',

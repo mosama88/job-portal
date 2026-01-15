@@ -20,15 +20,15 @@ class CandidateProfileController extends Controller
 {
     public function index()
     {
-        // $userId = Auth::user()->id;
+        $userId = Auth::user()->id;
         // $other['states']  = State::get();
         // $other['countries'] = Country::get();
         // $other['cities'] = City::get();
         // $other['organization_types'] = OrganizationType::get();
         // $other['industry_types'] = IndustryType::get();
         // $other['team_sizes'] = TeamSize::get();
-        // $companyInfo  = Company::where('user_id', $userId)->first() ?? new Company();
-        return view('frontend.candidate-dashboard.profile.index');
+        $candidate  = Candidate::where('user_id', $userId)->first() ?? new Candidate();
+        return view('frontend.candidate-dashboard.profile.index', compact('candidate'));
     }
 
     public function basicInfoUpdate(CandidateBasicInfoUpdateRequest $request)

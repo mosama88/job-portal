@@ -1,5 +1,5 @@
 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
-    <form action="{{ route('company.profile.company-info') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('candidate.basic.info.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
             {{--
@@ -33,9 +33,9 @@
             <div class="col-md-8">
                 <div class="form-group">
                     <label class="font-sm color-text-mutted mb-10">Full Name *</label>
-                    <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text"
-                        name="name" value="{{ old('name') }}">
-                    <x-input-error class="mt-2 text-danger" :messages="$errors->get('name')" />
+                    <input class="form-control {{ $errors->has('full_name') ? 'is-invalid' : '' }}" type="text"
+                        name="full_name" value="{{ old('full_name', $candidate->full_name) }}">
+                    <x-input-error class="mt-2 text-danger" :messages="$errors->get('full_name')" />
                 </div>
             </div>
 
@@ -43,7 +43,7 @@
                 <div class="form-group">
                     <label class="font-sm color-text-mutted mb-10">Title/Tag Line *</label>
                     <input class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" type="text"
-                        name="title" value="{{ old('title') }}">
+                        name="title" value="{{ old('title', $candidate->title) }}">
                     <x-input-error class="mt-2 text-danger" :messages="$errors->get('title')" />
                 </div>
             </div>
@@ -52,7 +52,7 @@
                 <div class="form-group">
                     <label class="font-sm color-text-mutted mb-10">Experience Level *</label>
                     <input class="form-control {{ $errors->has('experience_id') ? 'is-invalid' : '' }}" type="text"
-                        name="experience_id" value="{{ old('experience_id') }}">
+                        name="experience_id" value="{{ old('experience_id', $candidate->experience_id) }}">
                     <x-input-error class="mt-2 text-danger" :messages="$errors->get('experience_id')" />
                 </div>
             </div>
@@ -61,7 +61,7 @@
                 <div class="form-group">
                     <label class="font-sm color-text-mutted mb-10">Website *</label>
                     <input class="form-control {{ $errors->has('website') ? 'is-invalid' : '' }}" type="text"
-                        name="website" value="{{ old('website') }}">
+                        name="website" value="{{ old('website', $candidate->website) }}">
                     <x-input-error class="mt-2 text-danger" :messages="$errors->get('website')" />
                 </div>
             </div>
@@ -71,7 +71,7 @@
                 <div class="form-group">
                     <label class="font-sm color-text-mutted mb-10">Date of Birth</label>
                     <input class="form-control {{ $errors->has('birth_date') ? 'is-invalid' : '' }} datepicker"
-                        type="text" name="birth_date" value="{{ old('birth_date') }}">
+                        type="text" name="birth_date" value="{{ old('birth_date', $candidate->birth_date) }}">
                     <x-input-error class="mt-2 text-danger" :messages="$errors->get('birth_date')" />
                 </div>
             </div>
