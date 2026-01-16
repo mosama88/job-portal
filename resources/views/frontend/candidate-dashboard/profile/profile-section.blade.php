@@ -86,7 +86,7 @@
                           class="form-control {{ $errors->has('skill_you_have') ? 'is-invalid' : '' }} form-icons select-active"
                           name="skill_you_have" aria-label="Default select example" multiple="multiple">
                           @foreach ($other['skills'] as $skill)
-                              <option @if (old('skill_you_have', $candidate->skill_you_have) == $skill->id) selected @endif value="{{ $experience->id }}">
+                              <option @if (old('skill_you_have', $candidate->skill_you_have) == $skill->id) selected @endif value="{{ $skill->id }}">
                                   {{ $skill->name }}
                               </option>
                           @endforeach
@@ -103,7 +103,7 @@
                           class="form-control {{ $errors->has('language_you_know') ? 'is-invalid' : '' }} form-icons select-active"
                           name="language_you_know" aria-label="Default select example" multiple="multiple">
                           @foreach ($other['languages'] as $language)
-                              <option @if (old('language_you_know', $candidate->language_you_know) == $language->id) selected @endif value="{{ $experience->id }}">
+                              <option @if (old('language_you_know', $candidate->language_you_know) == $language->id) selected @endif value="{{ $language->id }}">
                                   {{ $language->name }}
                               </option>
                           @endforeach
