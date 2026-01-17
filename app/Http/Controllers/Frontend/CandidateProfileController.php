@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\State;
 use App\Models\Candidate;
 use App\Models\Language;
-use App\Models\OrganizationType;
 use App\Models\Skill;
 use App\Models\Profession;
 use Illuminate\Http\Request;
@@ -13,7 +12,7 @@ use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Frontend\CandidateBasicInfoUpdateRequest;
-use App\Http\Requests\Frontend\CompanyFoundingUpdateRequest;
+use App\Http\Requests\Frontend\CandidateProfileInfoUpdateRequest;
 use App\Models\Experience;
 
 class CandidateProfileController extends Controller
@@ -29,11 +28,41 @@ class CandidateProfileController extends Controller
         // $other['industry_types'] = IndustryType::get();
         // $other['team_sizes'] = TeamSize::get();
         $candidate  = Candidate::where('user_id', $userId)->first() ?? new Candidate();
-        return view('frontend.candidate-dashboard.profile.index', compact('candidate','other'));
+        return view('frontend.candidate-dashboard.profile.index', compact('candidate', 'other'));
     }
 
     public function basicInfoUpdate(CandidateBasicInfoUpdateRequest $request)
     {
+        $userId = Auth::user()->id;
+        $data = $request->validated();
+        $candidate = Candidate::updateOrCreate(
+            [
+                'user_id' => $userId
+            ],
+            $data,
+        );
+
+        //Image Fields
+        $mediaFields = ['profile_picture', 'cv'];
+        foreach ($mediaFields as $field) {
+            if ($request->hasFile($field)) {
+                // Delete old photo
+                $candidate->clearMediaCollection($field);
+
+                // Upload new photo
+                $candidate->addMediaFromRequest($field)
+                    ->toMediaCollection($field);
+            }
+        }
+
+
+        return redirect()->back()->with('success', '⚡️ Updated Info Successfully!');
+    }
+
+    public function profileInfoUpdate(CandidateProfileInfoUpdateRequest $request)
+    {
+
+        dd($request->all());
         $userId = Auth::user()->id;
         $data = $request->validated();
         $candidate = Candidate::updateOrCreate(
