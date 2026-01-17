@@ -61,8 +61,6 @@ class CandidateProfileController extends Controller
 
     public function profileInfoUpdate(CandidateProfileInfoUpdateRequest $request)
     {
-
-        dd($request->all());
         $userId = Auth::user()->id;
         $data = $request->validated();
         $candidate = Candidate::updateOrCreate(
@@ -72,18 +70,6 @@ class CandidateProfileController extends Controller
             $data,
         );
 
-        //Image Fields
-        $mediaFields = ['profile_picture', 'cv'];
-        foreach ($mediaFields as $field) {
-            if ($request->hasFile($field)) {
-                // Delete old photo
-                $candidate->clearMediaCollection($field);
-
-                // Upload new photo
-                $candidate->addMediaFromRequest($field)
-                    ->toMediaCollection($field);
-            }
-        }
 
 
         return redirect()->back()->with('success', '⚡️ Updated Info Successfully!');

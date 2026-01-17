@@ -35,7 +35,7 @@ class Candidate extends Model implements HasMedia
         'city',
         'state',
         'country',
-        'status',
+        'availability',
         'profile_completion',
         'visibility'
     ];

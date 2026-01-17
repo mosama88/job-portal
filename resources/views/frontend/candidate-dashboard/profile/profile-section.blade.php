@@ -68,7 +68,7 @@
                     <label class="font-sm color-text-mutted mb-10">Skills You Have *</label>
                     <select
                         class="form-control {{ $errors->has('skill_you_have') ? 'is-invalid' : '' }} form-icons select-active"
-                        name="skill_you_have" aria-label="Default select example" multiple="multiple">
+                        name="skill_you_have[]" aria-label="Default select example" multiple="multiple">
                         @foreach ($other['skills'] as $skill)
                             <option @if (old('skill_you_have', $candidate->skill_you_have) == $skill->id) selected @endif value="{{ $skill->id }}">
                                 {{ $skill->name }}
@@ -85,7 +85,7 @@
                     <label class="font-sm color-text-mutted mb-10">Languages You Know *</label>
                     <select
                         class="form-control {{ $errors->has('language_you_know') ? 'is-invalid' : '' }} form-icons select-active"
-                        name="language_you_know" aria-label="Default select example" multiple="multiple">
+                        name="language_you_know[]" aria-label="Default select example" multiple="multiple">
                         @foreach ($other['languages'] as $language)
                             <option @if (old('language_you_know', $candidate->language_you_know) == $language->id) selected @endif value="{{ $language->id }}">
                                 {{ $language->name }}
@@ -100,10 +100,10 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label class="font-sm color-text-mutted mb-10">Biography </label>
-                    <textarea id="editor" name="biography" class="form-control {{ $errors->has('biography') ? 'is-invalid' : '' }}"
-                        rows="6">{{ old('biography', $candidate->biography) }}</textarea>
+                    <textarea id="editor" name="bio" class="form-control {{ $errors->has('bio') ? 'is-invalid' : '' }}"
+                        rows="6">{{ old('bio', $candidate->bio) }}</textarea>
 
-                    <x-input-error class="mt-2 text-danger" :messages="$errors->get('biography')" />
+                    <x-input-error class="mt-2 text-danger" :messages="$errors->get('bio')" />
                 </div>
             </div>
         </div>

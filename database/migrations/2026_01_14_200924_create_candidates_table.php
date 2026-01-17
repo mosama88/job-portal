@@ -33,7 +33,7 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('country')->nullable();
-            $table->enum('status', ['available', 'not_available'])->nullable();
+            $table->enum('availability', ['available', 'not_available'])->nullable();
             $table->boolean('profile_completion')->default(0);
             $table->boolean('visibility')->default(0);
             $table->timestamps();
