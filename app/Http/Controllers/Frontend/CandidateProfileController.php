@@ -70,6 +70,18 @@ class CandidateProfileController extends Controller
             $data,
         );
 
+        foreach ($request->language_you_know as $language) {
+            $pivotLanguageData[$language] = [];
+        }
+
+
+        foreach ($request->skill_you_have as $skill) {
+            $pivotSkillData[$skill] = [];
+        }
+
+        $candidate->languages()->syncWithoutDetaching($pivotLanguageData);
+        $candidate->skills()->syncWithoutDetaching($pivotSkillData);
+
 
 
         return redirect()->back()->with('success', '⚡️ Updated Info Successfully!');

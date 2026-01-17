@@ -88,4 +88,26 @@ class Candidate extends Model implements HasMedia
     {
         return $this->belongsTo(Profession::class, 'profession_id')->withDefault(['name' => 'Not Define']);
     }
+
+    public function languages()
+    {
+        return $this->belongsToMany(
+            Language::class,
+            'candidate_languages',
+            'candidate_id',
+            'language_id'
+        )
+            ->withTimestamps();
+    }
+
+    public function skills()
+    {
+        return $this->belongsToMany(
+            Language::class,
+            'candidate_skills',
+            'candidate_id',
+            'skill_id'
+        )
+            ->withTimestamps();
+    }
 }
