@@ -134,8 +134,9 @@
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Create new Experience</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('candidate.candidate-experiences.store') }}" method="POST">
+                <form action="{{ route('candidate.candidate-experiences.store') }}" method="POST" id="addExperienceForm">
                     @csrf
+                    <input readonly type="hidden" name="candidate_id" value="{{ auth()->user()->id }}">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12">
@@ -206,7 +207,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Add Experience</button>
+                        <button type="button" class="btn btn-primary" onclick="$('#addExperienceForm').submit()">Add
+                            Experience</button>
                     </div>
                 </form>
             </div>
