@@ -131,16 +131,84 @@
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Create new Experience</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                <form action="{{ route('candidate.candidate-experiences.store') }}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="font-sm color-text-mutted mb-10">Company *</label>
+                                    <input class="form-control {{ $errors->has('company') ? 'is-invalid' : '' }}"
+                                        type="text" name="company" value="{{ old('company') }}">
+                                    <x-input-error class="mt-2 text-danger" :messages="$errors->get('company')" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="font-sm color-text-mutted mb-10">Department *</label>
+                                    <input class="form-control {{ $errors->has('department') ? 'is-invalid' : '' }}"
+                                        type="text" name="department" value="{{ old('department') }}">
+                                    <x-input-error class="mt-2 text-danger" :messages="$errors->get('department')" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="font-sm color-text-mutted mb-10">Designation *</label>
+                                    <input class="form-control {{ $errors->has('designation') ? 'is-invalid' : '' }}"
+                                        type="text" name="designation" value="{{ old('designation') }}">
+                                    <x-input-error class="mt-2 text-danger" :messages="$errors->get('designation')" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="font-sm color-text-mutted mb-10">Start Date *</label>
+                                    <input class="form-control {{ $errors->has('start') ? 'is-invalid' : '' }} datepicker"
+                                        type="text" name="start" value="{{ old('start') }}">
+                                    <x-input-error class="mt-2 text-danger" :messages="$errors->get('start')" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="font-sm color-text-mutted mb-10">End Date *</label>
+                                    <input class="form-control {{ $errors->has('end') ? 'is-invalid' : '' }} datepicker"
+                                        type="text" name="end" value="{{ old('end') }}">
+                                    <x-input-error class="mt-2 text-danger" :messages="$errors->get('end')" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input name="currently_working" class="form-check-input" type="checkbox"
+                                        value="" id="checkDefault">
+                                    <label class="form-check-label" for="checkDefault">
+                                        Currently Working
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="font-sm color-text-mutted mb-10">Responsibilities *</label>
+                                    <textarea cols="30" rows="10"
+                                        class="form-control {{ $errors->has('responsibilities') ? 'is-invalid' : '' }}" name="responsibilities">
+                                        {{ old('responsibilities') }}
+                                    </textarea>
+                                    <x-input-error class="mt-2 text-danger" :messages="$errors->get('responsibilities')" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Add Experience</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

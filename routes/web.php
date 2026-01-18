@@ -7,6 +7,7 @@ use App\Http\Controllers\Frontend\CompanyProfileController;
 use App\Http\Controllers\Frontend\CandidateProfileController;
 use App\Http\Controllers\Frontend\CompanyDashboardController;
 use App\Http\Controllers\Frontend\CandidateDashboardController;
+use App\Http\Controllers\Frontend\CandidateExperienceController;
 
 Route::get('/', [HomeController::class, 'index']);
 
@@ -28,6 +29,7 @@ Route::middleware(['auth', 'verified', 'user.role:candidate'])->prefix('candidat
     Route::get('/profile', [CandidateProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile/basic-info-update', [CandidateProfileController::class, 'basicInfoUpdate'])->name('basic.info.update');
     Route::post('/profile/profile-info-update', [CandidateProfileController::class, 'profileInfoUpdate'])->name('profile.info.update');
+    Route::resource('/candidate-experiences', CandidateExperienceController::class);
 });
 
 

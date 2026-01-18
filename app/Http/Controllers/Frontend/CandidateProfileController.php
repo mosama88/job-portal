@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Models\State;
 use App\Models\Candidate;
 use App\Models\Language;
 use App\Models\Skill;
 use App\Models\Profession;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Frontend\CandidateBasicInfoUpdateRequest;
