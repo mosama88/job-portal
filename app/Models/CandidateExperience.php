@@ -22,6 +22,7 @@ class CandidateExperience extends Model
         'currently_working'
     ];
 
+    protected $casts = ['start' => 'date', 'end' => 'date'];
 
     public function candidate()
     {

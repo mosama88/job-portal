@@ -17,6 +17,14 @@
 <script src="{{ asset('frontend') }}/assets/js/main.js?v=4.1"></script>
 <script src="{{ asset('frontend') }}/assets/js/plugins/counterup.js"></script>
 
+
+<!-- toastr -->
+<script src="{{ asset('admin') }}/assets/dist/js/toastr.min.js"></script>
+
+
+<!-- sweetalert2@11.js -->
+<script src="{{ asset('admin') }}/assets/dist/js/sweetalert2@11.js"></script>
+
 <!-- Add Laravel Notify JavaScript -->
 <script>
     $('.datepicker').datepicker({

@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Models\Candidate;
-use App\Models\Language;
 use App\Models\Skill;
+use App\Models\Language;
+use App\Models\Candidate;
+use App\Models\Experience;
 use App\Models\Profession;
 use Illuminate\Http\Request;
+use App\Models\CandidateExperience;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Frontend\CandidateBasicInfoUpdateRequest;
 use App\Http\Requests\Frontend\CandidateProfileInfoUpdateRequest;
-use App\Models\Experience;
 
 class CandidateProfileController extends Controller
 {
@@ -25,8 +26,8 @@ class CandidateProfileController extends Controller
         $candidate  = Candidate::with('skills', 'languages')->where('user_id', $userId)->first() ?? new Candidate();
         $candidateSkill = $candidate->skills->pluck('id')->toArray();
         $candidateLang = $candidate->languages->pluck('id')->toArray();
-
-        return view('frontend.candidate-dashboard.profile.index', compact('candidate', 'other', 'candidateSkill', 'candidateLang'));
+        $experiences  = CandidateExperience::with('candidate')->where('candidate_id', $candidate->id)->get();
+        return view('frontend.candidate-dashboard.profile.index', compact('candidate', 'other', 'candidateSkill', 'candidateLang', 'experiences'));
     }
 
     public function basicInfoUpdate(CandidateBasicInfoUpdateRequest $request)
@@ -82,5 +83,4 @@ class CandidateProfileController extends Controller
 
         return redirect()->back()->with('success', '⚡️ Updated Info Successfully!');
     }
-
 }

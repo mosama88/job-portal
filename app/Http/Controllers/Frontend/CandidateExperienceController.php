@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Candidate;
-use App\Models\CandidateExperience;
 use Illuminate\Http\Request;
+use App\Models\CandidateExperience;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Frontend\CandidateExperienceRequest;
 
 class CandidateExperienceController extends Controller
 {
@@ -15,10 +16,7 @@ class CandidateExperienceController extends Controller
      */
     public function index()
     {
-        $userId = Auth::user()->id;
-        $candidate  = Candidate::with('skills', 'languages')->where('user_id', $userId)->first() ?? new Candidate();
-        $experiences  = CandidateExperience::with('candidate')->where('candidate_id', $candidate->userId)->first() ?? new CandidateExperience();
-        return view('');
+        //
     }
 
     /**
@@ -32,9 +30,19 @@ class CandidateExperienceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CandidateExperienceRequest $request)
     {
-        //
+        if ($request->ajax()) {
+            $data = $request->validated();
+            $data['currently_working'] = $request->has('currently_working') ? 1 : 0;
+
+            CandidateExperience::create($data);
+
+            return response()->json([
+                'status' => true,
+                'message' => '⚡️ Created Experience Successfully!'
+            ]);
+        }
     }
 
     /**
@@ -64,8 +72,13 @@ class CandidateExperienceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $experience  = CandidateExperience::findOrFail($id);
+        $experience->delete();
+        return response()->json([
+            'success' => true,
+            'message' => '⚡️ Deleted Experience Successfully!'
+        ]);
     }
 }

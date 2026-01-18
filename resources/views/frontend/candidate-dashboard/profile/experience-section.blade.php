@@ -21,30 +21,44 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>Delete</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>@fat</td>
-                <td>Delete</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>John</td>
-                <td>Doe</td>
-                <td>@social</td>
-                <td>@social</td>
-                <td>Delete</td>
-            </tr>
+            @forelse ($experiences as $experience)
+                <tr>
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td>{{ $experience->company }}</td>
+                    <td>{{ $experience->department }}</td>
+                    <td>{{ $experience->designation }}</td>
+                    <td>
+                        {{ $experience->start->format('Y-m-d') }} to {{ $experience->end->format('Y-m-d') }}
+                    </td>
+                    <td class="text-nowrap">
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Action buttons">
+                            {{-- زر التعديل --}}
+                            <a title="Edit"
+                                href="{{ route('candidate.candidate-experiences.edit', $experience->id) }}"
+                                class="btn btn-outline-info border-end-0 rounded-start">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+
+                            {{-- زر الحذف --}}
+                            <button type="button" data-id="{{ $experience->id }}"
+                                class="btn btn-outline-danger rounded-end delete-btn">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+
+                        {{-- نموذج الحذف المخفي --}}
+                        <form id="delete-form-{{ $experience->id }}"
+                            action="{{ route('candidate.candidate-experiences.destroy', $experience->id) }}"
+                            method="POST" style="display: none;">
+                            @csrf
+                            @method('DELETE')
+                        </form>
+                    </td>
+                </tr>
+            @empty
+                No Experience Data
+            @endforelse
+
         </tbody>
     </table>
 

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Frontend;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CandidateExperienceeRequest extends FormRequest
+class CandidateExperienceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,13 +22,14 @@ class CandidateExperienceeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'gender' => ['required', 'in:male,female'],
-            'marital_status' => ['required', 'in:married,single'],
-            'profession_id' => ['required', 'integer'],
-            'availability' => ['required', 'in:available,not_available'],
-            'skill_you_have' => ['required'],
-            'language_you_know' => ['required'],
-            'bio' => ['required'],
+            'candidate_id' => ['required', 'exists:candidates,id'],
+            'company' => ['required'],
+            'department' => ['required'],
+            'designation' => ['required'],
+            'start' => ['required', 'date', 'before:end'],
+            'end' => ['required', 'date', 'after:start'],
+            'responsibilities' => ['required', 'min:100'],
+            'currently_working' => ['required'],
         ];
     }
 }

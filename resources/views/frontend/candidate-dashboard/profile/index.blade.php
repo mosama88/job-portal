@@ -134,60 +134,56 @@
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Create new Experience</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('candidate.candidate-experiences.store') }}" method="POST" id="addExperienceForm">
+                <form method="POST" id="addExperienceForm">
                     @csrf
-                    <input readonly type="hidden" name="candidate_id" value="{{ auth()->user()->id }}">
+                    <input type="hidden" name="candidate_id" value="{{ auth()->user()->id }}">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="font-sm color-text-mutted mb-10">Company *</label>
-                                    <input class="form-control {{ $errors->has('company') ? 'is-invalid' : '' }}"
-                                        type="text" name="company" value="{{ old('company') }}">
-                                    <x-input-error class="mt-2 text-danger" :messages="$errors->get('company')" />
+                                    <input class="form-control" type="text" name="company" value="{{ old('company') }}">
+                                    <!-- Error will be inserted here by JavaScript -->
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="font-sm color-text-mutted mb-10">Department *</label>
-                                    <input class="form-control {{ $errors->has('department') ? 'is-invalid' : '' }}"
-                                        type="text" name="department" value="{{ old('department') }}">
-                                    <x-input-error class="mt-2 text-danger" :messages="$errors->get('department')" />
+                                    <input class="form-control" type="text" name="department"
+                                        value="{{ old('department') }}">
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="font-sm color-text-mutted mb-10">Designation *</label>
-                                    <input class="form-control {{ $errors->has('designation') ? 'is-invalid' : '' }}"
-                                        type="text" name="designation" value="{{ old('designation') }}">
-                                    <x-input-error class="mt-2 text-danger" :messages="$errors->get('designation')" />
+                                    <input class="form-control" type="text" name="designation"
+                                        value="{{ old('designation') }}">
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="font-sm color-text-mutted mb-10">Start Date *</label>
-                                    <input class="form-control {{ $errors->has('start') ? 'is-invalid' : '' }} datepicker"
-                                        type="text" name="start" value="{{ old('start') }}">
-                                    <x-input-error class="mt-2 text-danger" :messages="$errors->get('start')" />
+                                    <input class="form-control datepicker" type="text" name="start"
+                                        value="{{ old('start') }}">
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="font-sm color-text-mutted mb-10">End Date *</label>
-                                    <input class="form-control {{ $errors->has('end') ? 'is-invalid' : '' }} datepicker"
-                                        type="text" name="end" value="{{ old('end') }}">
-                                    <x-input-error class="mt-2 text-danger" :messages="$errors->get('end')" />
+                                    <input class="form-control datepicker" type="text" name="end"
+                                        value="{{ old('end') }}">
                                 </div>
                             </div>
+
                             <div class="col-md-6">
-                                <div class="form-check">
+                                <div class="form-check mt-3">
                                     <input name="currently_working" class="form-check-input" type="checkbox"
-                                        value="" id="checkDefault">
-                                    <label class="form-check-label" for="checkDefault">
+                                        value="1" id="currentlyWorking">
+                                    <label class="form-check-label" for="currentlyWorking">
                                         Currently Working
                                     </label>
                                 </div>
@@ -196,19 +192,14 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="font-sm color-text-mutted mb-10">Responsibilities *</label>
-                                    <textarea cols="30" rows="10"
-                                        class="form-control {{ $errors->has('responsibilities') ? 'is-invalid' : '' }}" name="responsibilities">
-                                        {{ old('responsibilities') }}
-                                    </textarea>
-                                    <x-input-error class="mt-2 text-danger" :messages="$errors->get('responsibilities')" />
+                                    <textarea cols="30" rows="5" class="form-control" name="responsibilities">{{ old('responsibilities') }}</textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" onclick="$('#addExperienceForm').submit()">Add
-                            Experience</button>
+                        <button type="submit" class="btn btn-primary">Add Experience</button>
                     </div>
                 </form>
             </div>
@@ -230,85 +221,154 @@
 
     <script>
         $(document).ready(function() {
-            // الحصول على القيم من data attributes
-            var currentCountry = $('#country').data('current');
-            var currentState = $('#state').data('current');
-            var currentCity = $('#city').data('current');
-            var stateCountry = $('#state').data('country');
-            var cityState = $('#city').data('state');
+            $('#addExperienceForm').on('submit', function(event) {
+                event.preventDefault();
 
-            // تحميل الولايات إذا كان هناك بلد محفوظ
-            if (currentCountry) {
-                loadStates(currentCountry, true);
-            }
+                // زر الحفظ
+                let submitBtn = $(this).find('button[type="submit"]');
+                let originalText = submitBtn.html();
 
-            // عند تغيير البلد
-            $('#country').change(function() {
-                var countryId = $(this).val();
-                loadStates(countryId, false);
-            });
-
-            // عند تغيير الولاية
-            $('#state').change(function() {
-                var stateId = $(this).val();
-                loadCities(stateId, false);
-            });
-
-            function loadStates(countryId, isInitialLoad = false) {
-                $('#state').html('<option value="">Select State</option>');
-                $('#city').html('<option value="">Select City</option>');
-
-                if (!countryId) return;
+                // إظهار حالة التحميل
+                submitBtn.html('<span class="spinner-border spinner-border-sm"></span> جاري الحفظ...');
+                submitBtn.prop('disabled', true);
 
                 $.ajax({
-                    url: '/admin/get-states/' + countryId,
-                    type: 'GET',
-                    success: function(data) {
-                        var shouldSelectState = isInitialLoad && currentState;
+                    method: 'POST',
+                    url: "{{ route('candidate.candidate-experiences.store') }}",
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        if (response.status) {
+                            // إغلاق المودال مباشرة - هذه هي الطريقة الصحيحة
+                            $('#exampleModal').modal('hide');
 
-                        $.each(data, function(key, state) {
-                            var selected = (shouldSelectState && state.id == currentState) ?
-                                'selected' : '';
-                            $('#state').append('<option value="' + state.id + '" ' + selected +
-                                '>' +
-                                state.name + '</option>');
-                        });
+                            // إعادة تعيين النموذج
+                            $('#addExperienceForm')[0].reset();
 
-                        // إذا كان تحميل أولي وكان هناك state محفوظ، قم بتحميل المدن
-                        if (shouldSelectState) {
-                            loadCities(currentState, true);
+                            // إعادة تفعيل الزر
+                            submitBtn.html(originalText);
+                            submitBtn.prop('disabled', false);
+
+                            // إظهار رسالة النجاح
+                            Swal.fire({
+                                icon: 'success',
+                                title: response.message,
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(() => {
+                                // إعادة تحميل الصفحة
+                                window.location.reload();
+                            });
                         }
                     },
                     error: function(xhr) {
-                        console.error('Error:', xhr.responseText);
+                        // إعادة تفعيل الزر
+                        submitBtn.html(originalText);
+                        submitBtn.prop('disabled', false);
+
+                        // مسح الأخطاء السابقة
+                        $('.is-invalid').removeClass('is-invalid');
+                        $('.text-danger').remove();
+
+                        if (xhr.status === 422) {
+                            let errors = xhr.responseJSON.errors;
+
+                            // عرض الأخطاء الجديدة
+                            $.each(errors, function(key, messages) {
+                                let inputElement = $('[name="' + key + '"]');
+                                inputElement.addClass('is-invalid');
+
+                                // إضافة رسالة الخطأ
+                                inputElement.after(
+                                    '<div class="text-danger small mt-1">' +
+                                    messages[0] + '</div>');
+                            });
+
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'خطأ في الإدخال',
+                                text: 'يرجى مراجعة البيانات المدخلة',
+                                timer: 2000
+                            });
+                        }
                     }
                 });
-            }
+            });
 
-            function loadCities(stateId, isInitialLoad = false) {
-                $('#city').html('<option value="">Select City</option>');
+            // إعادة تعيين النموذج عند إغلاق المودال
+            $('#exampleModal').on('hidden.bs.modal', function() {
+                $('#addExperienceForm')[0].reset();
+                $('.is-invalid').removeClass('is-invalid');
+                $('.text-danger').remove();
+            });
+        });
+    </script>
 
-                if (!stateId) return;
 
-                $.ajax({
-                    url: '/admin/get-cities/' + stateId,
-                    type: 'GET',
-                    success: function(data) {
-                        var shouldSelectCity = isInitialLoad && currentCity;
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Attach event listener to delete buttons
+            document.querySelectorAll('.delete-btn').forEach(function(button) {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent default behavior
 
-                        $.each(data, function(key, city) {
-                            var selected = (shouldSelectCity && city.id == currentCity) ?
-                                'selected' : '';
-                            $('#city').append('<option value="' + city.id + '" ' + selected +
-                                '>' +
-                                city.name + '</option>');
-                        });
-                    },
-                    error: function(xhr) {
-                        console.error('Error:', xhr.responseText);
-                    }
+                    // Retrieve the form ID from the button's data attribute
+                    const nameId = this.getAttribute('data-id');
+                    const form = document.getElementById(`delete-form-${nameId}`);
+
+                    // Display SweetAlert confirmation dialog
+                    Swal.fire({
+                        title: 'Are You Sure?',
+                        text: "You won't be able to undo this.!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Yes, delete it!',
+                        cancelButtonText: 'Cancel'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Perform AJAX request
+                            fetch(form.action, {
+                                    method: 'POST',
+                                    body: new FormData(form),
+                                    headers: {
+                                        'X-CSRF-TOKEN': "{{ csrf_token() }}" // Add CSRF token
+                                    }
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        Swal.fire({
+                                            title: "Success!",
+                                            text: data
+                                                .message, // هذه الرسالة تأتي من الـ Controller
+                                            icon: 'success',
+                                            timer: 1500,
+                                            showConfirmButton: false
+                                        }).then(() => {
+                                            location
+                                                .reload(); // Reload the page
+                                        });
+                                    } else {
+                                        Swal.fire({
+                                            title: "Error!",
+                                            text: data.message ||
+                                                "An error occurred",
+                                            icon: 'error'
+                                        });
+                                    }
+                                })
+                                .catch(error => {
+                                    Swal.fire({
+                                        title: "Error!",
+                                        text: "An error occurred",
+                                        icon: 'error'
+                                    });
+                                });
+                        }
+                    });
                 });
-            }
+            });
         });
     </script>
 @endpush
