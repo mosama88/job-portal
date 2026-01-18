@@ -62,12 +62,10 @@
 
                         @include('frontend.candidate-dashboard.profile.basic-section')
                         @include('frontend.candidate-dashboard.profile.profile-section')
+                        @include('frontend.candidate-dashboard.profile.experience-section')
 
 
-                        <div class="tab-pane fade" id="pills-experience" role="tabpanel"
-                            aria-labelledby="pills-experience-tab" tabindex="0">
-                            Experience & Education Content
-                        </div>
+
                         <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
                             tabindex="0">
                             {{-- <form action="{{ route('company.profile.company-account') }}" method="POST">
@@ -127,6 +125,25 @@
             </div>
         </div>
     </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @push('js')
     <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>

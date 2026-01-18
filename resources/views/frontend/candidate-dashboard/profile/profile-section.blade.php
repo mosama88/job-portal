@@ -9,8 +9,8 @@
                     <select name="gender" class="form-select {{ $errors->has('gender') ? 'is-invalid' : '' }}"
                         aria-label="Default select example">
                         <option selected>Open this select menu</option>
-                        <option @if (old('gender') == 'male') selected @endif value="male">Male</option>
-                        <option @if (old('gender') == 'female') selected @endif value="female">Female</option>
+                        <option @if (old('gender', $candidate?->gender) == 'male') selected @endif value="male">Male</option>
+                        <option @if (old('gender', $candidate?->gender) == 'female') selected @endif value="female">Female</option>
                     </select>
                     <x-input-error class="mt-2 text-danger" :messages="$errors->get('gender')" />
                 </div>
@@ -23,8 +23,8 @@
                         class="form-select {{ $errors->has('marital_status') ? 'is-invalid' : '' }}"
                         aria-label="Default select example">
                         <option selected>Open this select menu</option>
-                        <option @if (old('marital_status') == 'single') selected @endif value="single">Single</option>
-                        <option @if (old('marital_status') == 'married') selected @endif value="married">Married</option>
+                        <option @if (old('marital_status', $candidate?->marital_status) == 'single') selected @endif value="single">Single</option>
+                        <option @if (old('marital_status', $candidate?->marital_status) == 'married') selected @endif value="married">Married</option>
                     </select>
                     <x-input-error class="mt-2 text-danger" :messages="$errors->get('marital_status')" />
                 </div>
@@ -37,8 +37,8 @@
                         class="form-select {{ $errors->has('availability') ? 'is-invalid' : '' }}"
                         aria-label="Default select example">
                         <option selected>Open this select menu</option>
-                        <option @if (old('availability') == 'available') selected @endif value="available">Available</option>
-                        <option @if (old('availability') == 'not_available') selected @endif value="not_available">Not Available
+                        <option @if (old('availability', $candidate?->availability) == 'available') selected @endif value="available">Available</option>
+                        <option @if (old('availability', $candidate?->availability) == 'not_available') selected @endif value="not_available">Not Available
                         </option>
                     </select>
                     <x-input-error class="mt-2 text-danger" :messages="$errors->get('availability')" />
@@ -53,7 +53,7 @@
                         name="profession_id" aria-label="Default select example">
                         <option value="" selected>Open this select menu</option>
                         @foreach ($other['professions'] as $profession)
-                            <option @if (old('profession_id', $candidate->profession_id) == $profession->id) selected @endif value="{{ $profession->id }}">
+                            <option @if (old('profession_id', $candidate?->profession_id) == $profession->id) selected @endif value="{{ $profession->id }}">
                                 {{ $profession->name }}
                             </option>
                         @endforeach
@@ -70,7 +70,8 @@
                         class="form-control {{ $errors->has('skill_you_have') ? 'is-invalid' : '' }} form-icons select-active"
                         name="skill_you_have[]" aria-label="Default select example" multiple="multiple">
                         @foreach ($other['skills'] as $skill)
-                            <option @if (old('skill_you_have', $candidate->skill_you_have) == $skill->id) selected @endif value="{{ $skill->id }}">
+                            <option value="{{ $skill->id }}"
+                                {{ in_array($skill->id, $candidateSkill) ? 'selected' : '' }}>
                                 {{ $skill->name }}
                             </option>
                         @endforeach
@@ -86,9 +87,10 @@
                     <select
                         class="form-control {{ $errors->has('language_you_know') ? 'is-invalid' : '' }} form-icons select-active"
                         name="language_you_know[]" aria-label="Default select example" multiple="multiple">
-                        @foreach ($other['languages'] as $language)
-                            <option @if (old('language_you_know', $candidate->language_you_know) == $language->id) selected @endif value="{{ $language->id }}">
-                                {{ $language->name }}
+                        @foreach ($other['languages'] as $lang)
+                            <option value="{{ $lang->id }}"
+                                {{ in_array($lang->id, $candidateSkill) ? 'selected' : '' }}>
+                                {{ $lang->name }}
                             </option>
                         @endforeach
                     </select>
@@ -101,7 +103,7 @@
                 <div class="form-group">
                     <label class="font-sm color-text-mutted mb-10">Biography </label>
                     <textarea id="editor" name="bio" class="form-control {{ $errors->has('bio') ? 'is-invalid' : '' }}"
-                        rows="6">{{ old('bio', $candidate->bio) }}</textarea>
+                        rows="6">{{ old('bio', $candidate?->bio) }}</textarea>
 
                     <x-input-error class="mt-2 text-danger" :messages="$errors->get('bio')" />
                 </div>

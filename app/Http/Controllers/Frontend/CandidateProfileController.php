@@ -24,11 +24,11 @@ class CandidateProfileController extends Controller
         $other['professions'] = Profession::get();
         $other['languages'] = Language::get();
         $other['skills'] = Skill::get();
-        // $other['organization_types'] = OrganizationType::get();
-        // $other['industry_types'] = IndustryType::get();
-        // $other['team_sizes'] = TeamSize::get();
-        $candidate  = Candidate::where('user_id', $userId)->first() ?? new Candidate();
-        return view('frontend.candidate-dashboard.profile.index', compact('candidate', 'other'));
+        $candidate  = Candidate::with('skills', 'languages')->where('user_id', $userId)->first() ?? new Candidate();
+        $candidateSkill = $candidate->skills->pluck('id')->toArray();
+        $candidateLang = $candidate->languages->pluck('id')->toArray();
+
+        return view('frontend.candidate-dashboard.profile.index', compact('candidate', 'other', 'candidateSkill', 'candidateLang'));
     }
 
     public function basicInfoUpdate(CandidateBasicInfoUpdateRequest $request)
@@ -78,69 +78,11 @@ class CandidateProfileController extends Controller
         foreach ($request->skill_you_have as $skill) {
             $pivotSkillData[$skill] = [];
         }
-
-        $candidate->languages()->syncWithoutDetaching($pivotLanguageData);
-        $candidate->skills()->syncWithoutDetaching($pivotSkillData);
-
+        $candidate->skills()->sync($request->skill_you_have ?? []);
+        $candidate->languages()->sync($request->language_you_know ?? []);
 
 
         return redirect()->back()->with('success', '⚡️ Updated Info Successfully!');
     }
 
-
-    // public function updateCompanyFounding(CompanyFoundingUpdateRequest $request)
-    // {
-    //     $userId = Auth::user()->id;
-    //     $data = $request->validated();
-    //     $company = Company::updateOrCreate(
-    //         [
-    //             'user_id' => $userId
-    //         ],
-    //         $data,
-    //     );
-
-
-    //     if (isCompanyProfileComplete()) {
-    //         $companyProfile = Company::where('user_id', $userId)->first();
-
-    //         $companyProfile->profile_completion = 1;
-    //         $companyProfile->visibility = 1;
-    //         $companyProfile->save();
-    //     }
-
-    //     return redirect()->back()->with('success', '⚡️ Updated Founding Successfully!');
-    // }
-
-
-    // public function updateCompanyAccount(Request $request)
-    // {
-    //     /** @var \App\Models\User $user */
-    //     $user = Auth::user();
-    //     $validateData = $request->validate([
-    //         'name' => ['required', 'string', 'max:100'],
-    //         'email' => ['required', 'email'],
-    //     ]);
-
-    //     /** @var \App\Models\User $user */
-
-    //     $user->update($validateData);
-
-    //     return redirect()->back()->with('success', '⚡️ Updated Acount Successfully!');
-    // }
-
-
-
-    // public function updateCompanyPassword(Request $request)
-    // {
-    //     /** @var \App\Models\User $user */
-    //     $user = Auth::user();
-    //     $validateData = $request->validate([
-    //         'password' => ['required', 'confirmed', Rules\Password::defaults()],
-
-    //     ]);
-
-    //     $user->update($validateData);
-
-    //     return redirect()->back()->with('success', '⚡️ Updated Password Successfully!');
-    // }
 }
