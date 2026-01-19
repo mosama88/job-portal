@@ -51,7 +51,7 @@ class Candidate extends Model implements HasMedia
     {
         return [
             'slug' => [
-                'source' => 'name'
+                'source' => 'full_name'
             ]
         ];
     }
