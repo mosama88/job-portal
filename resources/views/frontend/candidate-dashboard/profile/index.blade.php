@@ -297,6 +297,125 @@
         </div>
     </div>
 
+    <!--############################################################################################## -->
+    <!--Create  Education -->
+    <div class="modal fade" id="exampleModalEducation" tabindex="-1" aria-labelledby="exampleModalEducation"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalEducation">Create new Education</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="POST" id="addEducationForm">
+                    @csrf
+                    <input type="hidden" name="candidate_id" value="{{ auth()->user()->id }}">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="font-sm color-text-mutted mb-10">Level *</label>
+                                    <input class="form-control" type="text" name="level"
+                                        value="{{ old('level') }}">
+                                    <!-- Error will be inserted here by JavaScript -->
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="font-sm color-text-mutted mb-10">Degree *</label>
+                                    <input class="form-control" type="text" name="degree"
+                                        value="{{ old('degree') }}">
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="font-sm color-text-mutted mb-10">Year *</label>
+                                    <input class="form-control" type="text" name="year"
+                                        value="{{ old('year') }}">
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="font-sm color-text-mutted mb-10">Note *</label>
+                                    <textarea cols="30" rows="5" class="form-control" name="note">{{ old('note') }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Add Education</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--############################################################################################## -->
+
+    <!-- Edit Education Modal  -->
+    <div class="modal fade" id="editEducationModal" tabindex="-1" aria-labelledby="editEducationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editEducationModalLabel">Modifying the Education</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="POST" id="editEducationForm">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="education_id" id="edit_education_id">
+                    <input type="hidden" name="candidate_id" value="{{ auth()->user()->id }}">
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="font-sm color-text-mutted mb-10">Level *</label>
+                                    <input class="form-control" type="text" name="level" value=""
+                                        id="edit_level">
+                                    <div class="invalid-feedback level-error"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="font-sm color-text-mutted mb-10">Degree *</label>
+                                    <input class="form-control" type="text" name="degree" id="edit_degree">
+                                    <div class="invalid-feedback degree-error"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="font-sm color-text-mutted mb-10">Year *</label>
+                                    <input class="form-control" type="text" name="year" id="edit_year">
+                                    <div class="invalid-feedback year-error"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="font-sm color-text-mutted mb-10">Note *</label>
+                                    <textarea cols="30" rows="5" class="form-control" name="note" id="edit_note"></textarea>
+                                    <div class="invalid-feedback note-error"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="updateEducationBtn">
+                            Education Update
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 @push('js')
     <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
@@ -310,6 +429,7 @@
                 console.error('Error initializing CKEditor 5:', error);
             });
     </script>
+    {{-- // ==================== Start Create Experiance ==================== --}}
 
     <script>
         $(document).ready(function() {
@@ -395,7 +515,8 @@
         });
     </script>
 
-
+    {{-- // ==================== End Create Experiance ==================== --}}
+    {{-- // ==================== Start Edit Experiance ==================== --}}
     <script>
         $(document).ready(function() {
             // CSRF Token
@@ -538,6 +659,7 @@
             });
         });
     </script>
+    {{-- // ==================== End Edit Experiance ==================== --}}
 
     <style>
         .loading {
@@ -545,6 +667,222 @@
             pointer-events: none;
         }
     </style>
+
+
+    {{-- // ==================== Start Create Education ==================== --}}
+
+    <script>
+        $(document).ready(function() {
+            $('#addEducationForm').on('submit', function(event) {
+                event.preventDefault();
+
+                // زر الحفظ
+                let submitBtn = $(this).find('button[type="submit"]');
+                let originalText = submitBtn.html();
+
+                // إظهار حالة التحميل
+                submitBtn.html('<span class="spinner-border spinner-border-sm"></span> Saving...');
+                submitBtn.prop('disabled', true);
+
+                $.ajax({
+                    method: 'POST',
+                    url: "{{ route('candidate.candidate-educations.store') }}",
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        if (response.status) {
+                            // إغلاق المودال مباشرة - هذه هي الطريقة الصحيحة
+                            $('#exampleModalEducation').modal('hide');
+
+                            // إعادة تعيين النموذج
+                            $('#addEducationForm')[0].reset();
+
+                            // إعادة تفعيل الزر
+                            submitBtn.html(originalText);
+                            submitBtn.prop('disabled', false);
+
+                            // إظهار رسالة النجاح
+                            Swal.fire({
+                                icon: 'success',
+                                title: response.message,
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(() => {
+                                // إعادة تحميل الصفحة
+                                window.location.reload();
+                            });
+                        }
+                    },
+                    error: function(xhr) {
+                        // إعادة تفعيل الزر
+                        submitBtn.html(originalText);
+                        submitBtn.prop('disabled', false);
+
+                        // مسح الأخطاء السابقة
+                        $('.is-invalid').removeClass('is-invalid');
+                        $('.text-danger').remove();
+
+                        if (xhr.status === 422) {
+                            let errors = xhr.responseJSON.errors;
+
+                            // عرض الأخطاء الجديدة
+                            $.each(errors, function(key, messages) {
+                                let inputElement = $('[name="' + key + '"]');
+                                inputElement.addClass('is-invalid');
+
+                                // إضافة رسالة الخطأ
+                                inputElement.after(
+                                    '<div class="text-danger small mt-1">' +
+                                    messages[0] + '</div>');
+                            });
+
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Entry error',
+                                text: 'Please review the entered data.',
+                                timer: 2000
+                            });
+                        }
+                    }
+                });
+            });
+
+            // إعادة تعيين النموذج عند إغلاق المودال
+            $('#exampleModalEducation').on('hidden.bs.modal', function() {
+                $('#addExperienceForm')[0].reset();
+                $('.is-invalid').removeClass('is-invalid');
+                $('.text-danger').remove();
+            });
+        });
+    </script>
+
+    {{-- // ==================== End Create Education ==================== --}}
+
+    {{-- // ==================== Start Edit Education ==================== --}}
+    <script>
+        $(document).ready(function() {
+            // CSRF Token
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            // ==================== فتح مودال التعديل ====================
+            $(document).on('click', '.edit-education-btn', function() {
+                // تصحيح هنا: استخدام educationId بدلاً من experienceId
+                let educationId = $(this).data('id'); // <-- التصحيح هنا
+
+                // إظهار المودال أولاً
+                let modal = new bootstrap.Modal(document.getElementById('editEducationModal'));
+                modal.show();
+
+                // إظهار حالة التحميل
+                $('#editEducationModal .modal-body').addClass('loading');
+                $('#updateEducationBtn').prop('disabled', true).html('Loading...');
+
+                // جلب بيانات التعليم
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ url('candidate/candidate-educations') }}/" + educationId + "/edit",
+                    success: function(response) {
+                        if (response.status) {
+                            let education = response.data;
+
+                            // تعبئة الحقول مباشرة
+                            $('#edit_education_id').val(education.id);
+                            $('#edit_level').val(education.level || '');
+                            $('#edit_degree').val(education.degree || '');
+                            $('#edit_year').val(education.year || '');
+                            $('#edit_note').val(education.note || '');
+
+                            // إخفاء حالة التحميل
+                            $('#editEducationModal .modal-body').removeClass('loading');
+                            $('#updateEducationBtn').prop('disabled', false).html(
+                                'Education Update');
+                        }
+                    },
+                    error: function(xhr) {
+                        $('#editEducationModal').modal('hide');
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'An error occurred while loading the data',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            });
+
+            // ==================== تحديث التعليم ====================
+            $('#editEducationForm').on('submit', function(event) {
+                event.preventDefault();
+
+                let educationId = $('#edit_education_id').val();
+                let updateBtn = $('#updateEducationBtn');
+                let originalText = updateBtn.html();
+
+                updateBtn.html('<span class="spinner-border spinner-border-sm"></span> Updating...');
+                updateBtn.prop('disabled', true);
+
+                $.ajax({
+                    method: 'POST',
+                    url: "{{ url('candidate/candidate-educations') }}/" + educationId,
+                    data: $(this).serialize() + '&_method=PUT',
+                    success: function(response) {
+                        if (response.status) {
+                            $('#editEducationModal').modal('hide');
+
+                            updateBtn.html(originalText);
+                            updateBtn.prop('disabled', false);
+
+                            Swal.fire({
+                                icon: 'success',
+                                title: response.message,
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(() => {
+                                window.location.reload();
+                            });
+                        }
+                    },
+                    error: function(xhr) {
+                        updateBtn.html(originalText);
+                        updateBtn.prop('disabled', false);
+
+                        // مسح الأخطاء السابقة
+                        $('.is-invalid').removeClass('is-invalid');
+                        $('.invalid-feedback').html('');
+
+                        if (xhr.status === 422) {
+                            let errors = xhr.responseJSON.errors;
+
+                            $.each(errors, function(key, messages) {
+                                let input = $('#edit_' + key);
+                                input.addClass('is-invalid');
+
+                                // إضافة رسالة الخطأ
+                                let errorDiv = input.siblings('.invalid-feedback');
+                                if (errorDiv.length) {
+                                    errorDiv.html(messages[0]);
+                                }
+                            });
+                        }
+                    }
+                });
+            });
+
+
+            // ==================== إعادة تعيين المودال عند الإغلاق ====================
+            $('#editEducationModal').on('hidden.bs.modal', function() {
+                $(this).find('form')[0].reset();
+                $('.is-invalid').removeClass('is-invalid');
+                $('.invalid-feedback').html('');
+                $('#updateEducationBtn').prop('disabled', false).html('Education Update');
+            });
+        });
+    </script>
+    {{-- // ==================== End Edit Education ==================== --}}
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Attach event listener to delete buttons

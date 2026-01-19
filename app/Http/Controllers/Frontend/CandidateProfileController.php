@@ -8,6 +8,7 @@ use App\Models\Candidate;
 use App\Models\Experience;
 use App\Models\Profession;
 use Illuminate\Http\Request;
+use App\Models\CandidateEducation;
 use App\Models\CandidateExperience;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +28,8 @@ class CandidateProfileController extends Controller
         $candidateSkill = $candidate->skills->pluck('id')->toArray();
         $candidateLang = $candidate->languages->pluck('id')->toArray();
         $experiences  = CandidateExperience::with('candidate')->where('candidate_id', $candidate->id)->get();
-        return view('frontend.candidate-dashboard.profile.index', compact('candidate', 'other', 'candidateSkill', 'candidateLang', 'experiences'));
+        $educations  = CandidateEducation::with('candidate')->where('candidate_id', $candidate->id)->get();
+        return view('frontend.candidate-dashboard.profile.index', compact('candidate', 'other', 'candidateSkill', 'candidateLang', 'experiences', 'educations'));
     }
 
     public function basicInfoUpdate(CandidateBasicInfoUpdateRequest $request)

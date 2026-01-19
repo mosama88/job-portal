@@ -78,26 +78,25 @@ class CandidateEducationController extends Controller
      */
     public function update(CandidateEducationRequest $request, string $id)
     {
-        $experience = CandidateEducation::findOrFail($id);
+        $education = CandidateEducation::findOrFail($id);
         $userId = Auth::user()->id;
 
         // التحقق من أن المستخدم يملك هذه الخبرة
-        if ($experience->candidate_id !==  $userId) {
+        if ($education->candidate_id !==  $userId) {
             return response()->json([
                 'status' => false,
-                'message' => 'You are not authorized to modify this experience.'
+                'message' => 'You are not authorized to modify this education.'
             ], 403);
         }
 
         if ($request->ajax()) {
             $data = $request->validated();
-            $data['currently_working'] = $request->has('currently_working') ? 1 : 0;
 
-            $experience->update($data);
+            $education->update($data);
 
             return response()->json([
                 'status' => true,
-                'message' => '✅ The experience was successfully updated!'
+                'message' => '✅ The Education was successfully updated!'
             ]);
         }
     }
@@ -108,11 +107,11 @@ class CandidateEducationController extends Controller
      */
     public function destroy($id)
     {
-        $experience  = CandidateEducation::findOrFail($id);
-        $experience->delete();
+        $education  = CandidateEducation::findOrFail($id);
+        $education->delete();
         return response()->json([
             'success' => true,
-            'message' => '⚡️ Deleted Experience Successfully!'
+            'message' => '⚡️ Deleted Education Successfully!'
         ]);
     }
 }

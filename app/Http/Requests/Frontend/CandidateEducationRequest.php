@@ -26,7 +26,7 @@ class CandidateEducationRequest extends FormRequest
             'level' => ['required', 'string', 'max:255'],
             'degree' => ['required', 'string', 'max:255'],
             'year' => ['required', 'string', 'max:255'],
-            'note' => ['nullable', 'string', 'min:100'],
+            'note' => ['nullable', 'string', 'max:1000'],
         ];
     }
 }
