@@ -3,12 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\CompanyPageController;
 use App\Http\Controllers\Frontend\CompanyProfileController;
 use App\Http\Controllers\Frontend\CandidateProfileController;
 use App\Http\Controllers\Frontend\CompanyDashboardController;
 use App\Http\Controllers\Frontend\CandidateDashboardController;
-use App\Http\Controllers\Frontend\CandidateExperienceController;
 use App\Http\Controllers\Frontend\CandidateEducationController;
+use App\Http\Controllers\Frontend\CandidateExperienceController;
 
 Route::get('/', [HomeController::class, 'index']);
 
@@ -45,4 +46,5 @@ Route::middleware(['auth', 'verified', 'user.role:company'])->prefix('company')-
     Route::post('/profile/company-founding', [CompanyProfileController::class, 'updateCompanyFounding'])->name('profile.company-founding');
     Route::post('/profile/company-account', [CompanyProfileController::class, 'updateCompanyAccount'])->name('profile.company-account');
     Route::post('/profile/company-password-update', [CompanyProfileController::class, 'updateCompanyPassword'])->name('profile.company-password');
-});
+    });
+    Route::get('/companies', [CompanyPageController::class, 'index'])->name('companies.index');
