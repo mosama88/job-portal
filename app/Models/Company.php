@@ -75,15 +75,15 @@ class Company extends Model implements HasMedia
 
     public function state()
     {
-        return $this->belongsTo(State::class, 'state')->withDefault(['name' => 'Not Define']);
+        return $this->belongsTo(State::class, 'state','id')->withDefault(['name' => 'Not Define']);
     }
 
     public function country()
     {
-        return $this->belongsTo(Country::class, 'country')->withDefault(['name' => 'Not Define']);
+        return $this->belongsTo(Country::class, 'country','id')->withDefault(['name' => 'Not Define']);
     }
     public function city()
     {
-        return $this->belongsTo(City::class, 'city')->withDefault(['name' => 'Not Define']);
+        return $this->belongsTo(City::class, 'city','id')->withDefault(['name' => 'Not Define']);
     }
 }
