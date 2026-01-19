@@ -71,4 +71,19 @@ class Company extends Model implements HasMedia
     {
         $this->addMediaCollection('photo')->singleFile();
     }
+
+
+    public function state()
+    {
+        return $this->belongsTo(State::class, 'state')->withDefault(['name' => 'Not Define']);
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country')->withDefault(['name' => 'Not Define']);
+    }
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city')->withDefault(['name' => 'Not Define']);
+    }
 }

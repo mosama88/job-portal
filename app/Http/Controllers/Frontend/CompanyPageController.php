@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
+use App\Models\Company;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CompanyPageController extends Controller
 {
     public function index()
     {
-        return view('frontend.pages.company-index');
+        $companies = Company::paginate(21);
+        return view('frontend.pages.company-index', compact('companies'));
     }
 }
