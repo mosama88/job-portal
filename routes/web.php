@@ -30,6 +30,8 @@ Route::middleware(['auth', 'verified', 'user.role:candidate'])->prefix('candidat
     Route::get('/profile', [CandidateProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile/basic-info-update', [CandidateProfileController::class, 'basicInfoUpdate'])->name('basic.info.update');
     Route::post('/profile/profile-info-update', [CandidateProfileController::class, 'profileInfoUpdate'])->name('profile.info.update');
+    Route::post('/profile/candidate-account', [CandidateProfileController::class, 'updateCandidateAccount'])->name('profile.candidate-account');
+    Route::post('/profile/candidate-password-update', [CandidateProfileController::class, 'updateCandidatePassword'])->name('profile.candidate-password');
     Route::resource('/candidate-experiences', CandidateExperienceController::class);
     Route::resource('/candidate-educations', CandidateEducationController::class);
 });

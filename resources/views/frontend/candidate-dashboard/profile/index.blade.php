@@ -68,7 +68,7 @@
 
                         <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
                             tabindex="0">
-                            {{-- <form action="{{ route('company.profile.company-account') }}" method="POST">
+                            <form action="{{ route('candidate.profile.candidate-account') }}" method="POST">
                                 @csrf
                                 <div class="row mb-3">
                                     <div class="col-md-6">
@@ -87,13 +87,31 @@
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('email')" />
                                         </div>
                                     </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="font-sm color-text-mutted mb-10">Mobile *</label>
+                                            <input class="form-control {{ $errors->has('phone_one') ? 'is-invalid' : '' }}"
+                                                type="text" name="phone_one" value="{{ auth()->user()->phone_one }}">
+                                            <x-input-error class="mt-2 text-danger" :messages="$errors->get('phone_one')" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="font-sm color-text-mutted mb-10">Seconed Mobile *</label>
+                                            <input class="form-control {{ $errors->has('phone_two') ? 'is-invalid' : '' }}"
+                                                type="text" name="phone_two" value="{{ auth()->user()->phone_two }}">
+                                            <x-input-error class="mt-2 text-danger" :messages="$errors->get('phone_two')" />
+                                        </div>
+                                    </div>
                                     <div class="col-lg-5 col-5">
                                         <button type="submit" class="btn btn-success mb-3">Save</button>
                                     </div>
                                 </div>
-                            </form> --}}
+                            </form>
                             <hr>
-                            {{-- <form action="{{ route('company.profile.company-password') }}" method="POST">
+                            <form action="{{ route('candidate.profile.candidate-password') }}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6">
@@ -118,7 +136,7 @@
 
                                     </div>
                                 </div>
-                            </form> --}}
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -142,7 +160,8 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="font-sm color-text-mutted mb-10">Company *</label>
-                                    <input class="form-control" type="text" name="company" value="{{ old('company') }}">
+                                    <input class="form-control" type="text" name="company"
+                                        value="{{ old('company') }}">
                                     <!-- Error will be inserted here by JavaScript -->
                                 </div>
                             </div>

@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Frontend\CandidateBasicInfoUpdateRequest;
 use App\Http\Requests\Frontend\CandidateProfileInfoUpdateRequest;
+use Illuminate\Validation\Rules;
 
 class CandidateProfileController extends Controller
 {
@@ -84,5 +85,39 @@ class CandidateProfileController extends Controller
 
 
         return redirect()->back()->with('success', '⚡️ Updated Info Successfully!');
+    }
+
+
+    public function updateCandidateAccount(Request $request)
+    {
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+        $validateData = $request->validate([
+            'name' => ['required', 'string', 'max:100'],
+            'email' => ['required', 'email'],
+            'phone_one' => ['required', 'string'],
+            'phone_two' => ['required', 'string'],
+        ]);
+
+        /** @var \App\Models\User $user */
+
+        $user->update($validateData);
+
+        return redirect()->back()->with('success', '⚡️ Updated Acount Successfully!');
+    }
+
+
+    public function updateCandidatePassword(Request $request)
+    {
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+        $validateData = $request->validate([
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+
+        ]);
+
+        $user->update($validateData);
+
+        return redirect()->back()->with('success', '⚡️ Updated Password Successfully!');
     }
 }
