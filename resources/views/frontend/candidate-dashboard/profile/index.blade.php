@@ -126,7 +126,7 @@
         </div>
     </section>
 
-    <!-- Modal -->
+    <!--Create  Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
@@ -205,6 +205,98 @@
             </div>
         </div>
     </div>
+
+    <!--############################################################################################## -->
+
+    <!-- Edit Modal  -->
+    <div class="modal fade" id="editExperienceModal" tabindex="-1" aria-labelledby="editExperienceModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editExperienceModalLabel">Modifying the experience</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="POST" id="editExperienceForm">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="experience_id" id="edit_experience_id">
+                    <input type="hidden" name="candidate_id" value="{{ auth()->user()->id }}">
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="font-sm color-text-mutted mb-10">Company *</label>
+                                    <input class="form-control" type="text" name="company" value=""
+                                        id="edit_company">
+                                    <div class="invalid-feedback company-error"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="font-sm color-text-mutted mb-10">Department *</label>
+                                    <input class="form-control" type="text" name="department" id="edit_department">
+                                    <div class="invalid-feedback department-error"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="font-sm color-text-mutted mb-10">Designation *</label>
+                                    <input class="form-control" type="text" name="designation" id="edit_designation">
+                                    <div class="invalid-feedback designation-error"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="font-sm color-text-mutted mb-10">Start Date *</label>
+                                    <input class="form-control datepicker" type="text" name="start"
+                                        id="edit_start">
+                                    <div class="invalid-feedback start-error"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="font-sm color-text-mutted mb-10">End Date *</label>
+                                    <input class="form-control datepicker" type="text" name="end" id="edit_end">
+                                    <div class="invalid-feedback end-error"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-check mt-3">
+                                    <input name="currently_working" class="form-check-input" type="checkbox"
+                                        value="1" id="edit_currently_working">
+                                    <label class="form-check-label" for="edit_currently_working">
+                                        I am currently working
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="font-sm color-text-mutted mb-10">Responsibilities *</label>
+                                    <textarea cols="30" rows="5" class="form-control" name="responsibilities" id="edit_responsibilities"></textarea>
+                                    <div class="invalid-feedback responsibilities-error"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="updateExperienceBtn">
+                            Experience Update
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 @endsection
 @push('js')
     <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
@@ -229,7 +321,7 @@
                 let originalText = submitBtn.html();
 
                 // إظهار حالة التحميل
-                submitBtn.html('<span class="spinner-border spinner-border-sm"></span> جاري الحفظ...');
+                submitBtn.html('<span class="spinner-border spinner-border-sm"></span> Saving...');
                 submitBtn.prop('disabled', true);
 
                 $.ajax({
@@ -285,8 +377,8 @@
 
                             Swal.fire({
                                 icon: 'error',
-                                title: 'خطأ في الإدخال',
-                                text: 'يرجى مراجعة البيانات المدخلة',
+                                title: 'Entry error',
+                                text: 'Please review the entered data.',
                                 timer: 2000
                             });
                         }
@@ -304,6 +396,155 @@
     </script>
 
 
+    <script>
+        $(document).ready(function() {
+            // CSRF Token
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            // ==================== فتح مودال التعديل (الطريقة البسيطة) ====================
+            $(document).on('click', '.edit-experience-btn', function() {
+                let experienceId = $(this).data('id');
+
+                // إظهار المودال أولاً
+                let modal = new bootstrap.Modal(document.getElementById('editExperienceModal'));
+                modal.show();
+
+                // إظهار حالة التحميل
+                $('#editExperienceModal .modal-body').addClass('loading');
+                $('#updateExperienceBtn').prop('disabled', true).html('Loading...');
+
+                // جلب بيانات الخبرة
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ url('candidate/candidate-experiences') }}/" + experienceId + "/edit",
+                    success: function(response) {
+                        if (response.status) {
+                            let experience = response.data;
+
+                            // تعبئة الحقول مباشرة
+                            $('#edit_experience_id').val(experience.id);
+                            $('#edit_company').val(experience.company || '');
+                            $('#edit_department').val(experience.department || '');
+                            $('#edit_designation').val(experience.designation || '');
+                            $('#edit_start').val(experience.start || '');
+                            $('#edit_end').val(experience.end || '');
+                            $('#edit_responsibilities').val(experience.responsibilities || '');
+
+                            // تفعيل/تعطيل checkbox
+                            if (experience.currently_working == 1) {
+                                $('#edit_currently_working').prop('checked', true);
+                                $('#edit_end').prop('disabled', true);
+                            } else {
+                                $('#edit_currently_working').prop('checked', false);
+                                $('#edit_end').prop('disabled', false);
+                            }
+
+                            // إخفاء حالة التحميل
+                            $('#editExperienceModal .modal-body').removeClass('loading');
+                            $('#updateExperienceBtn').prop('disabled', false).html(
+                                'Experience Update');
+                        }
+                    },
+                    error: function(xhr) {
+                        $('#editExperienceModal').modal('hide');
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'An error occurred while loading the data',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            });
+
+            // ==================== تحديث الخبرة ====================
+            $('#editExperienceForm').on('submit', function(event) {
+                event.preventDefault();
+
+                let experienceId = $('#edit_experience_id').val();
+                let updateBtn = $('#updateExperienceBtn');
+                let originalText = updateBtn.html();
+
+                updateBtn.html('<span class="spinner-border spinner-border-sm"></span> Updating...');
+                updateBtn.prop('disabled', true);
+
+                $.ajax({
+                    method: 'POST',
+                    url: "{{ url('candidate/candidate-experiences') }}/" + experienceId,
+                    data: $(this).serialize() + '&_method=PUT',
+                    success: function(response) {
+                        if (response.status) {
+                            $('#editExperienceModal').modal('hide');
+
+                            updateBtn.html(originalText);
+                            updateBtn.prop('disabled', false);
+
+                            Swal.fire({
+                                icon: 'success',
+                                title: response.message,
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(() => {
+                                window.location.reload();
+                            });
+                        }
+                    },
+                    error: function(xhr) {
+                        updateBtn.html(originalText);
+                        updateBtn.prop('disabled', false);
+
+                        // مسح الأخطاء السابقة
+                        $('.is-invalid').removeClass('is-invalid');
+                        $('.invalid-feedback').html('');
+
+                        if (xhr.status === 422) {
+                            let errors = xhr.responseJSON.errors;
+
+                            $.each(errors, function(key, messages) {
+                                let input = $('#edit_' + key);
+                                input.addClass('is-invalid');
+
+                                // إضافة رسالة الخطأ
+                                let errorDiv = input.siblings('.invalid-feedback');
+                                if (errorDiv.length) {
+                                    errorDiv.html(messages[0]);
+                                }
+                            });
+                        }
+                    }
+                });
+            });
+
+            // ==================== التحكم في حقل تاريخ الانتهاء ====================
+            $(document).on('change', '#edit_currently_working', function() {
+                if ($(this).is(':checked')) {
+                    $('#edit_end').val('').prop('disabled', true);
+                } else {
+                    $('#edit_end').prop('disabled', false);
+                }
+            });
+
+            // ==================== إعادة تعيين المودال عند الإغلاق ====================
+            $('#editExperienceModal').on('hidden.bs.modal', function() {
+                $(this).find('form')[0].reset();
+                $('.is-invalid').removeClass('is-invalid');
+                $('.invalid-feedback').html('');
+                $('#edit_end').prop('disabled', false);
+                $('#updateExperienceBtn').prop('disabled', false).html('Experience Update');
+            });
+        });
+    </script>
+
+    <style>
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+    </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Attach event listener to delete buttons

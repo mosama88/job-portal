@@ -23,13 +23,13 @@ class CandidateExperienceRequest extends FormRequest
     {
         return [
             'candidate_id' => ['required', 'exists:candidates,id'],
-            'company' => ['required'],
-            'department' => ['required'],
-            'designation' => ['required'],
-            'start' => ['required', 'date', 'before:end'],
-            'end' => ['required', 'date', 'after:start'],
-            'responsibilities' => ['required', 'min:100'],
-            'currently_working' => ['required'],
+            'company' => ['required', 'string', 'max:255'],
+            'department' => ['required', 'string', 'max:255'],
+            'designation' => ['required', 'string', 'max:255'],
+            'start' => ['required', 'date'],
+            'end' => ['nullable', 'date'],
+            'responsibilities' => ['required', 'string', 'min:100'],
+            'currently_working' => ['nullable', 'boolean'],
         ];
     }
 }

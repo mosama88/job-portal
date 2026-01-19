@@ -58,16 +58,53 @@ class CandidateExperienceController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $experience = CandidateExperience::findOrFail($id);
+        $userId = Auth::user()->id;
+
+        // التحقق من أن المستخدم يملك هذه الخبرة
+        if ($experience->candidate_id !==  $userId) {
+            abort(403);
+        }
+
+        if (request()->ajax()) {
+            return response()->json([
+                'status' => true,
+                'data' => $experience
+            ]);
+        }
+
+        return view('candidate.experiences.edit', compact('experience'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CandidateExperienceRequest $request, string $id)
     {
-        //
+        $experience = CandidateExperience::findOrFail($id);
+        $userId = Auth::user()->id;
+
+        // التحقق من أن المستخدم يملك هذه الخبرة
+        if ($experience->candidate_id !==  $userId) {
+            return response()->json([
+                'status' => false,
+                'message' => 'You are not authorized to modify this experience.'
+            ], 403);
+        }
+
+        if ($request->ajax()) {
+            $data = $request->validated();
+            $data['currently_working'] = $request->has('currently_working') ? 1 : 0;
+
+            $experience->update($data);
+
+            return response()->json([
+                'status' => true,
+                'message' => '✅ The experience was successfully updated!'
+            ]);
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.

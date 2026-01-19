@@ -28,16 +28,21 @@
                     <td>{{ $experience->department }}</td>
                     <td>{{ $experience->designation }}</td>
                     <td>
-                        {{ $experience->start->format('Y-m-d') }} to {{ $experience->end->format('Y-m-d') }}
+                        {{ $experience->start->format('Y-m-d') }} to
+                        @if ($experience->end)
+                            {{ $experience->end->format('Y-m-d') }}
+                        @else
+                            Present
+                        @endif
                     </td>
                     <td class="text-nowrap">
                         <div class="btn-group btn-group-sm" role="group" aria-label="Action buttons">
                             {{-- زر التعديل --}}
-                            <a title="Edit"
-                                href="{{ route('candidate.candidate-experiences.edit', $experience->id) }}"
-                                class="btn btn-outline-info border-end-0 rounded-start">
+                            <button type="button" data-id="{{ $experience->id }}"
+                                class="btn btn-outline-info edit-experience-btn">
                                 <i class="fa-solid fa-pen-to-square"></i>
-                            </a>
+                                <span class="d-none d-md-inline ms-1"></span>
+                            </button>
 
                             {{-- زر الحذف --}}
                             <button type="button" data-id="{{ $experience->id }}"

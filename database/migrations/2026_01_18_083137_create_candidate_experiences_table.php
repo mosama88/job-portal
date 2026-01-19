@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('department');
             $table->string('designation');
             $table->date('start');
-            $table->date('end');
+            $table->date('end')->nullable();
             $table->text('responsibilities')->nullable();
-            $table->boolean('currently_working')->default(0);
+            $table->boolean('currently_working')->default(0)->nullable();
             $table->timestamps();
         });
     }
