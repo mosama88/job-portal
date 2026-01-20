@@ -1,6 +1,45 @@
 @extends('frontend.layouts.master')
 @section('dashboard_active', 'active')
 @push('css')
+    <style>
+        .d-flex {
+            display: flex;
+        }
+
+        .align-items-center {
+            align-items: center;
+        }
+
+        .mr-20 {
+            margin-right: 20px;
+        }
+
+        .ml-2 {
+            margin-left: 8px;
+        }
+
+        .mb-2 {
+            margin-bottom: 8px;
+        }
+
+        .mb-0 {
+            margin-bottom: 0;
+        }
+
+        /* تنسيق الصورة */
+        .brand-logo {
+            flex-shrink: 0;
+            /* لمنع الصورة من التقلص */
+        }
+
+        .brand-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 1px solid #eee;
+        }
+    </style>
 @endpush
 @section('content')
 
@@ -34,10 +73,27 @@
             <div class="box-company-profile">
                 <div class="row mt-10">
                     <div class="col-lg-8 col-md-12">
-                        <h5 class="f-18">{{ $data->name ?? '' }}<span
-                                class="card-location font-regular ml-20">{{ $data->state ?? '' }},
-                                US</span></h5>
-                        <p class="mt-5 font-md color-text-paragraph-2 mb-15">Our Mission to make working life simple</p>
+                        <div class="d-flex align-items-center">
+                            {{-- الصورة --}}
+                            <div class="brand-logo mr-20">
+                                @if (optional($data)->getFirstMediaUrl('logo', 'preview'))
+                                    <img src="{{ $data?->getFirstMediaUrl('logo', 'preview') }}"
+                                        alt="{{ $data->name ?? '' }}" class="brand-img">
+                                @else
+                                    <img src="{{ asset('frontend') }}/assets/imgs/brands/brand-4.png"
+                                        alt="{{ $data->name ?? '' }}" class="brand-img">
+                                @endif
+                            </div>
+
+                            {{-- المحتوى النصي --}}
+                            <div class="brand-content">
+                                <h5 class="f-18 mb-2">
+                                    {{ $data->name ?? '' }}
+                                    <span class="card-location font-regular ml-2">{{ $data->state ?? '' }}, US</span>
+                                </h5>
+                                <p class="font-md color-text-paragraph-2 mb-0">Our Mission to make working life simple</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-lg-4 col-md-12 text-lg-end"><a class="btn btn-call-icon btn-apply btn-apply-big"
                             href="page-contact.html">Contact us</a></div>
