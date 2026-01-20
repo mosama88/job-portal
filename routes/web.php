@@ -46,5 +46,6 @@ Route::middleware(['auth', 'verified', 'user.role:company'])->prefix('company')-
     Route::post('/profile/company-founding', [CompanyProfileController::class, 'updateCompanyFounding'])->name('profile.company-founding');
     Route::post('/profile/company-account', [CompanyProfileController::class, 'updateCompanyAccount'])->name('profile.company-account');
     Route::post('/profile/company-password-update', [CompanyProfileController::class, 'updateCompanyPassword'])->name('profile.company-password');
-    });
-    Route::get('/companies', [CompanyPageController::class, 'index'])->name('companies.index');
+});
+Route::get('/companies', [CompanyPageController::class, 'index'])->name('companies.index');
+Route::get('/company/{slug}', [CompanyPageController::class, 'show'])->name('company.show');

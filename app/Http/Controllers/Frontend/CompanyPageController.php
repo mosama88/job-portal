@@ -13,4 +13,11 @@ class CompanyPageController extends Controller
         $companies = Company::paginate(21);
         return view('frontend.pages.company-index', compact('companies'));
     }
+
+
+    public function show($slug)
+    {
+        $data = Company::where('slug', $slug)->firstOrFail();
+        return view('frontend.pages.company-details', compact('data'));
+    }
 }

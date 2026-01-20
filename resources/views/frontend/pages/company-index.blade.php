@@ -134,7 +134,7 @@
                             @forelse ($companies as $company)
                                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                                     <div class="card-grid-1 hover-up wow animate__animated animate__fadeIn">
-                                        <div class="image-box"><a href="company-details.html">
+                                        <div class="image-box"><a href="{{ route('company.show', $company->slug) }}">
                                                 @if (optional($company)->getFirstMediaUrl('logo', 'preview'))
                                                     <img src="{{ $company?->getFirstMediaUrl('logo', 'preview') }}"
                                                         alt="{{ $company->name ?? '' }}">
@@ -145,7 +145,7 @@
                                             </a></div>
                                         <div class="info-text mt-10">
                                             <h5 class="font-bold"><a
-                                                    href="company-details.html">{{ Str::limit($company->name, 20) }}</a>
+                                                    href="{{ route('company.show', $company->slug) }}">{{ Str::limit($company->name, 20) }}</a>
                                             </h5>
                                             <div class="mt-5">
                                                 <img alt="joblist"
@@ -163,8 +163,12 @@
                                             </div><span class="card-location">{{ $company->state }},
                                                 {{ $company->country }}</span>
                                             <div class="mt-30"><a class="btn btn-grey-big"
-                                                    href="jobs-grid.html"><span>12</span><span> Jobs
-                                                        Open</span></a></div>
+                                                    href="{{ route('company.show', $company->slug) }}"><span>12</span>
+                                                    <span>
+                                                        Jobs
+                                                        Open</span>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
