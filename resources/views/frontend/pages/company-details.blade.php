@@ -24,17 +24,19 @@
     <section class="section-box-2">
         <div class="container">
             <div class="banner-hero banner-image-single">
-                <img src="{{ asset('frontend') }}/assets/imgs/page/company/img.png" alt="joblist">
                 @if (optional($data)->getFirstMediaUrl('banner', 'preview'))
                     <img src="{{ $data?->getFirstMediaUrl('banner', 'preview') }}" alt="{{ $data->name ?? '' }}">
                 @else
-                    <img src="{{ asset('frontend') }}/assets/imgs/brands/brand-4.png" alt="{{ $data->name ?? '' }}">
+                    <img width="1326px" height="400 px" src="{{ asset('frontend') }}/assets/imgs/Banner-1.jpg"
+                        alt="{{ $data->name ?? '' }}">
                 @endif
             </div>
             <div class="box-company-profile">
                 <div class="row mt-10">
                     <div class="col-lg-8 col-md-12">
-                        <h5 class="f-18">AliThemes <span class="card-location font-regular ml-20">New York, US</span></h5>
+                        <h5 class="f-18">{{ $data->name ?? '' }}<span
+                                class="card-location font-regular ml-20">{{ $data->state ?? '' }},
+                                US</span></h5>
                         <p class="mt-5 font-md color-text-paragraph-2 mb-15">Our Mission to make working life simple</p>
                     </div>
                     <div class="col-lg-4 col-md-12 text-lg-end"><a class="btn btn-call-icon btn-apply btn-apply-big"
@@ -43,12 +45,18 @@
             </div>
             <div class="box-nav-tabs mt-40 mb-5">
                 <ul class="nav" role="tablist">
-                    <li><a class="btn btn-border  recruitment-icon mr-15 mb-5 active" href="#tab-about" data-bs-toggle="tab"
-                            role="tab" aria-controls="tab-about" aria-selected="true">About us</a></li>
-                    <li><a class="btn btn-border recruitment-icon mr-15 mb-5" href="#tab-recruitments" data-bs-toggle="tab"
-                            role="tab" aria-controls="tab-recruitments" aria-selected="false">Recruitments</a></li>
-                    <li><a class="btn btn-border  recruitment-icon mb-5" href="#tab-people" data-bs-toggle="tab"
-                            role="tab" aria-controls="tab-people" aria-selected="false">People</a></li>
+                    <li>
+                        <a class="btn btn-border  recruitment-icon mr-15 mb-5 active" href="#tab-about" data-bs-toggle="tab"
+                            role="tab" aria-controls="tab-about" aria-selected="true">About us</a>
+                    </li>
+                    <li>
+                        <a class="btn btn-border recruitment-icon mr-15 mb-5" href="#tab-recruitments" data-bs-toggle="tab"
+                            role="tab" aria-controls="tab-recruitments" aria-selected="false">Recruitments</a>
+                    </li>
+                    <li>
+                        <a class="btn btn-border  recruitment-icon mb-5" href="#tab-people" data-bs-toggle="tab"
+                            role="tab" aria-controls="tab-people" aria-selected="false">People</a>
+                    </li>
                 </ul>
             </div>
             <div class="border-bottom pt-10 pb-10"></div>
@@ -138,15 +146,20 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-6 text-start text-md-end pr-60 col-md-6 col-sm-12">
-                                            <div class="pl-15 mb-15 mt-30"><a class="btn btn-grey-small mr-5"
-                                                    href="#">Adobe XD</a><a class="btn btn-grey-small mr-5"
-                                                    href="#">Figma</a></div>
+                                            <div class="pl-15 mb-15 mt-30">
+                                                <a class="btn btn-grey-small mr-5" href="#">Adobe XD</a>
+                                                <a class="btn btn-grey-small mr-5" href="#">Figma</a>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="card-block-info">
-                                        <h4><a href="job-details.html">Senior System Engineer</a></h4>
-                                        <div class="mt-5"><span class="card-briefcase">Part time</span><span
-                                                class="card-time"><span>5</span><span> mins ago</span></span></div>
+                                        <h4>
+                                            <a href="job-details.html">Senior System Engineer</a>
+                                        </h4>
+                                        <div class="mt-5">
+                                            <span class="card-briefcase">Part time</span>
+                                            <span class="card-time"><span>5</span><span> mins ago</span></span>
+                                        </div>
                                         <p class="font-sm color-text-paragraph mt-10">Lorem ipsum dolor sit amet,
                                             consectetur adipisicing
                                             elit. Recusandae architecto eveniet, dolor quo repellendus pariatur.</p>
@@ -184,16 +197,23 @@
                                         </div>
                                     </div>
                                     <div class="card-block-info">
-                                        <h4><a href="job-details.html">Products Manager</a></h4>
-                                        <div class="mt-5"><span class="card-briefcase">Full time</span><span
-                                                class="card-time"><span>6</span><span> mins ago</span></span></div>
+                                        <h4>
+                                            <a href="job-details.html">Products Manager</a>
+                                        </h4>
+                                        <div class="mt-5">
+                                            <span class="card-briefcase">Full time</span>
+                                            <span class="card-time"><span>6</span>
+                                                <span> mins ago</span></span>
+                                        </div>
                                         <p class="font-sm color-text-paragraph mt-10">Lorem ipsum dolor sit amet,
                                             consectetur adipisicing
                                             elit. Recusandae architecto eveniet, dolor quo repellendus pariatur.</p>
                                         <div class="card-2-bottom mt-20">
                                             <div class="row">
-                                                <div class="col-lg-7 col-7"><span class="card-text-price">$250</span><span
-                                                        class="text-muted">/Hour</span></div>
+                                                <div class="col-lg-7 col-7">
+                                                    <span class="card-text-price">$250</span>
+                                                    <span class="text-muted">/Hour</span>
+                                                </div>
                                                 <div class="col-lg-5 col-5 text-end">
                                                     <div class="btn btn-apply-now" data-bs-toggle="modal"
                                                         data-bs-target="#ModalApplyJobForm">
@@ -224,9 +244,14 @@
                                         </div>
                                     </div>
                                     <div class="card-block-info">
-                                        <h4><a href="job-details.html">Lead Quality Control QA</a></h4>
-                                        <div class="mt-5"><span class="card-briefcase">Full time</span><span
-                                                class="card-time"><span>6</span><span> mins ago</span></span></div>
+                                        <h4>
+                                            <a href="job-details.html">Lead Quality Control QA</a>
+                                        </h4>
+                                        <div class="mt-5">
+                                            <span class="card-briefcase">Full time</span>
+                                            <span class="card-time"><span>6</span>
+                                                <span> mins ago</span></span>
+                                        </div>
                                         <p class="font-sm color-text-paragraph mt-10">Lorem ipsum dolor sit amet,
                                             consectetur adipisicing
                                             elit. Recusandae architecto eveniet, dolor quo repellendus pariatur.</p>
