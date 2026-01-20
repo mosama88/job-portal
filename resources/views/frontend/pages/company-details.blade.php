@@ -63,10 +63,10 @@
     <section class="section-box-2">
         <div class="container">
             <div class="banner-hero banner-image-single">
-                @if (optional($data)->getFirstMediaUrl('banner', 'preview'))
-                    <img src="{{ $data?->getFirstMediaUrl('banner', 'preview') }}" alt="{{ $data->name ?? '' }}">
+                @if (optional($data)->getFirstMediaUrl('banner', 'conversions'))
+                    <img src="{{ $data?->getFirstMediaUrl('banner', 'conversions') }}" alt="{{ $data->name ?? '' }}">
                 @else
-                    <img width="1326px" height="400 px" src="{{ asset('frontend') }}/assets/imgs/Banner-1.jpg"
+                    <img width="1200px" height="300 px" src="{{ asset('frontend') }}/assets/imgs/Banner-1.jpg"
                         alt="{{ $data->name ?? '' }}">
                 @endif
             </div>
@@ -91,7 +91,6 @@
                                     {{ $data->name ?? '' }}
                                     <span class="card-location font-regular ml-2">{{ $data->state ?? '' }}, US</span>
                                 </h5>
-                                <p class="font-md color-text-paragraph-2 mb-0">Our Mission to make working life simple</p>
                             </div>
                         </div>
                     </div>
@@ -99,22 +98,7 @@
                             href="page-contact.html">Contact us</a></div>
                 </div>
             </div>
-            <div class="box-nav-tabs mt-40 mb-5">
-                <ul class="nav" role="tablist">
-                    <li>
-                        <a class="btn btn-border  recruitment-icon mr-15 mb-5 active" href="#tab-about" data-bs-toggle="tab"
-                            role="tab" aria-controls="tab-about" aria-selected="true">About us</a>
-                    </li>
-                    <li>
-                        <a class="btn btn-border recruitment-icon mr-15 mb-5" href="#tab-recruitments" data-bs-toggle="tab"
-                            role="tab" aria-controls="tab-recruitments" aria-selected="false">Recruitments</a>
-                    </li>
-                    <li>
-                        <a class="btn btn-border  recruitment-icon mb-5" href="#tab-people" data-bs-toggle="tab"
-                            role="tab" aria-controls="tab-people" aria-selected="false">People</a>
-                    </li>
-                </ul>
-            </div>
+
             <div class="border-bottom pt-10 pb-10"></div>
         </div>
     </section>
@@ -125,65 +109,26 @@
                 <div class="col-lg-8 col-md-12 col-sm-12 col-12">
                     <div class="content-single">
                         <div class="tab-content">
-                            <div class="tab-pane fade show active" id="tab-about" role="tabpanel"
-                                aria-labelledby="tab-about">
-                                <h4>Welcome to AliStudio Team</h4>
-                                <p>The AliStudio Design team has a vision to establish a trusted platform that enables
-                                    productive and
-                                    healthy enterprises in a world of digital and remote everything, constantly changing
-                                    work patterns
-                                    and norms, and the need for organizational resiliency.</p>
-                                <p>The ideal candidate will have strong creative skills and a portfolio of work which
-                                    demonstrates
-                                    their passion for illustrative design and typography. This candidate will have
-                                    experiences in
-                                    working with numerous different design platforms such as digital and print forms.</p>
-                                <h4>Essential Knowledge, Skills, and Experience</h4>
-                                <ul>
-                                    <li>A portfolio demonstrating well thought through and polished end to end customer
-                                        journeys</li>
-                                    <li>5+ years of industry experience in interactive design and / or visual design</li>
-                                    <li>Excellent interpersonal skills</li>
-                                    <li>Aware of trends in mobile, communications, and collaboration</li>
-                                    <li>Ability to create highly polished design prototypes, mockups, and other
-                                        communication artifacts
-                                    </li>
-                                    <li>The ability to scope and estimate efforts accurately and prioritize tasks and goals
-                                        independently</li>
-                                    <li>History of impacting shipping products with your work</li>
-                                    <li>A Bachelor s Degree in Design (or related field) or equivalent professional
-                                        experience</li>
-                                    <li>Proficiency in a variety of design tools such as Figma, Photoshop, Illustrator, and
-                                        Sketch</li>
-                                </ul>
-                            </div>
-                            <div class="tab-pane fade" id="tab-recruitments" role="tabpanel"
-                                aria-labelledby="tab-recruitments">
-                                <h4>Recruitments</h4>
-                                <p>The AliStudio Design team has a vision to establish a trusted platform that enables
-                                    productive and
-                                    healthy enterprises in a world of digital and remote everything, constantly changing
-                                    work patterns
-                                    and norms, and the need for organizational resiliency.</p>
-                                <p>The ideal candidate will have strong creative skills and a portfolio of work which
-                                    demonstrates
-                                    their passion for illustrative design and typography. This candidate will have
-                                    experiences in
-                                    working with numerous different design platforms such as digital and print forms.</p>
-                            </div>
-                            <div class="tab-pane fade" id="tab-people" role="tabpanel" aria-labelledby="tab-people">
-                                <h4>People</h4>
-                                <p>The AliStudio Design team has a vision to establish a trusted platform that enables
-                                    productive and
-                                    healthy enterprises in a world of digital and remote everything, constantly changing
-                                    work patterns
-                                    and norms, and the need for organizational resiliency.</p>
-                                <p>The ideal candidate will have strong creative skills and a portfolio of work which
-                                    demonstrates
-                                    their passion for illustrative design and typography. This candidate will have
-                                    experiences in
-                                    working with numerous different design platforms such as digital and print forms.</p>
-                            </div>
+                            <h4>About us</h4>
+                            {!! $data->bio !!}
+                            <h4>Essential Knowledge, Skills, and Experience</h4>
+                            <ul>
+                                <li>A portfolio demonstrating well thought through and polished end to end customer
+                                    journeys</li>
+                                <li>5+ years of industry experience in interactive design and / or visual design</li>
+                                <li>Excellent interpersonal skills</li>
+                                <li>Aware of trends in mobile, communications, and collaboration</li>
+                                <li>Ability to create highly polished design prototypes, mockups, and other
+                                    communication artifacts
+                                </li>
+                                <li>The ability to scope and estimate efforts accurately and prioritize tasks and goals
+                                    independently</li>
+                                <li>History of impacting shipping products with your work</li>
+                                <li>A Bachelor s Degree in Design (or related field) or equivalent professional
+                                    experience</li>
+                                <li>Proficiency in a variety of design tools such as Figma, Photoshop, Illustrator, and
+                                    Sketch</li>
+                            </ul>
                         </div>
                     </div>
                     <div class="box-related-job content-page">
@@ -241,8 +186,8 @@
                                                 <div class="image-box"><img
                                                         src="{{ asset('frontend') }}/assets/imgs/brands/brand-7.png"
                                                         alt="joblist"></div>
-                                                <div class="right-info"><a class="name-job"
-                                                        href="">Nintendo</a><span class="location-small">New York,
+                                                <div class="right-info"><a class="name-job" href="">Nintendo</a><span
+                                                        class="location-small">New York,
                                                         US</span></div>
                                             </div>
                                         </div>

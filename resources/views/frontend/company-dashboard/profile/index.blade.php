@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         @if (optional($companyInfo)->getFirstMediaUrl('banner', 'preview'))
-                                            <img width="200" height="200"
+                                            <img width="500" height="200"
                                                 src="{{ $companyInfo?->getFirstMediaUrl('banner', 'preview') }}"
                                                 alt="{{ $companyInfo->name ?? '' }}">
                                         @endif
@@ -99,8 +99,8 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Company Bio *</label>
-                                            <textarea cols="30" rows="10" class="form-control {{ $errors->has('bio') ? 'is-invalid' : '' }}"
-                                                name="bio">{{ old('bio', $companyInfo->bio) }}</textarea>
+                                            <textarea id="editor" name="bio" class="form-control {{ $errors->has('bio') ? 'is-invalid' : '' }}"
+                                                rows="6">{{ old('bio', $companyInfo?->bio) }}</textarea>
                                             <x-input-error class="mt-2 text-danger" :messages="$errors->get('bio')" />
                                         </div>
                                     </div>
@@ -353,6 +353,17 @@
     </section>
 @endsection
 @push('js')
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
+
+
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+
+            .catch(error => {
+                console.error('Error initializing CKEditor 5:', error);
+            });
+    </script>
     <script>
         $(document).ready(function() {
             // الحصول على القيم من data attributes

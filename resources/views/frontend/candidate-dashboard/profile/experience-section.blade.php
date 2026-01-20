@@ -67,7 +67,7 @@
             </tbody>
         </table>
     </div>
-    <hr>
+    <div class="border-bottom pt-10 pb-10 mb-3"></div>
     @include('frontend.candidate-dashboard.profile.education-section')
 
 </div>

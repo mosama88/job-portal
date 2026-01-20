@@ -25,7 +25,7 @@ class CompanyInfoUpdateRequest extends FormRequest
             'logo' => ['image','max:1500'],
             'banner' => ['image','max:1500'],
             'name' => ['required','string','max:100'],
-            'bio' => ['required','string','max:2000'],
+            'bio' => ['required','string','max:10000'],
             'vision' => ['required','string','max:2000'],
         ];
     }
