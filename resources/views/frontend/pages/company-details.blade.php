@@ -110,25 +110,9 @@
                     <div class="content-single">
                         <div class="tab-content">
                             <h4>About us</h4>
-                            {!! $data->bio !!}
-                            <h4>Essential Knowledge, Skills, and Experience</h4>
-                            <ul>
-                                <li>A portfolio demonstrating well thought through and polished end to end customer
-                                    journeys</li>
-                                <li>5+ years of industry experience in interactive design and / or visual design</li>
-                                <li>Excellent interpersonal skills</li>
-                                <li>Aware of trends in mobile, communications, and collaboration</li>
-                                <li>Ability to create highly polished design prototypes, mockups, and other
-                                    communication artifacts
-                                </li>
-                                <li>The ability to scope and estimate efforts accurately and prioritize tasks and goals
-                                    independently</li>
-                                <li>History of impacting shipping products with your work</li>
-                                <li>A Bachelor s Degree in Design (or related field) or equivalent professional
-                                    experience</li>
-                                <li>Proficiency in a variety of design tools such as Figma, Photoshop, Illustrator, and
-                                    Sketch</li>
-                            </ul>
+                            <p>{!! $data->bio !!}</p>
+                            <h4>Company Vision</h4>
+                            <p>{!! $data->vision !!}</p>
                         </div>
                     </div>
                     <div class="box-related-job content-page">
@@ -287,16 +271,14 @@
                     <div class="sidebar-border">
                         <div class="sidebar-heading">
                             <div class="avatar-sidebar">
-                                <div class="sidebar-info pl-0"><span class="sidebar-company">AliThemes</span><span
-                                        class="card-location">New York, US</span></div>
+                                <div class="sidebar-info pl-0"><span
+                                        class="sidebar-company">{{ $data->name }}</span><span
+                                        class="card-location">{{ $data->country }}</span></div>
                             </div>
                         </div>
                         <div class="sidebar-list-job">
                             <div class="box-map">
-                                <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2970.3150609575905!2d-87.6235655!3d41.886080899999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2ca8b34afe61%3A0x6caeb5f721ca846!2s205%20N%20Michigan%20Ave%20Suit%20810%2C%20Chicago%2C%20IL%2060601%2C%20Hoa%20K%E1%BB%B3!5e0!3m2!1svi!2s!4v1658551322537!5m2!1svi!2s"
-                                    allowfullscreen="" loading="lazy"
-                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                {!! $data->map_link !!}
                             </div>
                         </div>
                         <div class="sidebar-list-job">
