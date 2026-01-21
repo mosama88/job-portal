@@ -1,0 +1,164 @@
+ :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --info-color: #17a2b8;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+        }
+
+        .pricing-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--info-color) 100%);
+            color: white;
+            padding: 60px 0 40px;
+            margin-bottom: 40px;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .pricing-card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            height: 100%;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .pricing-card-header {
+            padding: 25px 20px;
+            text-align: center;
+            color: white;
+            border-bottom: none;
+        }
+
+        .pricing-card.developer .pricing-card-header {
+            background: linear-gradient(to right, var(--info-color), var(--primary-color));
+        }
+
+        .pricing-card.team .pricing-card-header {
+            background: linear-gradient(to right, var(--success-color), #20c997);
+        }
+
+        .pricing-card.enterprise .pricing-card-header {
+            background: linear-gradient(to right, var(--warning-color), #fd7e14);
+        }
+
+        .pricing-card-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 15px 0;
+        }
+
+        .price span {
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+
+        .pricing-features {
+            padding: 25px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .feature-item i {
+            margin-right: 12px;
+            width: 24px;
+            font-size: 1.2rem;
+        }
+
+        .feature-item i.fa-check {
+            color: var(--success-color);
+        }
+
+        .feature-item i.fa-times {
+            color: var(--danger-color);
+        }
+
+        .feature-item i.fa-infinity {
+            color: var(--primary-color);
+        }
+
+        .btn-subscribe {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-developer {
+            background: linear-gradient(to right, var(--info-color), var(--primary-color));
+            color: white;
+        }
+
+        .btn-team {
+            background: linear-gradient(to right, var(--success-color), #20c997);
+            color: white;
+        }
+
+        .btn-enterprise {
+            background: linear-gradient(to right, var(--warning-color), #fd7e14);
+            color: white;
+        }
+
+        .btn-subscribe:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            color: white;
+        }
+
+        .badge-popular {
+            position: absolute;
+            top: 15px;
+            right: -35px;
+            background: var(--danger-color);
+            color: white;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-weight: 600;
+            font-size: 0.8rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .price {
+                font-size: 2.5rem;
+            }
+
+            .pricing-card:hover {
+                transform: translateY(-5px);
+            }
+        }
+
+        .comparison-table {
+            margin-top: 60px;
+        }
+
+        .comparison-table th {
+            background-color: var(--light-color);
+        }

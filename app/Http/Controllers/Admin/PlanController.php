@@ -14,7 +14,7 @@ class PlanController extends Controller
      */
     public function index()
     {
-        $data = Plan::latest()->paginate(10);
+        $data = Plan::latest()->get();
         return view('admins.plans.index', compact('data'));
     }
 
