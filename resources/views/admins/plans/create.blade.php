@@ -70,17 +70,47 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label for="exampleInputName">Profile Verified</label>
+                                <select name="profile_verified"
+                                    class="custom-select {{ $errors->has('profile_verified') ? 'is-invalid' : '' }}">
+                                    <option selected>Select Options</option>
+                                    <option @if (old('profile_verified') == 1) selected @endif value="1">Yes</option>
+                                    <option @if (old('profile_verified') == 0) selected @endif value="0">No</option>
+                                </select>
+                                <x-input-error class="mt-2 text-danger" :messages="$errors->get('profile_verified')" />
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label for="exampleInputName">Recommended</label>
                                 <select name="recommended"
-                                    class="custom-select {{ $errors->has('highlight_job_limit') ? 'is-invalid' : '' }}">
+                                    class="custom-select {{ $errors->has('recommended') ? 'is-invalid' : '' }}">
                                     <option selected>Select Options</option>
                                     <option @if (old('recommended') == 1) selected @endif value="1">Yes</option>
                                     <option @if (old('recommended') == 0) selected @endif value="0">No</option>
                                 </select>
-                                <x-input-error class="mt-2 text-danger" :messages="$errors->get('featured_job_limit')" />
+                                <x-input-error class="mt-2 text-danger" :messages="$errors->get('recommended')" />
 
                             </div>
                         </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputName">Show Packege frontend Show</label>
+                                <select name="frontend_show"
+                                    class="custom-select {{ $errors->has('frontend_show') ? 'is-invalid' : '' }}">
+                                    <option selected>Select Options</option>
+                                    <option @if (old('frontend_show') == 1) selected @endif value="1">Yes</option>
+                                    <option @if (old('frontend_show') == 0) selected @endif value="0">No</option>
+                                </select>
+                                <x-input-error class="mt-2 text-danger" :messages="$errors->get('frontend_show')" />
+                            </div>
+                        </div>
+
+
+
                     </div>
                 </div>
                 <!-- /.card-body -->
