@@ -37,49 +37,22 @@
                     <div class="container-fluid">
                         <!-- Pricing cards -->
                         <div class="row">
-                            <!-- Developer Plan -->
-                            <div class="col-md-4">
-                                <div class="card pricing-card developer">
+                            @forelse ($data as $info)
+                                <!-- Small Team Plan -->
+                                <div class="col-md-4">
+                                    @if ($info->label === 'DEVELOPER')
+                                        <div class="card pricing-card developer">
+                                        @elseif($info->label === 'SMALL TEAM')
+                                            <div class="card pricing-card team">
+                                            @elseif($info->label === 'ENTERPRISE')
+                                                <div class="card pricing-card enterprise">
+                                    @endif
+                                    @if ($info->recommended == 1)
+                                        <div class="badge-popular">Recommended</div>
+                                    @endif
                                     <div class="pricing-card-header">
-                                        <h3 class="pricing-card-title">DEVELOPER</h3>
-                                        <div class="price">$19<span>/month</span></div>
-                                        <p class="mb-0">Perfect for individual developers</p>
-                                    </div>
-                                    <div class="card-body pricing-features">
-                                        <div class="feature-item">
-                                            <i class="fas fa-check"></i>
-                                            <span>1 user agent</span>
-                                        </div>
-                                        <div class="feature-item">
-                                            <i class="fas fa-check"></i>
-                                            <span>Core features</span>
-                                        </div>
-                                        <div class="feature-item">
-                                            <i class="fas fa-check"></i>
-                                            <span>1GB storage</span>
-                                        </div>
-                                        <div class="feature-item">
-                                            <i class="fas fa-check"></i>
-                                            <span>2 Custom domains</span>
-                                        </div>
-                                        <div class="feature-item">
-                                            <i class="fas fa-times"></i>
-                                            <span>Live Support</span>
-                                        </div>
-                                        <button class="btn btn-subscribe btn-developer mt-4">
-                                            <i class="fas fa-shopping-cart mr-2"></i>SUBSCRIBE →
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Small Team Plan -->
-                            <div class="col-md-4">
-                                <div class="card pricing-card team">
-                                    <div class="badge-popular">MOST POPULAR</div>
-                                    <div class="pricing-card-header">
-                                        <h3 class="pricing-card-title">SMALL TEAM</h3>
-                                        <div class="price">$60<span>/month</span></div>
+                                        <h3 class="pricing-card-title">{{ $info->label }}</h3>
+                                        <div class="price">${{ $info->price }}<span>/month</span></div>
                                         <p class="mb-0">Ideal for growing teams</p>
                                     </div>
                                     <div class="card-body pricing-features">
@@ -103,68 +76,152 @@
                                             <i class="fas fa-check"></i>
                                             <span>24/7 Support</span>
                                         </div>
-                                        <button class="btn btn-subscribe btn-team mt-4">
-                                            <i class="fas fa-shopping-cart mr-2"></i>SUBSCRIBE →
+                                        @if ($info->label === 'DEVELOPER')
+                                            <button class="btn btn-subscribe btn-developer mt-4">
+                                            @elseif($info->label === 'SMALL TEAM')
+                                                <button class="btn btn-subscribe btn-team mt-4">
+                                                @elseif($info->label === 'ENTERPRISE')
+                                                    <button class="btn btn-subscribe btn-enterprise mt-4">
+                                        @endif
+                                        <i class="fas fa-shopping-cart mr-2"></i>SUBSCRIBE →
                                         </button>
                                     </div>
                                 </div>
-                            </div>
+                        </div>
 
-                            <!-- Enterprise Plan -->
-                            <div class="col-md-4">
-                                <div class="card pricing-card enterprise">
-                                    <div class="pricing-card-header">
-                                        <h3 class="pricing-card-title">ENTERPRISE</h3>
-                                        <div class="price">$499<span>/month</span></div>
-                                        <p class="mb-0">For large organizations</p>
+                    @empty
+                        No data Found
+                        @endforelse
+
+                        {{-- <!-- Developer Plan -->
+                        <div class="col-md-4">
+                            <div class="card pricing-card developer">
+                                <div class="pricing-card-header">
+                                    <h3 class="pricing-card-title">DEVELOPER</h3>
+                                    <div class="price">$19<span>/month</span></div>
+                                    <p class="mb-0">Perfect for individual developers</p>
+                                </div>
+                                <div class="card-body pricing-features">
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>1 user agent</span>
                                     </div>
-                                    <div class="card-body pricing-features">
-                                        <div class="feature-item">
-                                            <i class="fas fa-infinity"></i>
-                                            <span>Unlimited user agents</span>
-                                        </div>
-                                        <div class="feature-item">
-                                            <i class="fas fa-check"></i>
-                                            <span>Core features</span>
-                                        </div>
-                                        <div class="feature-item">
-                                            <i class="fas fa-check"></i>
-                                            <span>8TB storage</span>
-                                        </div>
-                                        <div class="feature-item">
-                                            <i class="fas fa-infinity"></i>
-                                            <span>Unlimited custom domains</span>
-                                        </div>
-                                        <div class="feature-item">
-                                            <i class="fas fa-check"></i>
-                                            <span>Lifetime Support</span>
-                                        </div>
-                                        <button class="btn btn-subscribe btn-enterprise mt-4">
-                                            <i class="fas fa-shopping-cart mr-2"></i>SUBSCRIBE →
-                                        </button>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Core features</span>
                                     </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>1GB storage</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>2 Custom domains</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-times"></i>
+                                        <span>Live Support</span>
+                                    </div>
+                                    <button class="btn btn-subscribe btn-developer mt-4">
+                                        <i class="fas fa-shopping-cart mr-2"></i>SUBSCRIBE →
+                                    </button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Additional info -->
-                        <div class="row mt-4">
-                            <div class="col-12">
-                                <div class="callout callout-info">
-                                    <h5><i class="fas fa-info-circle mr-2"></i>Note:</h5>
-                                    <p>All plans come with our core features including dashboard access,
-                                        basic analytics, and API access. You can upgrade or downgrade your
-                                        plan at any time. All prices are in USD.</p>
+                        <!-- Small Team Plan -->
+                        <div class="col-md-4">
+                            <div class="card pricing-card team">
+                                <div class="badge-popular">MOST POPULAR</div>
+                                <div class="pricing-card-header">
+                                    <h3 class="pricing-card-title">SMALL TEAM</h3>
+                                    <div class="price">$60<span>/month</span></div>
+                                    <p class="mb-0">Ideal for growing teams</p>
                                 </div>
+                                <div class="card-body pricing-features">
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>5 user agents</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Core features</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>10GB storage</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>10 Custom domains</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>24/7 Support</span>
+                                    </div>
+                                    <button class="btn btn-subscribe btn-team mt-4">
+                                        <i class="fas fa-shopping-cart mr-2"></i>SUBSCRIBE →
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Enterprise Plan -->
+                        <div class="col-md-4">
+                            <div class="card pricing-card enterprise">
+                                <div class="pricing-card-header">
+                                    <h3 class="pricing-card-title">ENTERPRISE</h3>
+                                    <div class="price">$499<span>/month</span></div>
+                                    <p class="mb-0">For large organizations</p>
+                                </div>
+                                <div class="card-body pricing-features">
+                                    <div class="feature-item">
+                                        <i class="fas fa-infinity"></i>
+                                        <span>Unlimited user agents</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Core features</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>8TB storage</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-infinity"></i>
+                                        <span>Unlimited custom domains</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Lifetime Support</span>
+                                    </div>
+                                    <button class="btn btn-subscribe btn-enterprise mt-4">
+                                        <i class="fas fa-shopping-cart mr-2"></i>SUBSCRIBE →
+                                    </button>
+                                </div>
+                            </div>
+                        </div> --}}
+                    </div>
+
+                    <!-- Additional info -->
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="callout callout-info">
+                                <h5><i class="fas fa-info-circle mr-2"></i>Note:</h5>
+                                <p>All plans come with our core features including dashboard access,
+                                    basic analytics, and API access. You can upgrade or downgrade your
+                                    plan at any time. All prices are in USD.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- /.card-body -->
-            <!-- /.card -->
         </div>
+    </div>
+
+    <!-- /.card-body -->
+    <!-- /.card -->
+    </div>
     </div>
 @endsection
 @push('js')
