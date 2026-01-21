@@ -14,7 +14,7 @@ class PlanController extends Controller
      */
     public function index()
     {
-        $data = Plan::filter(request()->all())->latest()->paginate(10);
+        $data = Plan::latest()->paginate(10);
         return view('admins.plans.index', compact('data'));
     }
 
@@ -32,7 +32,14 @@ class PlanController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => ['required', 'string', 'max:100', 'unique:plans,name'],
+            'label' => ['required', 'string', 'max:255'],
+            'price' => ['required', 'numeric', 'min:0'],
+            'job_limit' => ['required', 'integer', 'min:0'],
+            'featured_job_limit' => ['required', 'integer', 'min:0'],
+            'highlight_job_limit' => ['required', 'integer', 'min:0'],
+            'profile_verified' => ['nullable', 'boolean'],
+            'recommended' => ['nullable', 'boolean'],
+            'frontend_show' => ['nullable', 'boolean'],
         ]);
         Plan::create($data);
 
@@ -65,7 +72,14 @@ class PlanController extends Controller
         $plan  = Plan::findOrFail($id);
 
         $data = $request->validate([
-            'name' => ['required', 'string', 'max:100', 'unique:plans,name,' . $id],
+            'label' => ['required', 'string', 'max:100', 'unique:plans,label,' . $id],
+            'price' => ['required', 'numeric', 'min:0'],
+            'job_limit' => ['required', 'integer', 'min:0'],
+            'featured_job_limit' => ['required', 'integer', 'min:0'],
+            'highlight_job_limit' => ['required', 'integer', 'min:0'],
+            'profile_verified' => ['nullable', 'boolean'],
+            'recommended' => ['nullable', 'boolean'],
+            'frontend_show' => ['nullable', 'boolean'],
         ]);
         $plan->update($data);
 

@@ -4,32 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Cviebrock\EloquentSluggable\Sluggable;
-use EloquentFilter\Filterable;
 
 class Plan extends Model
 
 {
-    use HasFactory, Sluggable, Filterable;
+    use HasFactory;
 
     protected $table = 'plans';
     protected $fillable = [
-        'name',
-        'slug',
+        'label',
+        'price',
+        'job_limit',
+        'featured_job_limit',
+        'highlight_job_limit',
+        'profile_verified',
+        'recommended',
+        'frontend_show'
     ];
-
-
-    /**
-     * Return the sluggable configuration array for this model.
-     *
-     * @return array
-     */
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'name'
-            ]
-        ];
-    }
 }

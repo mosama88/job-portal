@@ -13,13 +13,74 @@
             <form action="{{ route('admin.plans.store') }}" method="POST">
                 @csrf
                 <div class="card-body">
-                    <div class="form-group">
-                        <label for="exampleInputName">Name</label>
-                        <input type="text" name="name" value="{{ old('name') }}"
-                            class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" id="exampleInputName"
-                            placeholder="Enter Name">
-                        <x-input-error class="mt-2 text-danger" :messages="$errors->get('name')" />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputName">Label</label>
+                                <input type="text" name="label" value="{{ old('label') }}"
+                                    class="form-control {{ $errors->has('label') ? 'is-invalid' : '' }}"
+                                    id="exampleInputlabel" placeholder="Enter label">
+                                <x-input-error class="mt-2 text-danger" :messages="$errors->get('label')" />
 
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputName">Price</label>
+                                <input type="text" name="price" value="{{ old('price') }}"
+                                    class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}"
+                                    id="exampleInputprice" placeholder="Enter price">
+                                <x-input-error class="mt-2 text-danger" :messages="$errors->get('price')" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputName">Job Limit</label>
+                                <input type="text" name="job_limit" value="{{ old('job_limit') }}"
+                                    class="form-control {{ $errors->has('job_limit') ? 'is-invalid' : '' }}"
+                                    id="exampleInputjob_limit" placeholder="Enter job limit">
+                                <x-input-error class="mt-2 text-danger" :messages="$errors->get('job_limit')" />
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputName">Featured Job Limit</label>
+                                <input type="text" name="featured_job_limit" value="{{ old('featured_job_limit') }}"
+                                    class="form-control {{ $errors->has('featured_job_limit') ? 'is-invalid' : '' }}"
+                                    id="exampleInputfeatured_job_limit" placeholder="Enter featured job limit">
+                                <x-input-error class="mt-2 text-danger" :messages="$errors->get('featured_job_limit')" />
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputName">Highlight Job Limit</label>
+                                <input type="text" name="highlight_job_limit" value="{{ old('highlight_job_limit') }}"
+                                    class="form-control {{ $errors->has('highlight_job_limit') ? 'is-invalid' : '' }}"
+                                    id="exampleInputhighlight_job_limit" placeholder="Enter featured job limit">
+                                <x-input-error class="mt-2 text-danger" :messages="$errors->get('highlight_job_limit')" />
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputName">Recommended</label>
+                                <select name="recommended"
+                                    class="custom-select {{ $errors->has('highlight_job_limit') ? 'is-invalid' : '' }}">
+                                    <option selected>Select Options</option>
+                                    <option @if (old('recommended') == 1) selected @endif value="1">Yes</option>
+                                    <option @if (old('recommended') == 0) selected @endif value="0">No</option>
+                                </select>
+                                <x-input-error class="mt-2 text-danger" :messages="$errors->get('featured_job_limit')" />
+
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- /.card-body -->
