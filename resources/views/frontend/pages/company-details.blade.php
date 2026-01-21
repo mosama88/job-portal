@@ -89,7 +89,8 @@
                             <div class="brand-content">
                                 <h5 class="f-18 mb-2">
                                     {{ $data->name ?? '' }}
-                                    <span class="card-location font-regular ml-2">{{ $data->state ?? '' }}, US</span>
+                                    <span class="card-location font-regular ml-2">{{ $data->companyState->name }},
+                                        {{ $data->companyCountry->name }}</span>
                                 </h5>
                             </div>
                         </div>
@@ -273,7 +274,7 @@
                             <div class="avatar-sidebar">
                                 <div class="sidebar-info pl-0"><span
                                         class="sidebar-company">{{ $data->name }}</span><span
-                                        class="card-location">{{ $data->country }}</span></div>
+                                        class="card-location">{{ $data->companyCountry->name }}</span></div>
                             </div>
                         </div>
                         <div class="sidebar-list-job">
@@ -285,23 +286,38 @@
                             <ul>
                                 <li>
                                     <div class="sidebar-icon-item"><i class="fi-rr-briefcase"></i></div>
-                                    <div class="sidebar-text-info"><span class="text-description">Company
-                                            field</span><strong class="small-heading">Accounting / Finance</strong></div>
+                                    <div class="sidebar-text-info"><span class="text-description">Industry
+                                            Type</span><strong
+                                            class="small-heading">{{ $data->industryType->name }}</strong></div>
                                 </li>
                                 <li>
                                     <div class="sidebar-icon-item"><i class="fi-rr-marker"></i></div>
                                     <div class="sidebar-text-info"><span class="text-description">Location</span><strong
-                                            class="small-heading">Chicago, US Remote Friendly</strong></div>
+                                            class="small-heading">{{ $data->companyCountry->name }},
+                                            {{ $data->companyState->name }},{{ $data->companyCity->name }}</strong></div>
                                 </li>
                                 <li>
-                                    <div class="sidebar-icon-item"><i class="fi-rr-dollar"></i></div>
-                                    <div class="sidebar-text-info"><span class="text-description">Salary</span><strong
-                                            class="small-heading">$35k - $45k</strong></div>
+                                    <div class="sidebar-icon-item"><i class="fa-solid fa-users"></i>
+                                    </div>
+                                    <div class="sidebar-text-info"><span class="text-description">Team Size</span><strong
+                                            class="small-heading">{{ $data->teamSize->name }}</strong></div>
                                 </li>
                                 <li>
-                                    <div class="sidebar-icon-item"><i class="fi-rr-clock"></i></div>
-                                    <div class="sidebar-text-info"><span class="text-description">Member
-                                            since</span><strong class="small-heading">Jul 2012</strong></div>
+                                    <div class="sidebar-icon-item"><i class="fa-regular fa-calendar"></i>
+                                    </div>
+                                    <div class="sidebar-text-info"><span class="text-description">Establishment
+                                            Date</span><strong
+                                            class="small-heading">{{ $data->establishemnt_date->format('Y M') }}</strong>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="sidebar-icon-item"><i class="fa-solid fa-building"></i>
+                                    </div>
+                                    <div class="sidebar-text-info"><span class="text-description">Organization
+                                            Type</span><strong
+                                            class="small-heading">{{ $data->organizationType->name }}</strong>
+                                    </div>
                                 </li>
                                 <li>
                                     <div class="sidebar-icon-item"><i class="fi-rr-time-fast"></i></div>
@@ -312,11 +328,15 @@
                         </div>
                         <div class="sidebar-list-job">
                             <ul class="ul-disc">
-                                <li>205 North Michigan Avenue, Suite 810 Chicago, 60601, USA</li>
-                                <li>Phone: (123) 456-7890</li>
-                                <li>Email: contact@Evara.com</li>
+                                <li>{{ $data->address }} {{ $data->companyCity->name }}, {{ $data->companyState->name }},
+                                    {{ $data->companyCountry->name }}</li>
+                                <li>Phone: {{ $data->phone }}</li>
+                                <li>Email: {{ $data->email }}</li>
+                                <li>Website: <a href="{{ $data->website }}" target="_blank">{{ $data->website }}</a>
+                                </li>
                             </ul>
-                            <div class="mt-30"><a class="btn btn-send-message" href="page-contact.html">Send Message</a>
+                            <div class="mt-30"><a class="btn btn-send-message" href="mailto:{{ $data->email }}">Send
+                                    Message</a>
                             </div>
                         </div>
                     </div>

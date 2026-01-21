@@ -92,8 +92,8 @@
                                                     src="{{ asset('frontend') }}/assets/imgs/template/icons/star.svg"><span
                                                     class="font-xs color-text-mutted ml-10">
                                                     <span>(</span><span>66</span><span>)</span></span>
-                                            </div><span class="card-location">{{ $company->state }},
-                                                {{ $company->country }}</span>
+                                            </div><span class="card-location">{{ $company->companyState->name }},
+                                                {{ $company->companyCountry->name }}</span>
                                             <div class="mt-30"><a class="btn btn-grey-big"
                                                     href="{{ route('company.show', $company->slug) }}"><span>12</span>
                                                     <span>

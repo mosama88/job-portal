@@ -73,17 +73,33 @@ class Company extends Model implements HasMedia
     }
 
 
-    public function state()
+    public function companyState()
     {
-        return $this->belongsTo(State::class, 'state','id')->withDefault(['name' => 'Not Define']);
+        return $this->belongsTo(State::class, 'state', 'id')->withDefault(['name' => 'Not Define']);
     }
 
-    public function country()
+    public function companyCountry()
     {
-        return $this->belongsTo(Country::class, 'country','id')->withDefault(['name' => 'Not Define']);
+        return $this->belongsTo(Country::class, 'country', 'id')->withDefault(['name' => 'Not Define']);
     }
-    public function city()
+
+    public function companyCity()
     {
-        return $this->belongsTo(City::class, 'city','id')->withDefault(['name' => 'Not Define']);
+        return $this->belongsTo(City::class, 'city', 'id')->withDefault(['name' => 'Not Define']);
+    }
+
+    public function industryType()
+    {
+        return $this->belongsTo(IndustryType::class, 'industry_type_id')->withDefault(['name' => 'Not Define']);
+    }
+
+    public function organizationType()
+    {
+        return $this->belongsTo(OrganizationType::class, 'organization_type_id')->withDefault(['name' => 'Not Define']);
+    }
+
+    public function teamSize()
+    {
+        return $this->belongsTo(TeamSize::class, 'team_size_id')->withDefault(['name' => 'Not Define']);
     }
 }

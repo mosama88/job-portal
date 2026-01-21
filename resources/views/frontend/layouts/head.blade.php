@@ -12,8 +12,8 @@
   <link rel="stylesheet" href="{{ asset('fontawesome') }}/all.min.css">
   <link href="{{ asset('frontend') }}/assets/css/all.min.css" rel="stylesheet">
   <link href="{{ asset('frontend') }}/assets/css/style.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.1/dist/css/bootstrap-datepicker.min.css" <link
-      rel="stylesheet" href="{{ asset('admin') }}/assets/dist/css/toastr.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.1/dist/css/bootstrap-datepicker.min.css">
+  <link rel="stylesheet" href="{{ asset('admin') }}/assets/dist/css/toastr.css">
   <link rel="stylesheet" href="{{ asset('admin') }}/assets/dist/css/sweetalert2.min.css">
   rel="stylesheet">
   <title>joblist - Job Portal </title>
