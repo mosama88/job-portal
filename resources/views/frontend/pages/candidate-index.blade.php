@@ -8,7 +8,7 @@
                     <div class="col-lg-12">
                         <h2 class="mb-20">Candidates</h2>
                         <ul class="breadcrumbs">
-                            <li><a class="home-icon" href="{{url()}}">Home</a></li>
+                            <li><a class="home-icon" href="{{ url('/') }}">Home</a></li>
                             <li>Blog</li>
                         </ul>
                     </div>
@@ -20,7 +20,6 @@
     <section class="section-box mt-120">
         <div class="container">
             <div class="content-page">
-
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="sidebar-shadow none-shadow mb-30">
@@ -390,852 +389,87 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-4 col-md-6">
-                                <div class="card-grid-2 hover-up">
-                                    <div class="card-grid-2-image-left">
-                                        <div class="card-grid-2-image-rd online"><a href="candidate-details.html">
-                                                <figure><img alt="joblist" src="{{asset('frontend')}}/assets/imgs/page/candidates/user1.png">
-                                                </figure>
-                                            </a></div>
-                                        <div class="card-profile pt-10">
-                                            <a href="candidate-details.html">
-                                                <h5>Robert Fox</h5>
-                                            </a>
-                                            <span class="font-xs color-text-mutted">UI/UX Designer</span>
-                                            <div class="rate-reviews-small pt-5">
-                                                <span>
-                                                    <img src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg" alt="joblist">
-                                                </span>
-                                                <span>
-                                                    <img src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg" alt="joblist">
-                                                </span>
-                                                <span>
-                                                    <img src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg" alt="joblist">
-                                                </span>
-                                                <span>
-                                                    <img src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg" alt="joblist">
-                                                </span>
-                                                <span>
-                                                    <img src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg" alt="joblist">
-                                                </span>
-                                                <span class="ml-10 color-text-mutted font-xs">(65)</span>
+                            @forelse ($candidates as $candidate)
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="card-grid-2 hover-up">
+                                        <div class="card-grid-2-image-left">
+                                            <div class="card-grid-2-image-rd online"><a href="candidate-details.html">
+                                                    <figure><img alt="joblist"
+                                                            src="{{ asset('frontend') }}/assets/imgs/page/candidates/user1.png">
+                                                    </figure>
+                                                </a></div>
+                                            <div class="card-profile pt-10">
+                                                <a href="candidate-details.html">
+                                                    <h5>{{ $candidate->full_name }}</h5>
+                                                </a>
+                                                <span
+                                                    class="font-xs color-text-mutted">{{ $candidate->profession->name }}</span>
+                                                <div class="rate-reviews-small pt-5">
+                                                    <span>
+                                                        <img src="{{ asset('frontend') }}/assets/imgs/template/icons/star.svg"
+                                                            alt="joblist">
+                                                    </span>
+                                                    <span>
+                                                        <img src="{{ asset('frontend') }}/assets/imgs/template/icons/star.svg"
+                                                            alt="joblist">
+                                                    </span>
+                                                    <span>
+                                                        <img src="{{ asset('frontend') }}/assets/imgs/template/icons/star.svg"
+                                                            alt="joblist">
+                                                    </span>
+                                                    <span>
+                                                        <img src="{{ asset('frontend') }}/assets/imgs/template/icons/star.svg"
+                                                            alt="joblist">
+                                                    </span>
+                                                    <span>
+                                                        <img src="{{ asset('frontend') }}/assets/imgs/template/icons/star.svg"
+                                                            alt="joblist">
+                                                    </span>
+                                                    <span class="ml-10 color-text-mutted font-xs">(65)</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="card-block-info">
-                                        <p class="font-xs color-text-paragraph-2">| Lorem ipsum dolor sit amet consectetur
-                                            adipisicing
-                                            elit.
-                                            Vero repellendus magni, atque delectus molestias quis?</p>
-                                        <div class="card-2-bottom card-2-bottom-candidate mt-30">
-                                            <div class="text-start"><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Figma</a><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Adobe XD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">PSD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">App</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">Digital</a>
+                                        <div class="card-block-info">
+                                            <p class="font-xs color-text-paragraph-2">
+                                                @foreach ($candidate->skills as $skill)
+`                                                @endforeach
+                                            </p>
+                                            <div class="card-2-bottom card-2-bottom-candidate mt-30">
+                                                <div class="text-start"><a class="btn btn-tags-sm mb-10 mr-5"
+                                                        href="jobs-grid.html">Figma</a><a
+                                                        class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">Adobe
+                                                        XD</a><a class="btn btn-tags-sm mb-10 mr-5"
+                                                        href="jobs-grid.html">PSD</a><a class="btn btn-tags-sm mb-10 mr-5"
+                                                        href="jobs-grid.html">App</a><a class="btn btn-tags-sm mb-10 mr-5"
+                                                        href="jobs-grid.html">Digital</a>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="employers-info align-items-center justify-content-center mt-15">
-                                            <div class="row">
-                                                <div class="col-6"><span class="d-flex align-items-center"><i
-                                                            class="fi-rr-marker mr-5 ml-0"></i><span
-                                                            class="font-sm color-text-mutted">Chicago,
-                                                            US</span></span></div>
-                                                <div class="col-6"><span
-                                                        class="d-flex justify-content-end align-items-center"><i
-                                                            class="fi-rr-clock mr-5"></i><span
-                                                            class="font-sm color-brand-1">$45 /
-                                                            hour</span></span>
+                                            <div class="employers-info align-items-center justify-content-center mt-15">
+                                                <div class="row">
+                                                    <div class="col-6"><span class="d-flex align-items-center"><i
+                                                                class="fi-rr-marker mr-5 ml-0"></i><span
+                                                                class="font-sm color-text-mutted"> {{ Str::limit($candidate->city,10) }},
+                                                                {{ Str::limit($candidate->country,10) }}</span></span>
+                                                    </div>
+                                                    <div class="col-6"><span
+                                                            class="d-flex justify-content-end align-items-center"><i
+                                                                class="fi-rr-clock mr-5"></i><span
+                                                                class="font-sm color-brand-1">$45 /
+                                                                hour</span></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="card-grid-2 hover-up">
-                                    <div class="card-grid-2-image-left">
-                                        <div class="card-grid-2-image-rd online"><a href="candidate-details.html">
-                                                <figure><img alt="joblist" src="{{asset('frontend')}}/assets/imgs/page/candidates/user2.png">
-                                                </figure>
-                                            </a></div>
-                                        <div class="card-profile pt-10"><a href="candidate-details.html">
-                                                <h5>Cody Fisher</h5>
-                                            </a><span class="font-xs color-text-mutted">Python developer</span>
-                                            <div class="rate-reviews-small pt-5"><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span
-                                                    class="ml-10 color-text-mutted font-xs">(65)</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="card-block-info">
-                                        <p class="font-xs color-text-paragraph-2">| Lorem ipsum dolor sit amet consectetur
-                                            adipisicing
-                                            elit.
-                                            Vero repellendus magni, atque delectus molestias quis?</p>
-                                        <div class="card-2-bottom card-2-bottom-candidate mt-30">
-                                            <div class="text-start"><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Figma</a><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Adobe XD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">PSD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">App</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">Digital</a>
-                                            </div>
-                                        </div>
-                                        <div class="employers-info align-items-center justify-content-center mt-15">
-                                            <div class="row">
-                                                <div class="col-6"><span class="d-flex align-items-center"><i
-                                                            class="fi-rr-marker mr-5 ml-0"></i><span
-                                                            class="font-sm color-text-mutted">Chicago,
-                                                            US</span></span></div>
-                                                <div class="col-6"><span
-                                                        class="d-flex justify-content-end align-items-center"><i
-                                                            class="fi-rr-clock mr-5"></i><span
-                                                            class="font-sm color-brand-1">$45 /
-                                                            hour</span></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="card-grid-2 hover-up">
-                                    <div class="card-grid-2-image-left">
-                                        <div class="card-grid-2-image-rd online"><a href="candidate-details.html">
-                                                <figure><img alt="joblist" src="{{asset('frontend')}}/assets/imgs/page/candidates/user3.png">
-                                                </figure>
-                                            </a></div>
-                                        <div class="card-profile pt-10"><a href="candidate-details.html">
-                                                <h5>Jerome Bell</h5>
-                                            </a><span class="font-xs color-text-mutted">Content Manager</span>
-                                            <div class="rate-reviews-small pt-5"><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span
-                                                    class="ml-10 color-text-mutted font-xs">(65)</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="card-block-info">
-                                        <p class="font-xs color-text-paragraph-2">| Lorem ipsum dolor sit amet consectetur
-                                            adipisicing
-                                            elit.
-                                            Vero repellendus magni, atque delectus molestias quis?</p>
-                                        <div class="card-2-bottom card-2-bottom-candidate mt-30">
-                                            <div class="text-start"><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Figma</a><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Adobe XD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">PSD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">App</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">Digital</a>
-                                            </div>
-                                        </div>
-                                        <div class="employers-info align-items-center justify-content-center mt-15">
-                                            <div class="row">
-                                                <div class="col-6"><span class="d-flex align-items-center"><i
-                                                            class="fi-rr-marker mr-5 ml-0"></i><span
-                                                            class="font-sm color-text-mutted">Chicago,
-                                                            US</span></span></div>
-                                                <div class="col-6"><span
-                                                        class="d-flex justify-content-end align-items-center"><i
-                                                            class="fi-rr-clock mr-5"></i><span
-                                                            class="font-sm color-brand-1">$45 /
-                                                            hour</span></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="card-grid-2 hover-up">
-                                    <div class="card-grid-2-image-left">
-                                        <div class="card-grid-2-image-rd online"><a href="candidate-details.html">
-                                                <figure><img alt="joblist" src="{{asset('frontend')}}/assets/imgs/page/candidates/user4.png">
-                                                </figure>
-                                            </a></div>
-                                        <div class="card-profile pt-10"><a href="candidate-details.html">
-                                                <h5>Jane Cooper</h5>
-                                            </a><span class="font-xs color-text-mutted">Network</span>
-                                            <div class="rate-reviews-small pt-5"><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span
-                                                    class="ml-10 color-text-mutted font-xs">(65)</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="card-block-info">
-                                        <p class="font-xs color-text-paragraph-2">| Lorem ipsum dolor sit amet consectetur
-                                            adipisicing
-                                            elit.
-                                            Vero repellendus magni, atque delectus molestias quis?</p>
-                                        <div class="card-2-bottom card-2-bottom-candidate mt-30">
-                                            <div class="text-start"><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Figma</a><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Adobe XD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">PSD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">App</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">Digital</a>
-                                            </div>
-                                        </div>
-                                        <div class="employers-info align-items-center justify-content-center mt-15">
-                                            <div class="row">
-                                                <div class="col-6"><span class="d-flex align-items-center"><i
-                                                            class="fi-rr-marker mr-5 ml-0"></i><span
-                                                            class="font-sm color-text-mutted">Chicago,
-                                                            US</span></span></div>
-                                                <div class="col-6"><span
-                                                        class="d-flex justify-content-end align-items-center"><i
-                                                            class="fi-rr-clock mr-5"></i><span
-                                                            class="font-sm color-brand-1">$45 /
-                                                            hour</span></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="card-grid-2 hover-up">
-                                    <div class="card-grid-2-image-left">
-                                        <div class="card-grid-2-image-rd online"><a href="candidate-details.html">
-                                                <figure><img alt="joblist" src="{{asset('frontend')}}/assets/imgs/page/candidates/user4.png">
-                                                </figure>
-                                            </a></div>
-                                        <div class="card-profile pt-10"><a href="candidate-details.html">
-                                                <h5>Floyd Miles</h5>
-                                            </a><span class="font-xs color-text-mutted">Photo Editing</span>
-                                            <div class="rate-reviews-small pt-5"><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span
-                                                    class="ml-10 color-text-mutted font-xs">(65)</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="card-block-info">
-                                        <p class="font-xs color-text-paragraph-2">| Lorem ipsum dolor sit amet consectetur
-                                            adipisicing
-                                            elit.
-                                            Vero repellendus magni, atque delectus molestias quis?</p>
-                                        <div class="card-2-bottom card-2-bottom-candidate mt-30">
-                                            <div class="text-start"><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Figma</a><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Adobe XD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">PSD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">App</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">Digital</a>
-                                            </div>
-                                        </div>
-                                        <div class="employers-info align-items-center justify-content-center mt-15">
-                                            <div class="row">
-                                                <div class="col-6"><span class="d-flex align-items-center"><i
-                                                            class="fi-rr-marker mr-5 ml-0"></i><span
-                                                            class="font-sm color-text-mutted">Chicago,
-                                                            US</span></span></div>
-                                                <div class="col-6"><span
-                                                        class="d-flex justify-content-end align-items-center"><i
-                                                            class="fi-rr-clock mr-5"></i><span
-                                                            class="font-sm color-brand-1">$45 /
-                                                            hour</span></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="card-grid-2 hover-up">
-                                    <div class="card-grid-2-image-left">
-                                        <div class="card-grid-2-image-rd online"><a href="candidate-details.html">
-                                                <figure><img alt="joblist" src="{{asset('frontend')}}/assets/imgs/page/candidates/user3.png">
-                                                </figure>
-                                            </a></div>
-                                        <div class="card-profile pt-10"><a href="candidate-details.html">
-                                                <h5>Devon Lane</h5>
-                                            </a><span class="font-xs color-text-mutted">Online Marketing</span>
-                                            <div class="rate-reviews-small pt-5"><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span
-                                                    class="ml-10 color-text-mutted font-xs">(65)</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="card-block-info">
-                                        <p class="font-xs color-text-paragraph-2">| Lorem ipsum dolor sit amet consectetur
-                                            adipisicing
-                                            elit.
-                                            Vero repellendus magni, atque delectus molestias quis?</p>
-                                        <div class="card-2-bottom card-2-bottom-candidate mt-30">
-                                            <div class="text-start"><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Figma</a><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Adobe XD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">PSD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">App</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">Digital</a>
-                                            </div>
-                                        </div>
-                                        <div class="employers-info align-items-center justify-content-center mt-15">
-                                            <div class="row">
-                                                <div class="col-6"><span class="d-flex align-items-center"><i
-                                                            class="fi-rr-marker mr-5 ml-0"></i><span
-                                                            class="font-sm color-text-mutted">Chicago,
-                                                            US</span></span></div>
-                                                <div class="col-6"><span
-                                                        class="d-flex justify-content-end align-items-center"><i
-                                                            class="fi-rr-clock mr-5"></i><span
-                                                            class="font-sm color-brand-1">$45 /
-                                                            hour</span></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="card-grid-2 hover-up">
-                                    <div class="card-grid-2-image-left">
-                                        <div class="card-grid-2-image-rd online"><a href="candidate-details.html">
-                                                <figure><img alt="joblist" src="{{asset('frontend')}}/assets/imgs/page/candidates/user2.png">
-                                                </figure>
-                                            </a></div>
-                                        <div class="card-profile pt-10"><a href="candidate-details.html">
-                                                <h5>Jerome Bell</h5>
-                                            </a><span class="font-xs color-text-mutted">UI/UX Designer</span>
-                                            <div class="rate-reviews-small pt-5"><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span
-                                                    class="ml-10 color-text-mutted font-xs">(65)</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="card-block-info">
-                                        <p class="font-xs color-text-paragraph-2">| Lorem ipsum dolor sit amet consectetur
-                                            adipisicing
-                                            elit.
-                                            Vero repellendus magni, atque delectus molestias quis?</p>
-                                        <div class="card-2-bottom card-2-bottom-candidate mt-30">
-                                            <div class="text-start"><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Figma</a><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Adobe XD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">PSD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">App</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">Digital</a>
-                                            </div>
-                                        </div>
-                                        <div class="employers-info align-items-center justify-content-center mt-15">
-                                            <div class="row">
-                                                <div class="col-6"><span class="d-flex align-items-center"><i
-                                                            class="fi-rr-marker mr-5 ml-0"></i><span
-                                                            class="font-sm color-text-mutted">Chicago,
-                                                            US</span></span></div>
-                                                <div class="col-6"><span
-                                                        class="d-flex justify-content-end align-items-center"><i
-                                                            class="fi-rr-clock mr-5"></i><span
-                                                            class="font-sm color-brand-1">$45 /
-                                                            hour</span></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="card-grid-2 hover-up">
-                                    <div class="card-grid-2-image-left">
-                                        <div class="card-grid-2-image-rd online"><a href="candidate-details.html">
-                                                <figure><img alt="joblist" src="{{asset('frontend')}}/assets/imgs/page/candidates/user1.png">
-                                                </figure>
-                                            </a></div>
-                                        <div class="card-profile pt-10"><a href="candidate-details.html">
-                                                <h5>Eleanor</h5>
-                                            </a><span class="font-xs color-text-mutted">UI/UX Designer</span>
-                                            <div class="rate-reviews-small pt-5"><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span
-                                                    class="ml-10 color-text-mutted font-xs">(65)</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="card-block-info">
-                                        <p class="font-xs color-text-paragraph-2">| Lorem ipsum dolor sit amet consectetur
-                                            adipisicing
-                                            elit.
-                                            Vero repellendus magni, atque delectus molestias quis?</p>
-                                        <div class="card-2-bottom card-2-bottom-candidate mt-30">
-                                            <div class="text-start"><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Figma</a><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Adobe XD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">PSD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">App</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">Digital</a>
-                                            </div>
-                                        </div>
-                                        <div class="employers-info align-items-center justify-content-center mt-15">
-                                            <div class="row">
-                                                <div class="col-6"><span class="d-flex align-items-center"><i
-                                                            class="fi-rr-marker mr-5 ml-0"></i><span
-                                                            class="font-sm color-text-mutted">Chicago,
-                                                            US</span></span></div>
-                                                <div class="col-6"><span
-                                                        class="d-flex justify-content-end align-items-center"><i
-                                                            class="fi-rr-clock mr-5"></i><span
-                                                            class="font-sm color-brand-1">$45 /
-                                                            hour</span></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="card-grid-2 hover-up">
-                                    <div class="card-grid-2-image-left">
-                                        <div class="card-grid-2-image-rd online"><a href="candidate-details.html">
-                                                <figure><img alt="joblist" src="{{asset('frontend')}}/assets/imgs/page/candidates/user1.png">
-                                                </figure>
-                                            </a></div>
-                                        <div class="card-profile pt-10"><a href="candidate-details.html">
-                                                <h5>Theresa</h5>
-                                            </a><span class="font-xs color-text-mutted">UI/UX Designer</span>
-                                            <div class="rate-reviews-small pt-5"><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span
-                                                    class="ml-10 color-text-mutted font-xs">(65)</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="card-block-info">
-                                        <p class="font-xs color-text-paragraph-2">| Lorem ipsum dolor sit amet consectetur
-                                            adipisicing
-                                            elit.
-                                            Vero repellendus magni, atque delectus molestias quis?</p>
-                                        <div class="card-2-bottom card-2-bottom-candidate mt-30">
-                                            <div class="text-start"><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Figma</a><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Adobe XD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">PSD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">App</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">Digital</a>
-                                            </div>
-                                        </div>
-                                        <div class="employers-info align-items-center justify-content-center mt-15">
-                                            <div class="row">
-                                                <div class="col-6"><span class="d-flex align-items-center"><i
-                                                            class="fi-rr-marker mr-5 ml-0"></i><span
-                                                            class="font-sm color-text-mutted">Chicago,
-                                                            US</span></span></div>
-                                                <div class="col-6"><span
-                                                        class="d-flex justify-content-end align-items-center"><i
-                                                            class="fi-rr-clock mr-5"></i><span
-                                                            class="font-sm color-brand-1">$45 /
-                                                            hour</span></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="card-grid-2 hover-up">
-                                    <div class="card-grid-2-image-left">
-                                        <div class="card-grid-2-image-rd online"><a href="candidate-details.html">
-                                                <figure><img alt="joblist" src="{{asset('frontend')}}/assets/imgs/page/candidates/user2.png">
-                                                </figure>
-                                            </a></div>
-                                        <div class="card-profile pt-10"><a href="candidate-details.html">
-                                                <h5>Robert Fox</h5>
-                                            </a><span class="font-xs color-text-mutted">UI/UX Designer</span>
-                                            <div class="rate-reviews-small pt-5"><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span
-                                                    class="ml-10 color-text-mutted font-xs">(65)</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="card-block-info">
-                                        <p class="font-xs color-text-paragraph-2">| Lorem ipsum dolor sit amet consectetur
-                                            adipisicing
-                                            elit.
-                                            Vero repellendus magni, atque delectus molestias quis?</p>
-                                        <div class="card-2-bottom card-2-bottom-candidate mt-30">
-                                            <div class="text-start"><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Figma</a><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Adobe XD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">PSD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">App</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">Digital</a>
-                                            </div>
-                                        </div>
-                                        <div class="employers-info align-items-center justify-content-center mt-15">
-                                            <div class="row">
-                                                <div class="col-6"><span class="d-flex align-items-center"><i
-                                                            class="fi-rr-marker mr-5 ml-0"></i><span
-                                                            class="font-sm color-text-mutted">Chicago,
-                                                            US</span></span></div>
-                                                <div class="col-6"><span
-                                                        class="d-flex justify-content-end align-items-center"><i
-                                                            class="fi-rr-clock mr-5"></i><span
-                                                            class="font-sm color-brand-1">$45 /
-                                                            hour</span></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="card-grid-2 hover-up">
-                                    <div class="card-grid-2-image-left">
-                                        <div class="card-grid-2-image-rd online"><a href="candidate-details.html">
-                                                <figure><img alt="joblist" src="{{asset('frontend')}}/assets/imgs/page/candidates/user3.png">
-                                                </figure>
-                                            </a></div>
-                                        <div class="card-profile pt-10"><a href="candidate-details.html">
-                                                <h5>Cameron</h5>
-                                            </a><span class="font-xs color-text-mutted">UI/UX Designer</span>
-                                            <div class="rate-reviews-small pt-5"><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span
-                                                    class="ml-10 color-text-mutted font-xs">(65)</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="card-block-info">
-                                        <p class="font-xs color-text-paragraph-2">| Lorem ipsum dolor sit amet consectetur
-                                            adipisicing
-                                            elit.
-                                            Vero repellendus magni, atque delectus molestias quis?</p>
-                                        <div class="card-2-bottom card-2-bottom-candidate mt-30">
-                                            <div class="text-start"><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Figma</a><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Adobe XD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">PSD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">App</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">Digital</a>
-                                            </div>
-                                        </div>
-                                        <div class="employers-info align-items-center justify-content-center mt-15">
-                                            <div class="row">
-                                                <div class="col-6"><span class="d-flex align-items-center"><i
-                                                            class="fi-rr-marker mr-5 ml-0"></i><span
-                                                            class="font-sm color-text-mutted">Chicago,
-                                                            US</span></span></div>
-                                                <div class="col-6"><span
-                                                        class="d-flex justify-content-end align-items-center"><i
-                                                            class="fi-rr-clock mr-5"></i><span
-                                                            class="font-sm color-brand-1">$45 /
-                                                            hour</span></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="card-grid-2 hover-up">
-                                    <div class="card-grid-2-image-left">
-                                        <div class="card-grid-2-image-rd online"><a href="candidate-details.html">
-                                                <figure><img alt="joblist" src="{{asset('frontend')}}/assets/imgs/page/candidates/user4.png">
-                                                </figure>
-                                            </a></div>
-                                        <div class="card-profile pt-10"><a href="candidate-details.html">
-                                                <h5>Jacob Jones</h5>
-                                            </a><span class="font-xs color-text-mutted">UI/UX Designer</span>
-                                            <div class="rate-reviews-small pt-5"><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span
-                                                    class="ml-10 color-text-mutted font-xs">(65)</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="card-block-info">
-                                        <p class="font-xs color-text-paragraph-2">| Lorem ipsum dolor sit amet consectetur
-                                            adipisicing
-                                            elit.
-                                            Vero repellendus magni, atque delectus molestias quis?</p>
-                                        <div class="card-2-bottom card-2-bottom-candidate mt-30">
-                                            <div class="text-start"><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Figma</a><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Adobe XD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">PSD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">App</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">Digital</a>
-                                            </div>
-                                        </div>
-                                        <div class="employers-info align-items-center justify-content-center mt-15">
-                                            <div class="row">
-                                                <div class="col-6"><span class="d-flex align-items-center"><i
-                                                            class="fi-rr-marker mr-5 ml-0"></i><span
-                                                            class="font-sm color-text-mutted">Chicago,
-                                                            US</span></span></div>
-                                                <div class="col-6"><span
-                                                        class="d-flex justify-content-end align-items-center"><i
-                                                            class="fi-rr-clock mr-5"></i><span
-                                                            class="font-sm color-brand-1">$45 /
-                                                            hour</span></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="card-grid-2 hover-up">
-                                    <div class="card-grid-2-image-left">
-                                        <div class="card-grid-2-image-rd online"><a href="candidate-details.html">
-                                                <figure><img alt="joblist" src="{{asset('frontend')}}/assets/imgs/page/candidates/user4.png">
-                                                </figure>
-                                            </a></div>
-                                        <div class="card-profile pt-10"><a href="candidate-details.html">
-                                                <h5>Court Henry</h5>
-                                            </a><span class="font-xs color-text-mutted">UI/UX Designer</span>
-                                            <div class="rate-reviews-small pt-5"><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span
-                                                    class="ml-10 color-text-mutted font-xs">(65)</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="card-block-info">
-                                        <p class="font-xs color-text-paragraph-2">| Lorem ipsum dolor sit amet consectetur
-                                            adipisicing
-                                            elit.
-                                            Vero repellendus magni, atque delectus molestias quis?</p>
-                                        <div class="card-2-bottom card-2-bottom-candidate mt-30">
-                                            <div class="text-start"><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Figma</a><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Adobe XD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">PSD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">App</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">Digital</a>
-                                            </div>
-                                        </div>
-                                        <div class="employers-info align-items-center justify-content-center mt-15">
-                                            <div class="row">
-                                                <div class="col-6"><span class="d-flex align-items-center"><i
-                                                            class="fi-rr-marker mr-5 ml-0"></i><span
-                                                            class="font-sm color-text-mutted">Chicago,
-                                                            US</span></span></div>
-                                                <div class="col-6"><span
-                                                        class="d-flex justify-content-end align-items-center"><i
-                                                            class="fi-rr-clock mr-5"></i><span
-                                                            class="font-sm color-brand-1">$45 /
-                                                            hour</span></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="card-grid-2 hover-up">
-                                    <div class="card-grid-2-image-left">
-                                        <div class="card-grid-2-image-rd online"><a href="candidate-details.html">
-                                                <figure><img alt="joblist" src="{{asset('frontend')}}/assets/imgs/page/candidates/user3.png">
-                                                </figure>
-                                            </a></div>
-                                        <div class="card-profile pt-10"><a href="candidate-details.html">
-                                                <h5>Hawkins</h5>
-                                            </a><span class="font-xs color-text-mutted">UI/UX Designer</span>
-                                            <div class="rate-reviews-small pt-5"><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span
-                                                    class="ml-10 color-text-mutted font-xs">(65)</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="card-block-info">
-                                        <p class="font-xs color-text-paragraph-2">| Lorem ipsum dolor sit amet consectetur
-                                            adipisicing
-                                            elit.
-                                            Vero repellendus magni, atque delectus molestias quis?</p>
-                                        <div class="card-2-bottom card-2-bottom-candidate mt-30">
-                                            <div class="text-start"><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Figma</a><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Adobe XD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">PSD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">App</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">Digital</a>
-                                            </div>
-                                        </div>
-                                        <div class="employers-info align-items-center justify-content-center mt-15">
-                                            <div class="row">
-                                                <div class="col-6"><span class="d-flex align-items-center"><i
-                                                            class="fi-rr-marker mr-5 ml-0"></i><span
-                                                            class="font-sm color-text-mutted">Chicago,
-                                                            US</span></span></div>
-                                                <div class="col-6"><span
-                                                        class="d-flex justify-content-end align-items-center"><i
-                                                            class="fi-rr-clock mr-5"></i><span
-                                                            class="font-sm color-brand-1">$45 /
-                                                            hour</span></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="card-grid-2 hover-up">
-                                    <div class="card-grid-2-image-left">
-                                        <div class="card-grid-2-image-rd online"><a href="candidate-details.html">
-                                                <figure><img alt="joblist" src="{{asset('frontend')}}/assets/imgs/page/candidates/user2.png">
-                                                </figure>
-                                            </a></div>
-                                        <div class="card-profile pt-10"><a href="candidate-details.html">
-                                                <h5>Howard</h5>
-                                            </a><span class="font-xs color-text-mutted">UI/UX Designer</span>
-                                            <div class="rate-reviews-small pt-5"><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span><img
-                                                        src="{{asset('frontend')}}/assets/imgs/template/icons/star.svg"
-                                                        alt="joblist"></span><span
-                                                    class="ml-10 color-text-mutted font-xs">(65)</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="card-block-info">
-                                        <p class="font-xs color-text-paragraph-2">| Lorem ipsum dolor sit amet consectetur
-                                            adipisicing
-                                            elit.
-                                            Vero repellendus magni, atque delectus molestias quis?</p>
-                                        <div class="card-2-bottom card-2-bottom-candidate mt-30">
-                                            <div class="text-start"><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Figma</a><a class="btn btn-tags-sm mb-10 mr-5"
-                                                    href="jobs-grid.html">Adobe XD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">PSD</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">App</a><a
-                                                    class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html">Digital</a>
-                                            </div>
-                                        </div>
-                                        <div class="employers-info align-items-center justify-content-center mt-15">
-                                            <div class="row">
-                                                <div class="col-6"><span class="d-flex align-items-center"><i
-                                                            class="fi-rr-marker mr-5 ml-0"></i><span
-                                                            class="font-sm color-text-mutted">Chicago,
-                                                            US</span></span></div>
-                                                <div class="col-6"><span
-                                                        class="d-flex justify-content-end align-items-center"><i
-                                                            class="fi-rr-clock mr-5"></i><span
-                                                            class="font-sm color-brand-1">$45 /
-                                                            hour</span></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="paginations mt-35">
-                                    <ul class="pager">
-                                        <li><a class="pager-prev" href="#"><i class="fas fa-arrow-left"></i></a>
-                                        </li>
-                                        <li><a class="pager-number" href="#">1</a></li>
-                                        <li><a class="pager-number" href="#">2</a></li>
-                                        <li><a class="pager-number active" href="#">3</a></li>
-                                        <li><a class="pager-number" href="#">4</a></li>
-                                        <li><a class="pager-next" href="#"><i
-                                                    class="fas fa-arrow-right"></i></a></li>
-                                    </ul>
-                                </div>
+                            @empty
+                                Not Data Found
+                            @endforelse
+
+
+                            <div class="col-12 mb-70">
+                                {{ $candidates->links('frontend.pagination') }}
+
                             </div>
                         </div>
                     </div>

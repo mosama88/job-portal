@@ -10,8 +10,8 @@ class CandidatePageController extends Controller
 {
     public function index()
     {
-        $companies = Candidate::paginate(21);
-        return view('frontend.pages.candidate-index', compact('companies'));
+        $candidates = Candidate::with('skills', 'languages')->paginate(21);
+        return view('frontend.pages.candidate-index', compact('candidates'));
     }
 
 

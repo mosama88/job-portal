@@ -71,19 +71,21 @@ class Candidate extends Model implements HasMedia
         $this->addMediaCollection('photo')->singleFile();
     }
 
-    public function state()
+    public function candidateState()
     {
-        return $this->belongsTo(State::class, 'state')->withDefault(['name' => 'Not Define']);
+        return $this->belongsTo(State::class, 'state', 'id')->withDefault(['name' => 'Not Define']);
     }
 
-    public function country()
+    public function candidateCountry()
     {
-        return $this->belongsTo(Country::class, 'country')->withDefault(['name' => 'Not Define']);
+        return $this->belongsTo(Country::class, 'country', 'id')->withDefault(['name' => 'Not Define']);
     }
-    public function city()
+
+    public function candidateCity()
     {
-        return $this->belongsTo(City::class, 'city')->withDefault(['name' => 'Not Define']);
+        return $this->belongsTo(City::class, 'city', 'id')->withDefault(['name' => 'Not Define']);
     }
+
     public function profession()
     {
         return $this->belongsTo(Profession::class, 'profession_id')->withDefault(['name' => 'Not Define']);
@@ -103,7 +105,7 @@ class Candidate extends Model implements HasMedia
     public function skills()
     {
         return $this->belongsToMany(
-            Language::class,
+            Skill::class,
             'candidate_skills',
             'candidate_id',
             'skill_id'

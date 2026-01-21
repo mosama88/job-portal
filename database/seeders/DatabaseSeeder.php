@@ -29,6 +29,9 @@ class DatabaseSeeder extends Seeder
             StateSeeder::class,
             CitySeeder::class,
             CompanySeeder::class,
+            CandidateSeeder::class,
+            CandidateLanguageSeeder::class,
+            CandidateSkillSeeder::class,
         ]);
     }
 }
