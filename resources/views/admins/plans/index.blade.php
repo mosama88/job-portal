@@ -44,7 +44,7 @@
                                         <div class="card pricing-card developer">
                                         @elseif($info->label === 'SMALL TEAM')
                                             <div class="card pricing-card team">
-                                            @elseif($info->label === 'ENTERPRISE')
+                                            @else
                                                 <div class="card pricing-card enterprise">
                                     @endif
                                     @if ($info->recommended == 1)
@@ -80,7 +80,7 @@
                                             <button class="btn btn-subscribe btn-developer mt-4">
                                             @elseif($info->label === 'SMALL TEAM')
                                                 <button class="btn btn-subscribe btn-team mt-4">
-                                                @elseif($info->label === 'ENTERPRISE')
+                                                @else
                                                     <button class="btn btn-subscribe btn-enterprise mt-4">
                                         @endif
                                         <i class="fas fa-shopping-cart mr-2"></i>SUBSCRIBE →
@@ -218,11 +218,10 @@
             </div>
         </div>
     </div>
+    </div>
 
     <!-- /.card-body -->
     <!-- /.card -->
-    </div>
-    </div>
 @endsection
 @push('js')
 @endpush
