@@ -10,6 +10,7 @@ use App\Http\Controllers\Frontend\CompanyDashboardController;
 use App\Http\Controllers\Frontend\CandidateDashboardController;
 use App\Http\Controllers\Frontend\CandidateEducationController;
 use App\Http\Controllers\Frontend\CandidateExperienceController;
+use App\Http\Controllers\Frontend\CandidatePageController;
 
 Route::get('/', [HomeController::class, 'index']);
 
@@ -49,3 +50,4 @@ Route::middleware(['auth', 'verified', 'user.role:company'])->prefix('company')-
 });
 Route::get('/companies', [CompanyPageController::class, 'index'])->name('companies.index');
 Route::get('/company/{slug}', [CompanyPageController::class, 'show'])->name('company.show');
+Route::get('/candidates', [CandidatePageController::class, 'index'])->name('candidates.index');
