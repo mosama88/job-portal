@@ -25,7 +25,7 @@
                          <select name="paypal_mode"
                              class="custom-select {{ $errors->has('paypal_mode') ? 'is-invalid' : '' }}">
                              <option selected>Select Options</option>
-                             <option @if (old('paypal_mode') == 'sanbox') selected @endif value="sanbox">Sanbox</option>
+                             <option @if (old('paypal_mode') == 'sandbox') selected @endif value="sandbox">Sandbox</option>
                              <option @if (old('paypal_mode') == 'live') selected @endif value="live">Live</option>
                          </select>
                          <x-input-error class="mt-2 text-danger" :messages="$errors->get('paypal_mode')" />
