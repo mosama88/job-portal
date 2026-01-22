@@ -144,6 +144,15 @@
                             <p>Price Plans</p>
                         </a>
                     </li>
+
+
+                    <li class="nav-header">Payment Setting</li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.payment-settings.index') }}" class="nav-link @yield('payment-settings')">
+                            <i class="fa-brands fa-paypal"></i>
+                            <p>Payment Setting</p>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

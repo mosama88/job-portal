@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\Admin\CountryController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Admin\ExportExcelController;
 use App\Http\Controllers\Admin\ImportExcelController;
 use App\Http\Controllers\Admin\IndustryTypeController;
 use App\Http\Controllers\Admin\Auth\PasswordController;
+use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\OrganizationTypeController;
@@ -21,7 +23,6 @@ use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
-use App\Http\Controllers\Admin\PlanController;
 
 Route::permanentRedirect('/', '/admin/dashboard');
 
@@ -81,6 +82,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/get-states/{country_id}', [CountryController::class, 'getStates']);
     Route::get('/get-cities/{state_id}', [CountryController::class, 'getCities']);
 
+    //---------------------------------------------  payment-settings
+    Route::get('/payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');
 
 
     Route::get('verify-email', EmailVerificationPromptController::class)

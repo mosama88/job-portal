@@ -35,9 +35,10 @@
                                             @endif
 
                                         </li>
-                                        <li>Free support ticket</li>
                                     </ul>
-                                    <div><a class="btn btn-border" href="#">Choose plan</a></div>
+                                    <div><a class="btn btn-border" target="_blanck"
+                                            href="{{ route('checkout.index', $price->id) }}">Choose
+                                            plan</a></div>
                                 </div>
                             </div>
                         @empty

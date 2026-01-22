@@ -3,14 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\CheckoutPageController;
 use App\Http\Controllers\Frontend\CompanyPageController;
+use App\Http\Controllers\Frontend\CandidatePageController;
 use App\Http\Controllers\Frontend\CompanyProfileController;
 use App\Http\Controllers\Frontend\CandidateProfileController;
 use App\Http\Controllers\Frontend\CompanyDashboardController;
 use App\Http\Controllers\Frontend\CandidateDashboardController;
 use App\Http\Controllers\Frontend\CandidateEducationController;
 use App\Http\Controllers\Frontend\CandidateExperienceController;
-use App\Http\Controllers\Frontend\CandidatePageController;
 
 Route::get('/', [HomeController::class, 'index']);
 
@@ -51,3 +52,4 @@ Route::middleware(['auth', 'verified', 'user.role:company'])->prefix('company')-
 Route::get('/companies', [CompanyPageController::class, 'index'])->name('companies.index');
 Route::get('/company/{slug}', [CompanyPageController::class, 'show'])->name('company.show');
 Route::get('/candidates', [CandidatePageController::class, 'index'])->name('candidates.index');
+Route::get('/checkout/{plan_id}', CheckoutPageController::class)->name('checkout.index');
