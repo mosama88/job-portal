@@ -104,9 +104,9 @@
 
                     <li class="nav-header">Locations</li>
                     <li
-                        class="nav-item {{ request()->is('admin/countries*') || request()->is('admin/states*') || request()->is('admin/cities*') ? 'menu-open' : '' }}">
+                        class="nav-item {{ request()->is('admin/countries*') || request()->is('admin/states*') || request()->is('admin/cities*') || request()->is('admin/currencies*') ? 'menu-open' : '' }}">
                         <a href="#"
-                            class="nav-link {{ request()->is('admin/countries*') || request()->is('admin/states*') || request()->is('admin/cities*') ? 'active' : '' }}">
+                            class="nav-link {{ request()->is('admin/countries*') || request()->is('admin/states*') || request()->is('admin/cities*') || request()->is('admin/currencies*') ? 'active' : '' }}">
                             <i class="fa-solid fa-location-crosshairs"></i>
                             <p>
                                 Locations
@@ -132,6 +132,14 @@
                                 <a href="{{ route('admin.cities.index') }}" class="nav-link @yield('cities_active')">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>City</p>
+                                </a>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <a href="{{ route('admin.currencies.index') }}" class="nav-link @yield('currencies_active')">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Currencies</p>
                                 </a>
                             </li>
                         </ul>

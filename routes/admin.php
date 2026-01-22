@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfessionController;
@@ -70,6 +71,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('states', StateController::class);
     //---------------------------------------------  cites
     Route::resource('cities', CityController::class);
+    //---------------------------------------------  currencies
+    Route::resource('currencies', CurrencyController::class);
     //---------------------------------------------  languages
     Route::resource('languages', LanguageController::class);
     //---------------------------------------------  professions
@@ -84,6 +87,7 @@ Route::middleware('auth:admin')->group(function () {
 
     //---------------------------------------------  payment-settings
     Route::get('/payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');
+    Route::post('/payment-settings', [PaymentSettingController::class, 'updatePaypalSettings'])->name('payment-settings.update-paypal');
 
 
     Route::get('verify-email', EmailVerificationPromptController::class)

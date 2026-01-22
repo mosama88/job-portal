@@ -44,7 +44,7 @@
                                         no data else
                                     @endforelse
                                 </select>
-                                <x-input-error class="mt-2 text-danger" :messages="$errors->get('name')" />
+                                <x-input-error class="mt-2 text-danger" :messages="$errors->get('country_id')" />
                             </div>
                         </div>
 
