@@ -22,10 +22,12 @@ class PaymentSettingController extends Controller
     {
         $data = $request->validated();
 
-        foreach($data as $key=>$value){
-            
+        foreach ($data as $key => $value) {
+            PaymentSetting::updateOrCreate(
+                ['key' => $key],
+                ['value' => $value],
+            );
         }
-        PaymentSetting::create($data);
 
         return redirect()->back()->with('success', '⚡️ Updated Paypal Setting Successfully!');
     }
