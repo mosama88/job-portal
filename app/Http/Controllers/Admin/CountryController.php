@@ -34,6 +34,7 @@ class CountryController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:100', 'unique:countries,name'],
+            'code' => ['required', 'string', 'max:100', 'unique:countries,code'],
         ]);
         Country::create($data);
 
@@ -67,6 +68,7 @@ class CountryController extends Controller
 
         $data = $request->validate([
             'name' => ['required', 'string', 'max:100', 'unique:countries,name,' . $id],
+            'code' => ['required', 'string', 'max:100', 'unique:countries,code,' . $id],
         ]);
         $country->update($data);
 

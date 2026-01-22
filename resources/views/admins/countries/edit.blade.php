@@ -14,14 +14,30 @@
                 @csrf
                 @method('PUT')
                 <div class="card-body">
-                    <div class="form-group">
-                        <label for="exampleInputName">Name</label>
-                        <input type="text" name="name" value="{{ old('name', $country->name) }}"
-                            class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" id="exampleInputName"
-                            placeholder="Enter Name">
-                        <x-input-error class="mt-2 text-danger" :messages="$errors->get('name')" />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputName">Name</label>
+                                <input type="text" name="name" value="{{ old('name', $country->name) }}"
+                                    class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
+                                    id="exampleInputName" placeholder="Enter Name">
+                                <x-input-error class="mt-2 text-danger" :messages="$errors->get('name')" />
 
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputName">Code</label>
+                                <input type="text" name="code" value="{{ old('code', $country->code) }}"
+                                    class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}"
+                                    id="exampleInputcode" placeholder="Enter code">
+                                <x-input-error class="mt-2 text-danger" :messages="$errors->get('code')" />
+
+                            </div>
+                        </div>
                     </div>
+
                 </div>
                 <!-- /.card-body -->
 

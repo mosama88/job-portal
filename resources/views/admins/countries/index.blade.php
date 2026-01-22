@@ -39,6 +39,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
+                                <th>Code</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -47,6 +48,7 @@
                                 <tr>
                                     <td>{{ $info->id }}</td>
                                     <td>{{ $info->name }}</td>
+                                    <td>{{ $info->code }}</td>
                                     <td>
                                         <li class="list-inline-item">
                                             @include('admins.partials.actions', [
