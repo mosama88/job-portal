@@ -59,7 +59,12 @@
                              class="form-control select2 select2-primary {{ $errors->has('paypal_currency_name') ? 'is-invalid' : '' }}"
                              data-dropdown-css-class="select2-primary" style="width: 100%;">
                              <option>-- Select Currency --</option>
-                             <option value=""></option>
+                             @forelse ($currencies as $currency)
+                                 <option value="{{ $currency->id }}" @if (old('paypal_currency_name') == $currency->id) selected @endif>
+                                     {{ $currency->code }}</option>
+                             @empty
+                                 no data else
+                             @endforelse
                          </select>
                          <x-input-error class="mt-2 text-danger" :messages="$errors->get('paypal_currency_name')" />
                      </div>

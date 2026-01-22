@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Country;
+use App\Models\Currency;
 use Illuminate\Http\Request;
 
 class PaymentSettingController extends Controller
@@ -12,7 +13,8 @@ class PaymentSettingController extends Controller
     {
         // $data = OrganizationType::filter(request()->all())->latest()->paginate(10);
         $countries = Country::get();
-        return view('admins.payment-settings.index', compact('countries'));
+        $currencies = Currency::get();
+        return view('admins.payment-settings.index', compact('countries', 'currencies'));
     }
     public function updatePaypalSettings(Request $request)
     {
