@@ -7,53 +7,43 @@
             <div class="max-width-price">
                 <div class="block-pricing mt-70">
                     <div class="row">
-                        <div class="col-xl-4 col-lg-6 col-md-6 wow animate__animated animate__fadeInUp">
-                            <div class="box-pricing-item">
-                                <h3>Basic</h3>
-                                <div class="box-info-price"><span class="text-price color-brand-2">$19</span><span
-                                        class="text-month">/month</span></div>
-                                <ul class="list-package-feature">
-                                    <li>Unlimited updates</li>
-                                    <li>Custom designs &amp; features</li>
-                                    <li>Custom permissions</li>
-                                    <li>Custom instructors</li>
-                                    <li>Free support ticket</li>
-                                </ul>
-                                <div><a class="btn btn-border" href="#">Choose plan</a></div>
+                        @forelse ($prices as $price)
+                            <div class="col-xl-4 col-lg-6 col-md-6 wow animate__animated animate__fadeInUp">
+                                <div class="box-pricing-item">
+                                    @if ($price->recommended == 1)
+                                        <small
+                                            class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-success-emphasis bg-success-subtle border border-success-subtle rounded-2">Recommended</small>
+                                    @else
+                                        <div
+                                            class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-success-emphasis mt-3">
+                                        </div>
+                                    @endif
+
+                                    <h3>{{ $price->label }}</h3>
+                                    <div class="box-info-price"><span
+                                            class="text-price color-brand-2">${{ $price->price }}</span><span
+                                            class="text-month">/month</span></div>
+                                    <ul class="list-package-feature">
+                                        <li>{{ $price->job_limit }} Job Limit</li>
+                                        <li>{{ $price->featured_job_limit }} &amp; Featured Job Limit</li>
+                                        <li>{{ $price->highlight_job_limit }} Highlight Job Post</li>
+                                        <li>
+                                            @if ($price->profile_verified == 1)
+                                                Verify Company
+                                            @else
+                                                <strike>Verify Company</strike>
+                                            @endif
+
+                                        </li>
+                                        <li>Free support ticket</li>
+                                    </ul>
+                                    <div><a class="btn btn-border" href="#">Choose plan</a></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-6 wow animate__animated animate__fadeInUp">
-                            <div class="box-pricing-item">
-                                <h3>Standard</h3>
-                                <div class="box-info-price"><span
-                                        class="text-price for-month display-month">$29</span><span
-                                        class="text-month">/month</span></div>
-                                <ul class="list-package-feature">
-                                    <li>Unlimited updates</li>
-                                    <li>Custom designs &amp; features</li>
-                                    <li>Custom permissions</li>
-                                    <li>Custom instructors</li>
-                                    <li>Free support ticket</li>
-                                </ul>
-                                <div><a class="btn btn-border" href="#">Choose plan</a></div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-6 wow animate__animated animate__fadeInUp">
-                            <div class="box-pricing-item">
-                                <h3>Enterpr&imath;se</h3>
-                                <div class="box-info-price"><span
-                                        class="text-price for-month display-month">$49</span><span
-                                        class="text-month">/month</span></div>
-                                <ul class="list-package-feature">
-                                    <li>Unlimited updates</li>
-                                    <li>Custom designs &amp; features</li>
-                                    <li>Custom permissions</li>
-                                    <li>Custom instructors</li>
-                                    <li>Free support ticket</li>
-                                </ul>
-                                <div><a class="btn btn-border" href="#">Choose plan</a></div>
-                            </div>
-                        </div>
+                        @empty
+                            no data found
+                        @endforelse
+
                     </div>
                 </div>
             </div>

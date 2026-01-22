@@ -40,6 +40,7 @@ class PlanController extends Controller
             'profile_verified' => ['nullable', 'boolean'],
             'recommended' => ['nullable', 'boolean'],
             'frontend_show' => ['nullable', 'boolean'],
+            'show_home' => ['nullable', 'boolean'],
         ]);
         Plan::create($data);
 
@@ -80,6 +81,7 @@ class PlanController extends Controller
             'profile_verified' => ['nullable', 'boolean'],
             'recommended' => ['nullable', 'boolean'],
             'frontend_show' => ['nullable', 'boolean'],
+            'show_home' => ['nullable', 'boolean'],
         ]);
         $plan->update($data);
 

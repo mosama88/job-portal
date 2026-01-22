@@ -110,6 +110,20 @@
                                 <x-input-error class="mt-2 text-danger" :messages="$errors->get('frontend_show')" />
                             </div>
                         </div>
+
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputName">Show At Home</label>
+                                <select name="show_home"
+                                    class="custom-select {{ $errors->has('show_home') ? 'is-invalid' : '' }}">
+                                    <option selected>Select Options</option>
+                                    <option @if (old('show_home', $plan->show_home) == 1) selected @endif value="1">Yes</option>
+                                    <option @if (old('show_home', $plan->show_home) == 0) selected @endif value="0">No</option>
+                                </select>
+                                <x-input-error class="mt-2 text-danger" :messages="$errors->get('show_home')" />
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- /.card-body -->
