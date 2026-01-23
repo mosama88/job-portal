@@ -2,4 +2,16 @@
 
 namespace App\Services;
 
-class PaymentGatewaySettingService {}
+use Illuminate\Support\Facades\Cache;
+
+
+
+class PaymentGatewaySettingService
+{
+
+    public function getSettings() {
+        return Cache::rememberForever('key', function () {
+    
+        });
+    }
+}
