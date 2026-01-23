@@ -20,7 +20,9 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             AdminSeeder::class,
             LanguageSeeder::class,
+            CurrencySeeder::class,
             SkillSeeder::class,
+            ExperienceSeeder::class,
             ProfessionSeeder::class,
             IndustryTypeSeeder::class,
             OrganizationTypeSeeder::class,
@@ -32,6 +34,7 @@ class DatabaseSeeder extends Seeder
             CandidateSeeder::class,
             CandidateLanguageSeeder::class,
             CandidateSkillSeeder::class,
+            PlanSeeder::class,
         ]);
     }
 }
