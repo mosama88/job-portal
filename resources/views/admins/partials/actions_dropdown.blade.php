@@ -21,8 +21,6 @@
         </div>
 
         @push('js')
-            <script src="{{ asset('dashboard') }}/assets/js/sweetalert2@11.js"></script>
-
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     // Attach event listener to delete buttons

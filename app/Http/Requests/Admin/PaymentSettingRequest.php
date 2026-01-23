@@ -22,7 +22,7 @@ class PaymentSettingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'paypal_status' => ['required', 'in:acive,inactive'],
+            'paypal_status' => ['required', 'in:active,inactive'],
             'paypal_mode' => ['required', 'in:live,sandbox'],
             'paypal_country_name' => ['required', 'exists:countries,id'],
             'paypal_currency_name' => ['required', 'exists:currencies,id'],

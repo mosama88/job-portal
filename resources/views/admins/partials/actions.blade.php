@@ -18,7 +18,6 @@
             class="btn btn-icon btn-outline-danger mt-2 delete-btn"><i class="fa-solid fa-trash-can"></i></a>
 
         @push('js')
-            <script src="{{ asset('admin') }}/assets/js/sweetalert2@11.js"></script>
 
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
